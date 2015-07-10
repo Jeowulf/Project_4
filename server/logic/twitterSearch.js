@@ -16,7 +16,7 @@ var T = new Twit({
 
 
 module.exports = function (text, callback) {
-  T.get('search/tweets', {q: '@apple', lang: 'en', include_entities: 'false'}, function(err, data) {
+  T.get('search/tweets', {q: '@Madonna', lang: 'en', include_entities: 'false'}, function(err, data) {
     var x = data;
     var array = [];
     for (var i = 0; i < x.statuses.length; i++) {
@@ -25,10 +25,11 @@ module.exports = function (text, callback) {
     };
     var r1 = array.join();
     var r2 = sentimentAnalysis(r1);
-    console.log(r2);
+    var resultScore = r2;
+    console.log(resultScore);
 
   });
-
+  console.log('end');
 }
 // module.exports = function (text, callback) {
 //   var twitterClient = new twitter(config);
