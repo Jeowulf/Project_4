@@ -32,6 +32,7 @@ angular.module('proj4App')
       var x = that.userInput;
       console.log(that.userInput)
      return $http.post('/api/things', {search: x});
-    }
+    };
+
 
   });

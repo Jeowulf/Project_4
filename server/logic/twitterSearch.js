@@ -14,18 +14,21 @@ var T = new Twit({
   access_token_secret: 'r1Am1NrKT8ZWCbLlKkv6B1RXhfkITVI8fknnJsBVlELEq'
 });
 
-var array = [];
-module.exports = function (text, callback) {
-  T.get('search/tweets', {q: '@google', lang: 'en', include_entities: 'false'}, function(err, data) {
-    var x = data;
 
+module.exports = function (text, callback) {
+  T.get('search/tweets', {q: '@apple', lang: 'en', include_entities: 'false'}, function(err, data) {
+    var x = data;
+    var array = [];
     for (var i = 0; i < x.statuses.length; i++) {
     array.push(x.statuses[i].text);
-
+    // array.join()
     };
+    var r1 = array.join();
+    var r2 = sentimentAnalysis(r1);
+    console.log(r2);
 
   });
-  console.log(array);
+
 }
 // module.exports = function (text, callback) {
 //   var twitterClient = new twitter(config);
