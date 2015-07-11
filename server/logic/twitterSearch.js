@@ -16,20 +16,21 @@ var T = new Twit({
 
 
 module.exports = function (text, callback) {
-  T.get('search/tweets', {q: '@Madonna', lang: 'en', include_entities: 'false'}, function(err, data) {
-    var x = data;
-    var array = [];
-    for (var i = 0; i < x.statuses.length; i++) {
-    array.push(x.statuses[i].text);
+  T.get('search/tweets', {q: text, lang: 'en', include_entities: 'false'}, function(err, data) {
+    console.log(text + 'is text'); //check that user input is carried over from controller
+    var twitterResults = data;
+    var tweetArray = [];
+    for (var i = 0; i < twitterResults.statuses.length; i++) {
+    tweetArray.push(twitterResults.statuses[i].text);
     // array.join()
     };
-    var r1 = array.join();
-    var r2 = sentimentAnalysis(r1);
-    var resultScore = r2;
-    console.log(resultScore);
-
+    var tweetString = tweetArray.join();
+    var analyzedTweets = sentimentAnalysis(tweetString);
+    var resultScore = analyzedTweets; //is this necessary?
+    // console.log(resultScore);
+    callback(resultScore);
   });
-  console.log('end');
+  // console.log('end');
 }
 // module.exports = function (text, callback) {
 //   var twitterClient = new twitter(config);
