@@ -14,8 +14,6 @@ var Thing = require('./thing.model');
 var twitterSearch = require('../../logic/twitterSearch');
 
 exports.search = function (req,res) {
-  // console.log(twitterSearch + 'is twsearch');//working
-  //working
   twitterSearch('madonna', function (data) {
     console.log(res.json + 'is res' + data + ' is data');
     return res.json(201, data);
