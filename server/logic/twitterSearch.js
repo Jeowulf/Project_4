@@ -17,12 +17,11 @@ var T = new Twit({
 
 module.exports = function (text, callback) {
   T.get('search/tweets', {q: text, lang: 'en', include_entities: 'false'}, function(err, data) {
-    console.log(text + 'is text'); //check that user input is carried over from controller
+    // console.log(text + 'is text'); //check that user input is carried over from controller
     var twitterResults = data;
     var tweetArray = [];
     for (var i = 0; i < twitterResults.statuses.length; i++) {
     tweetArray.push(twitterResults.statuses[i].text);
-    // array.join()
     };
     var tweetString = tweetArray.join();
     var analyzedTweets = sentimentAnalysis(tweetString);

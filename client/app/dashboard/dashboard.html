@@ -1,2 +1,33 @@
   <h1>This is the Dashboard View</h1>
+<!-- THIS IS THE SEARCH FOR ANYTHING IN TWITTER -->
+<div class="container"></div>
+  <div class="row">
+    <form class="col s12" ng-submit="ctrl.twitSentQuery(form)">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" class="validate" ng-model="ctrl.userInput">
+          <label for="first_name">Analyze Tweets</label>
+           <button class="btn btn-inverse btn-lg btn-login" type="submit">
+           Search
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 
+<!-- PLACE TO DISPLAY TWITTER SENTIMENT ANALYSIS RESULTS -->
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">The Sentiment Analysis Score for{{ctrl.userInput}} is:</span>
+              <p>{{ctrl.twitAnalysisScore}}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
