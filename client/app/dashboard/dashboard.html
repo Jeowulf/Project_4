@@ -2,11 +2,23 @@
 <!-- THIS IS THE SEARCH FOR ANYTHING IN TWITTER -->
 <div class="container"></div>
   <div class="row">
-    <form class="col s12" ng-submit="ctrl.twitSentQuery(form)">
+    <form class="col s6" ng-submit="ctrl.twitSentQuery(form)">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" placeholder="Analyze Tweets" class="validate" ng-model="ctrl.userInput">
+
+           <button class="btn btn-inverse btn-lg btn-login" type="submit">
+           Search
+          </button>
+        </div>
+      </div>
+    </form>
+<!-- SEARCH FOR A SYMBOL VIA YAHOO FIN -->
+     <form class="col s12 m6" ng-submit="ctrl.yahooFinanceQuery(form)">
       <div class="row">
         <div class="input-field col s6">
-          <input type="text" class="validate" ng-model="ctrl.userInput">
-          <label for="first_name">Analyze Tweets</label>
+          <input type="text" placeholder="Search Stocks" class="validate" ng-model="ctrl.userStockInput">
+
            <button class="btn btn-inverse btn-lg btn-login" type="submit">
            Search
           </button>
@@ -22,6 +34,25 @@
             <div class="card-content white-text">
               <span class="card-title">The Sentiment Analysis Score for {{ctrl.userInput}} is:</span>
               <p>{{ctrl.twitAnalysisScore}}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+        <!-- PLACE TO DISPLAY STOCK SYMBOL DATA -->
+               <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content black-text">
+              <span class="card-title">The Stock Report for {{ctrl.userStockInput}} is:</span>
+
+              <ul class="collection">
+                <li class="collection-item">Name:  {{ctrl.yahooData.name}}</li>
+                <li class="collection-item">Last Trade Price:  {{ctrl.yahooData.lastTradePriceOnly}}</li>
+                <li class="collection-item">Dividend Yield:  {{ctrl.yahooData.dividendYield}}</li>
+                <li class="collection-item">PeRatio:  {{ctrl.yahooData.peRatio}}</li>
+              </ul>
             </div>
             <div class="card-action">
               <a href="#">This is a link</a>
