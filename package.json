@@ -27,7 +27,8 @@
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
     "socketio-jwt": "^2.0.2",
-    "twit": "^2.1.0"
+    "twit": "^2.1.0",
+    "yahoo-finance": "^0.2.11"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
