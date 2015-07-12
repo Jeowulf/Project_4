@@ -16,7 +16,7 @@ var T = new Twit({
 
 
 module.exports = function (text, callback) {
-  T.get('search/tweets', {q: text, lang: 'en', include_entities: 'false'}, function(err, data) {
+  T.get('search/tweets', {q: text, count: 100, lang: 'en', include_entities: 'false'}, function(err, data) {
     // console.log(text + 'is text'); //check that user input is carried over from controller
     var twitterResults = data;
     var tweetArray = [];
@@ -28,7 +28,7 @@ module.exports = function (text, callback) {
     var analyzedTweets = sentimentAnalysis(tweetString);
     var resultScore = analyzedTweets; //is this necessary?
     // console.log(resultScore); //to see full analysis in console
-    callback(resultScore);
+    callback(resultScore); //to see what we're getting now
     };
   });
   // console.log('end');
