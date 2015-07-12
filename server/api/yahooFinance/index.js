@@ -6,5 +6,6 @@ var yahooFinance = require('yahoo-finance');
 var router = express.Router();
 
 router.post('/', controller.search);
+router.get('/',  controller.index);
 
 module.exports = router;
