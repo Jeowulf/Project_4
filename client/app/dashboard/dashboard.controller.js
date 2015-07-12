@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService) {
+  .controller('DashboardCtrl', function ($http, Auth, twitSentService, yahooFinanceService) {
     console.log('DashboardCtrl is alive');
 
     var that = this;
