@@ -61,4 +61,17 @@
           </div>
         </div>
       </div>
+<!-- Selected Stock section -->
+      <div class="row">
+        <button ng-click="ctrl.getSelectedStocks()" class="btn btn-inverse btn-lg btn-login"> Get Selected Stocks</button>
+        <div class="col s12 m6 lg4" ng-repeat="stock in ctrl.selectedStockData">
+           <ul class="collection" >
+                <li class="collection-item">Name:  {{stock.name}}</li>
+                <li class="collection-item">Last Trade Price:  {{stock.lastTradePriceOnly}}</li>
+                <li class="collection-item">Dividend Yield:  {{stock.dividendYield}}</li>
+                <li class="collection-item">PeRatio:  {{stock.peRatio}}</li>
+              </ul>
+
+        </div>
+      </div>
   </div>

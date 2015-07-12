@@ -8,5 +8,9 @@ angular.module('proj4App')
     return $http.post('/api/yahooFinance', {symbol: userStockInput});
   }
 
+  this.getSelectedStocks = function () {
+    return $http.get('/api/yahooFinance');
+  }
+
 });
 

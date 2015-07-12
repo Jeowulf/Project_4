@@ -20,10 +20,15 @@ angular.module('proj4App')
       // console.log(that.userStockInput);
       if (that.userStockInput !== '' || that.userStockInput !== null) { //TODO: move defensive conditionals to service to dumb down this controller it is getting to intellegint!!!
         yahooFinanceService.search(that.userStockInput).success(function(json) {
-          console.log(json);
           that.yahooData = json;
         })
       };
+    }
+
+    that.getSelectedStocks = function () {
+      yahooFinanceService.getSelectedStocks().success(function (json) {
+        that.selectedStockData = json;
+      })
     }
 
   });
