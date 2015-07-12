@@ -20,14 +20,16 @@ module.exports = function (text, callback) {
     // console.log(text + 'is text'); //check that user input is carried over from controller
     var twitterResults = data;
     var tweetArray = [];
+    if (twitterResults.statuses !== undefined) { //Defensive programming. TODO: refactor this
     for (var i = 0; i < twitterResults.statuses.length; i++) {
     tweetArray.push(twitterResults.statuses[i].text);
     };
     var tweetString = tweetArray.join();
     var analyzedTweets = sentimentAnalysis(tweetString);
     var resultScore = analyzedTweets; //is this necessary?
-    // console.log(resultScore);
+    // console.log(resultScore); //to see full analysis in console
     callback(resultScore);
+    };
   });
   // console.log('end');
 }

@@ -8,7 +8,7 @@ angular.module('proj4App')
 
     that.twitSentQuery = function() {
       console.log(that.userInput + 'is userInput');
-      if (that.userInput !== '' && that.userInput !== null) {
+      if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
       twitSentService.search(that.userInput).success(function(json) {
         console.log(json.score);
         that.twitAnalysisScore = json.score;
