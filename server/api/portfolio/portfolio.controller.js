@@ -6,4 +6,4 @@
 // controller.sell); //Sells/deletes all quantities of particular stock from users portfolio
 
 'use strict';
-var Portfolio = require('./portfolio.model');
+var StockInPortfolio = require('./stockInPortfolio.model');
