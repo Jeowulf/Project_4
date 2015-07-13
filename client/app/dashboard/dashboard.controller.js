@@ -4,7 +4,16 @@ angular.module('proj4App')
   .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, yahooFinanceService) {
 
     var that = this;
-    stockService.getUser();
+
+    stockService.getUser();//helper for server
+
+    that.createStockInventory = function(){
+      stockService.createStockInventory().success(function(json){
+        console.log(json)
+      });
+    }
+    //call to get when controller is creatd/alive
+
     //Gets the stock inventory from the DB
     that.getStockInventory = function() {
       console.log('getStockInventory was called');
@@ -13,7 +22,6 @@ angular.module('proj4App')
         that.stockInvetory = json;
       });
     }
-    that.getStockInventory(); //call to get when controller is creatd/alive
     that.twitSentQuery = function() {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined

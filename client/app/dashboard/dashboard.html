@@ -1,6 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
   <h4>This is the Dashboard View</h4>
-
+<button ng-click="ctrl.createStockInventory()">Create Stock Inventory</button>
+<button ng-click="ctrl.getStockInventory()">Get Stock Inventory</button>
   <div ng-include="'/app/dashboard/partials/twitsent.html'"></div>
   <div ng-include="'/app/dashboard/partials/twitsearch.html'"></div>
   <div ng-include="'/app/dashboard/partials/stockinventory.html'"></div>

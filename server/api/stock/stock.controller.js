@@ -4,6 +4,7 @@ var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultiple
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
 
 exports.index = function(req, res) {
+  console.log('stocks get was hit');
   Stock.find(function (err, stocks) {
     if(err) { return handleError(res, err); }
     return res.json(200, stocks);
