@@ -1,11 +1,19 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService, yahooFinanceService) {
-    console.log('DashboardCtrl is alive');
+  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, yahooFinanceService) {
 
     var that = this;
 
+    //Gets the stock inventory from the DB
+    that.getStockInventory = function() {
+      console.log('getStockInventory was called');
+      stockService.getInventory().success(function(json) {
+        console.log(json);
+        that.stockInvetory = json;
+      });
+    }
+    that.getStockInventory(); //call to get when controller is creatd/alive
     that.twitSentQuery = function() {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined

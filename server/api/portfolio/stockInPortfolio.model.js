@@ -6,9 +6,9 @@ var Stock = require('../stock/stock.model');
 
 var StockInPortfolioSchema = new Schema({
     stock : {
-    type : Schema.Types.ObjectId,
-    ref: 'Stock'
-  },
+      type : Schema.Types.ObjectId,
+      ref: 'Stock'
+    },
   qty : Number
 });
 

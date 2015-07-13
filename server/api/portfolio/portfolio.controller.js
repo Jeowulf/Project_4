@@ -7,3 +7,54 @@
 
 'use strict';
 var StockInPortfolio = require('./stockInPortfolio.model');
+var Portfolio = require('./portfolio.model');
+var Stock = require('../stock/stock.model');
+var User = require('../user/user.model')
+function findStockInPortfolio(user, id) {
+  return _.find(user.portfolio, function(stockInPortfolio) {
+    console.log('Comparing ' + stockInPortfolio.item + ' to ' + id);
+    return stockInPortfolio.stock.equals(id) || stockInPortfolio._id.equals(id);
+  });
+}
+
+exports.buyStock = function(req, res) {
+  console.log('buyStock, url = ' + req.url);
+  var userId = req.params.userid.trim();
+  var stockId = req.params.stockid.trim();
+  console.log('userId: ' + userId + ', stockId: ' + stockId);
+
+
+    Stock.findById(stockId, function(err, stock) {
+    if (err) { return handleError(res, err); }
+    if (!stock) { return res.send(404); }
+
+    User.findById(userId, function(err, user) {
+      if (err) { return handleError(res, err); }
+      if (!user) { return res.send(404); }
+
+      // Check if stock is already in portoflio
+
+      //found is embedded in the user
+      var found = findstockInPortfolio(user, stock._id);
+      if (found) {
+        console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
+        found.qty = found.qty + 1;
+      }
+      else {
+        console.log('Adding stock to portfolio: ' + stock.name);
+        user.portfolio.push( new StockInPortfolio( { stock: stock, qty: 1 } ) );
+      }
+      user.save(function() {
+        user.populate('portfolio.stockInPortfolio', function(err, user) {
+          return res.json(201, user.portfolio );
+        });
+      });
+    });
+  });
+
+
+}
+
+function handleError(res, err) {
+  return res.send(500, err);
+}
