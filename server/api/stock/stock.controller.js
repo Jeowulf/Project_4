@@ -2,8 +2,16 @@
 var Stock = require('./stock.model');
 var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultipleSymbolSearch');
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
-//Creates a new, single stock in DB
 
+exports.index = function(req, res) {
+  Stock.find(function (err, stocks) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, stocks);
+  });
+};
+
+
+//Creates a new, single stock in DB
 exports.create = function (req, res) {
   // console.log(req.body.symbol + 'is symbol from postman');
 

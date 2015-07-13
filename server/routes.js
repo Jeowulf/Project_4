@@ -10,6 +10,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/things',       require('./api/thing'));
   app.use('/api/users',        require('./api/user'));
+  app.use('/api/users',        require('./api/portfolio'));//is bringing in api/portfolio/index.js file
   app.use('/api/twitSent',     require('./api/twitSent'));
   app.use('/api/yahooFinance', require('./api/yahooFinance'));
   app.use('/api/stocks',       require('./api/stock'));

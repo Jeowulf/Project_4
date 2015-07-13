@@ -1,22 +1,32 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService, yahooFinanceService) {
-    console.log('DashboardCtrl is alive');
+  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, yahooFinanceService) {
 
     var that = this;
-
+    stockService.getUser();
+    //Gets the stock inventory from the DB
+    that.getStockInventory = function() {
+      console.log('getStockInventory was called');
+      stockService.getInventory().success(function(json) {
+        console.log(json);
+        that.stockInvetory = json;
+      });
+    }
+    that.getStockInventory(); //call to get when controller is creatd/alive
     that.twitSentQuery = function() {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
+
       twitSentService.search(that.userInput).success(function(json) {
+        console.log('twitSentQuery from DashboardCtrl');
         // console.log(json.score);
         that.twitAnalysisScore = json.score;
         that.twitAnaylsisData = json;
       });
       }
     }
-
+//search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {
       // console.log(that.userStockInput);
       if (that.userStockInput !== '' || that.userStockInput !== null) { //TODO: move defensive conditionals to service to dumb down this controller it is getting to intellegint!!!
@@ -25,11 +35,12 @@ angular.module('proj4App')
         })
       };
     }
-
+//Gets From Yahoo Data for our 23 preselected stocks and saves this info to our DB
     that.getSelectedStocks = function () {
       yahooFinanceService.getSelectedStocks().success(function (json) {
         that.selectedStockData = json;
       })
-    }
+    };
+
 
   });

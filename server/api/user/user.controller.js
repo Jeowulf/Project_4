@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var Portfolio = require('../portfolio/portfolio.model');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -27,6 +28,8 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
+  var portfolio = new Portfolio;
+  newUser.portfolio = portfolio;
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
