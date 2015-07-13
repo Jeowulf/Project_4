@@ -1,47 +1,56 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
+<!-- <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <h1></h1>
+    <p></p>
   </div>
-</header>
+</header> -->
 
 <div class="container">
   <div class="row">
     <div class="col s12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col s3" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
-      </ul>
     </div>
   </div>
-
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
 </div>
-
-<form>
-  <label>Search</label>
-  <input type="text" ng-model="ctrl.userInput">
-  <button ng-click="ctrl.search()">Search</button>
-</form>
-<a class="waves-effect waves-light btn">Stuff</a>
-<a class="waves-effect waves-light btn"><i class="material-icons left"></i>button</a>
-<a class="waves-effect waves-light btn"><i class="material-icons right"></i>button</a>
-
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+<div class="row">
+  <div class="col s4 offset-s3">
+    <h1>THE <br>TALK<br>THE <br>STOCK<br>THE <br>FUTURE<br></h1>
+    <h2>in your <br> hands </h2>
   </div>
-</footer>
+</div>
+<div class="row">
+  <div class="parallax-container">
+    <div class="parallax">
+      <h3 class="col s2">THE TALK</h3>
+      <img class="col s8 offset-s2" src="http://incomeacquisition.com/wp-content/uploads/2014/07/c3.jpg">
+      <h3 class="col s2">THE STOCK</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s8 offset-s2">
+    <div class="section white">
+      <div class="row container">
+        <h2 class="header">McDonald's</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="parallax-container">
+    <div class="parallax"><img src="http://incomeacquisition.com/wp-content/uploads/2014/07/c3.jpg"></div>
+  </div>
+</div>
+<script>
+'use strict'
+  $(document).ready(function(){
+  $('.parallax').parallax();
+});
+</script>
+
+<!-- #ff3d00 deep-orange accent-3
+#009688 teal
+#1de9b6 teal accent-3
+#004d40 teal darken-4
+#546e7a blue-grey darken-1 -->
