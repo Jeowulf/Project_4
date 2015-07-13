@@ -19,7 +19,7 @@ angular.module('proj4App')
       console.log('getStockInventory was called');
       stockService.getInventory().success(function(json) {
         console.log(json);
-        that.stockInvetory = json;
+        that.stockInventory = json;
       });
     }
     that.twitSentQuery = function() {

@@ -77,6 +77,6 @@ User.find({}).remove(function() {
 });
 
 //DUmp all stocks in DB on startup for dev purposes
-// Stock.remove({}, function(err) {
-//    console.log('collection removed')
-// });
+Stock.remove({}, function(err) {
+   console.log('collection removed')
+});
