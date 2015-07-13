@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, twitSentService, yahooFinanceService) {
     var that = this;
 
     $scope.awesomeThings = [];

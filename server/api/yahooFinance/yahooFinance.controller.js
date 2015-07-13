@@ -7,7 +7,6 @@ exports.search = function  (req, res) {
   yahooFinanceSearch(req.body.symbol, function (data) {
     // console.log(data.name + 'is data name');
     return res.json(201,data);
-
   });
 }
 exports.index = function (req, res) {
