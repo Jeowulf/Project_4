@@ -4,7 +4,7 @@ angular.module('proj4App')
   .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, yahooFinanceService) {
 
     var that = this;
-
+    stockService.getUser();
     //Gets the stock inventory from the DB
     that.getStockInventory = function() {
       console.log('getStockInventory was called');

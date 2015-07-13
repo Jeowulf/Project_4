@@ -27,11 +27,13 @@ exports.buyStock = function(req, res) {
     Stock.findById(stockId, function(err, stock) {
     if (err) { return handleError(res, err); }
     if (!stock) { return res.send(404); }
+    console.log('stock is: ' + stock);
 
     User.findById(userId, function(err, user) {
       if (err) { return handleError(res, err); }
+      console.log('user is: ' + user);
       if (!user) { return res.send(404); }
-
+      console.log('user is: ' + user);
       // Check if stock is already in portoflio
 
       //found is embedded in the user
