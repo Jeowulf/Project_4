@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var StockInPortfolio = require('../portfolio/stockInPortfolio.model');
+var Portfolio = require('../portfolio/portfolio.model');
 
 var UserSchema = new Schema({
   name: String,
@@ -16,8 +17,10 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  portfolio: [StockInPortfolio.schema],
-  startingMoney: Number
+  portfolio: {
+    type : Schema.Types.ObjectId,
+    ref  : 'Portfolio'
+  }
   // twitter: {},
   // github: {}
 });

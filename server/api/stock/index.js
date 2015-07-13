@@ -5,7 +5,7 @@ var controller = require('./stock.controller');
 
 var router = express.Router();
 
-// router.get('/',    controller.index); //Gets all the stocks that we have
+router.get('/',    controller.index); //Gets all the stocks that we have saved
 // router.get('/:id', controller.show); //indivdual show for a particular stock
 router.post('/',   controller.create); //creates a stock in the DB with data from Yahoo API
 router.put('/',    controller.createSet); //creates set of stocks in DB from Yahoo API data

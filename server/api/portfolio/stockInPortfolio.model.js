@@ -2,9 +2,10 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var Stock = require('../stock/stock.model');
 
 var StockInPortfolioSchema = new Schema({
-   stock : {
+    stock : {
     type : Schema.Types.ObjectId,
     ref: 'Stock'
   },
