@@ -12,6 +12,7 @@ angular.module('proj4App')
       twitSentService.search(that.userInput).success(function(json) {
         // console.log(json.score);
         that.twitAnalysisScore = json.score;
+        that.twitAnaylsisData = json;
       });
       }
     }

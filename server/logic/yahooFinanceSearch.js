@@ -1,7 +1,7 @@
 'use stict';
 var yahooFinance = require('yahoo-finance');
 
-module.exports = function (text, callback) {
+module.exports = function (text, callback, next) {
 
 yahooFinance.snapshot({
   symbol: text,
