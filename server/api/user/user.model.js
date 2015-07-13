@@ -16,7 +16,8 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  portfolio: [StockInPortfolio.schema]
+  portfolio: [StockInPortfolio.schema],
+  startingMoney: Number
   // twitter: {},
   // github: {}
 });
