@@ -7,3 +7,4 @@
 
 'use strict';
 var StockInPortfolio = require('./stockInPortfolio.model');
+
