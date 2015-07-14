@@ -25,7 +25,7 @@ exports.buyStock = function(req, res) {
   console.log(', stockId: ' + stockId);
 
     Stock.findById(stockId, function(err, stock) {
-      console.log('stock is: ' + stock);
+      // console.log('stock is: ' + stock);
       if (err) { return handleError(res, err); }
       if (!stock) { return res.send(404); }
 
@@ -34,9 +34,25 @@ exports.buyStock = function(req, res) {
       if (err) { return handleError(res, err); }
 
       if (!user) { return res.send(404); }
-      console.log('user is: ' + user);
+      // console.log('user is: ' + user);
       var portfolioId = user.portfolio;
-      console.log('portfolio id for user is:' + portfolioId);
+      // console.log('portfolio id for user is:' + portfolioId);
+
+
+      Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
+        if (err) { return handleError(res, err); }
+        if (!portfolio) { return res.send(404); }
+        console.log(portfolio);
+        var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: 30});
+        portfolio.stocksInPortfolio.push(newStockInPortfolio);
+        portfolio.save(function(){
+          newStockInPortfolio.save(function(){
+            console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio);
+            return res.json(201, portfolio);
+          });
+        });
+      });
+
       // TODO: write this
       // Check if stock is already in portoflio
       //found is embedded in the user
@@ -49,11 +65,11 @@ exports.buyStock = function(req, res) {
       //   console.log('Adding stock to portfolio: ' + stock.name);
       //   user.portfolio.push( new StockInPortfolio( { stock: stock, qty: 1 } ) );
       // }
-      user.save(function() {
-        user.populate('portfolio.stockInPortfolio', function(err, user) {
-          return res.json(201, user.portfolio );
-        });
-      });
+      // user.save(function() {
+      //   user.populate('portfolio.stockInPortfolio', function(err, user) {
+      //     return res.json(201, user.portfolio );
+      //   });
+      // });
     });
   });
 
