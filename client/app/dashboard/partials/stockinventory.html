@@ -10,6 +10,8 @@ This is ctrl.stockInventory - from DB
                 <li class="collection-item">Dividend Yield:  {{stock.dividendYield}}</li>
                 <li class="collection-item">PeRatio:  {{stock.peRatio}}</li>
               </ul>
+              <!-- Binding for stock qty, sends to portfolioservice.buyStock -->
+          <input type="number" ng-model="stock.qty">
          <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(stock)">BUY</button>
 
         </div>

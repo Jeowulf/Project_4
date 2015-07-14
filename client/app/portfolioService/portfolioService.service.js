@@ -5,7 +5,9 @@ angular.module('proj4App')
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.buyStock = function(stock) {
       var userId = Auth.getCurrentUser()._id;
-      return $http.post('/api/users/' + userId + '/portfolio/' + stock._id);
+      var qty = stock.qty;
+      console.log(qty + "is qty");
+      return $http.post('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
     }
 
     this.getUserPortfolio = function(){

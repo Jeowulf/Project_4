@@ -26,6 +26,8 @@ function findStockInPortfolio(portfolio, id) {
 
 exports.buyStock = function(req, res) {
   // console.log('buyStock, url = ' + req.url);
+  var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
+  console.log ('stockQty is:  +++' + stockQty);
   var userId = req.params.userid.trim();
   var stockId = req.params.stockid.trim();
   // console.log('userId: ' + userId + ', stockId: ' + stockId);
@@ -59,7 +61,7 @@ exports.buyStock = function(req, res) {
         }
         else {
           console.log('>>>>>>Stock not found');
-          var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: 30});
+          var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: stockQty});
           newStockInPortfolio.save(function() {
             console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
             portfolio.stocksInPortfolio.push(newStockInPortfolio);
