@@ -57,7 +57,7 @@ angular.module('proj4App')
   }
   //run when controller is instantiated
   that.getUserPortfolio();
-
+  that.getStockInventory();
     // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {

@@ -11,9 +11,10 @@ angular.module('proj4App')
     }
 
     this.sellStock = function(stock) {
-      var qty = stock.qty;
+      var qty = stock.qty; //TODO: find another way!!!
+      console.log(qty + 'is sell qty');
       var userId = Auth.getCurrentUser()._id;
-      return $http.delete('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
+      return $http.patch('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
     }
 
     this.getUserPortfolio = function(){

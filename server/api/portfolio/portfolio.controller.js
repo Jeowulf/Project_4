@@ -81,7 +81,7 @@ exports.buyStock = function(req, res) {
 exports.sellStock = function(req, res) {
   // console.log('buyStock, url = ' + req.url);
   var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
-  // console.log ('stockQty is:  +++' + stockQty);
+  console.log ('stockQty is:  +++' + stockQty);
   var userId = req.params.userid.trim();
   var stockId = req.params.stockid.trim();
   // console.log('userId: ' + userId + ', stockId: ' + stockId);
