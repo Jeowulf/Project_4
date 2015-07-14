@@ -11,7 +11,7 @@ var StockInPortfolio = require('./stockInPortfolio.model');
 var Portfolio = require('./portfolio.model');
 var Stock = require('../stock/stock.model');
 var User = require('../user/user.model');
-
+var deepPopulate = require('mongoose-deep-populate');
 
 function findStockInPortfolio(portfolio, id) {
   console.log('User portfolio has ' + portfolio.stocksInPortfolio.length + ' stocks');
@@ -103,13 +103,13 @@ exports.get = function(req, res) {
   console.log('userId is ' + userId);
 
   User.findById(userId)
-  .populate('portfolio', 'portfolio.stocksInPortfolio')
+  .deepPopulate('portfolio portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock')
   .exec(function(err, user) {
     console.log('user: ' + user.name);
     if (err) { return handleError(res, err); }
     if (!user) { return res.send(404); }
     console.log('returning portfolio.stocksInPortfolio: ' + JSON.stringify(user.portfolio.stocksInPortfolio));
-    console.log('returning portfolio: ' + JSON.stringify(user.portfolio));
+    console.log('returning portfolio: ' + user.portfolio);
     res.json(200, user.portfolio);
   });
 }
