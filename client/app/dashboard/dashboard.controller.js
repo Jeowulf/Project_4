@@ -34,12 +34,20 @@ angular.module('proj4App')
       });
       }
     }
+//User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
       console.log(json);
       //TODO that.portfolio = json.something;
     });
   };
+  //TODO: call thsi when a user logs in and hits this page!!
+  that.getUserPortfolio = function() {
+    portfolioService.getUserPortfolio().success(function(json) {
+      that.myPortfolio = JSON.strignify(json);
+
+    });
+  }
 
 
     // NOT CURRENTLY USING:

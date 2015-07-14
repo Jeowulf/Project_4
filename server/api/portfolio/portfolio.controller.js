@@ -13,11 +13,15 @@ var Stock = require('../stock/stock.model');
 var User = require('../user/user.model');
 
 
-function findStockInPortfolio(user, id) {
-  return _.find(user.portfolio, function(stockInPortfolio) {
-    console.log('Comparing ' + stockInPortfolio.stock + ' to ' + id);
+function findStockInPortfolio(portfolio, id) {
+  console.log('User portfolio has ' + portfolio.stocksInPortfolio.length + ' stocks');
+  var result = _.find(portfolio.stocksInPortfolio, function(stockInPortfolio) {
+    console.log('=======Comparing ' + stockInPortfolio.stock + ' to ' + id);
+    // console.log('+++++++ typeOF' + typeof stockInPortfolio);
     return stockInPortfolio.stock.equals(id) || stockInPortfolio._id.equals(id);
   });
+  console.log('=======findStockInPortfolio is returning result: ' + result);
+  return result;
 }
 
 exports.buyStock = function(req, res) {
@@ -27,11 +31,10 @@ exports.buyStock = function(req, res) {
   // console.log('userId: ' + userId + ', stockId: ' + stockId);
   console.log(', stockId: ' + stockId);
 
-    Stock.findById(stockId, function(err, stock) {
-      // console.log('stock is: ' + stock);
-      if (err) { return handleError(res, err); }
-      if (!stock) { return res.send(404); }
-
+  Stock.findById(stockId, function(err, stock) {
+    // console.log('stock is: ' + stock);
+    if (err) { return handleError(res, err); }
+    if (!stock) { return res.send(404); }
 
     User.findById(userId, function(err, user) {
       if (err) { return handleError(res, err); }
@@ -41,34 +44,34 @@ exports.buyStock = function(req, res) {
       var portfolioId = user.portfolio;
       // console.log('portfolio id for user is:' + portfolioId);
 
-
       Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
         if (err) { return handleError(res, err); }
         if (!portfolio) { return res.send(404); }
-        console.log(portfolio);
+        console.log(stock._id + 'is stock._id');
         //Validation to see if stock is already in portfolio
-        // var found = findStockInPortfolio(user, stock._id);
-        // if (found) {
-        // console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
-        // found.qty = found.qty + 1;
-        // }
-        // else {
-        var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: 30});
-        portfolio.stocksInPortfolio.push(newStockInPortfolio);
-        // }
-        portfolio.save(function(){
-          newStockInPortfolio.save(function(){
-            console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio);
-            return res.json(201, portfolio);
+        var found = findStockInPortfolio(portfolio, stock._id);
+        if (found) {
+          console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
+          found.qty = found.qty + 1;
+          found.save(function() {
+            console.log('Saved new qty.');
           });
-        });
+        }
+        else {
+          console.log('>>>>>>Stock not found');
+          var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: 30});
+          newStockInPortfolio.save(function() {
+            console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
+            portfolio.stocksInPortfolio.push(newStockInPortfolio);
+            portfolio.save(function() {
+              console.log('saving and returning response');
+              return res.json(201, portfolio);
+            });
+          });
+        }
       });
-
-
     });
   });
-
-
 }
 
 exports.sellStock = function(req, res) {
@@ -103,8 +106,8 @@ exports.get = function(req, res) {
     console.log('user: ' + user.name);
     if (err) { return handleError(res, err); }
     if (!user) { return res.send(404); }
-    console.log('returning cart: ' + JSON.stringify(user.cart));
-    res.json(200, user.cart);
+    console.log('returning portfolio: ' + JSON.stringify(user.portfolio));
+    res.json(200, user.portfolio);
   });
 }
 

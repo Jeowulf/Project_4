@@ -75,9 +75,9 @@ User.find({}).remove(function() {
   );
   });
 });
-StockInPortfolio.remove({}, function(err){
-  console.log("StockInPortfolio collection removed");
-})
+// StockInPortfolio.remove({}, function(err){
+//   console.log("StockInPortfolio collection removed");
+// })
 //DUmp all stocks in DB on startup for dev purposes
 // Stock.remove({}, function(err) {
 //    console.log('collection removed')

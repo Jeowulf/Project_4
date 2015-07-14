@@ -8,4 +8,9 @@ angular.module('proj4App')
       return $http.post('/api/users/' + userId + '/portfolio/' + stock._id);
     }
 
+    this.getUserPortfolio = function(){
+      var userId = Auth.getCurrentUser()._id;
+      return $http.get('/api/users/' + userId + '/portfolio/');
+    }
+
   });
