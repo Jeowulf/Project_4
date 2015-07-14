@@ -9,7 +9,7 @@ angular.module('proj4App')
 
     that.createStockInventory = function(){
       stockService.createStockInventory().success(function(json){
-        console.log(json)
+        console.log(json);
       });
     }
     //call to get when controller is creatd/alive
@@ -49,6 +49,14 @@ angular.module('proj4App')
         that.selectedStockData = json;
       })
     };
+//Gets the twitter sentiments for selected handle
+    that.getTwitterSentiments = function() {
+      twitSentService.findSpecificSentiment().success(function (json) {
+        that.specificSentiment = json;
+        console.log(that.specificSentiment);
+    console.log(that.specificSentiment + ' 2');
+      })
+    }
 
 
   });
