@@ -10,6 +10,6 @@ router.get('/:userid/portfolio/',            controller.get); //Get specific por
 router.post('/:userid/portfolio/:stockid',    controller.buyStock); //TODO: create stock ID. add a stock(s) to a users portfolio
 // router.patch('/:userid/portfolio/:stockid',  controller.changeQuantity); //edits quantity of a stock in users portfolio
 // router.delete('/:userid/portfolio',          controller.destroy); //Destroys/resets users entire portfolio
-// router.delete('/:userid/portfolio/:stockid', controller.sell); //Sells/deletes all quantities of particular stock from users portfolio
+router.delete('/:userid/portfolio/:stockid', controller.sellStock); //Sells/deletes all quantities of particular stock from users portfolio
 
 module.exports = router;
