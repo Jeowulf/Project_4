@@ -54,7 +54,7 @@ exports.buyStock = function(req, res) {
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
-          found.qty = found.qty + 1;
+          found.qty = found.qty + stockQty;
           found.save(function() {
             console.log('Saved new qty.');
           });
