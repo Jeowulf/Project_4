@@ -71,6 +71,43 @@ exports.buyStock = function(req, res) {
 
 }
 
+exports.sellStock = function(req, res) {
+  var userId = req.params.userid.trim();
+  var stockId = req.params.stockid.trim();
+  console.log('userId: ' + userId + ', stockId: ' + stockId);
+
+   Stock.findById(stockId, function(err, stock) {
+      // console.log('stock is: ' + stock);
+      if (err) { return handleError(res, err); }
+      if (!stock) { return res.send(404); }
+
+
+      // User.findById(userId, function(err, user) {
+      //   if (err) { return handleError(res, err); }
+
+      //   if (!user) { return res.send(404); }
+      //   // console.log('user is: ' + user);
+      //   var portfolioId = user.portfolio;
+
+      // )};
+ });
+}
+//get user's portfolio from DB
+exports.get = function(req, res) {
+  var userId = req.params.userid;
+  console.log('userId is ' + userId);
+
+  User.findById(userId)
+  .populate('portfolio.stocksInPortfolio')
+  .exec(function(err, user) {
+    console.log('user: ' + user.name);
+    if (err) { return handleError(res, err); }
+    if (!user) { return res.send(404); }
+    console.log('returning cart: ' + JSON.stringify(user.cart));
+    res.json(200, user.cart);
+  });
+}
+
 function handleError(res, err) {
   return res.send(500, err);
 }
