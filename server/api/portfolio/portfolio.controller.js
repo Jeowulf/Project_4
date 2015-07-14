@@ -6,13 +6,16 @@
 // controller.sell); //Sells/deletes all quantities of particular stock from users portfolio
 
 'use strict';
+var _ = require('lodash');
 var StockInPortfolio = require('./stockInPortfolio.model');
 var Portfolio = require('./portfolio.model');
 var Stock = require('../stock/stock.model');
-var User = require('../user/user.model')
+var User = require('../user/user.model');
+
+
 function findStockInPortfolio(user, id) {
   return _.find(user.portfolio, function(stockInPortfolio) {
-    console.log('Comparing ' + stockInPortfolio.item + ' to ' + id);
+    console.log('Comparing ' + stockInPortfolio.stock + ' to ' + id);
     return stockInPortfolio.stock.equals(id) || stockInPortfolio._id.equals(id);
   });
 }
@@ -43,8 +46,16 @@ exports.buyStock = function(req, res) {
         if (err) { return handleError(res, err); }
         if (!portfolio) { return res.send(404); }
         console.log(portfolio);
+        //Validation to see if stock is already in portfolio
+        // var found = findStockInPortfolio(user, stock._id);
+        // if (found) {
+        // console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
+        // found.qty = found.qty + 1;
+        // }
+        // else {
         var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: 30});
         portfolio.stocksInPortfolio.push(newStockInPortfolio);
+        // }
         portfolio.save(function(){
           newStockInPortfolio.save(function(){
             console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio);
@@ -53,23 +64,7 @@ exports.buyStock = function(req, res) {
         });
       });
 
-      // TODO: write this
-      // Check if stock is already in portoflio
-      //found is embedded in the user
-      // var found = findstockInPortfolio(user, stock._id);
-      // if (found) {
-      //   console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
-      //   found.qty = found.qty + 1;
-      // }
-      // else {
-      //   console.log('Adding stock to portfolio: ' + stock.name);
-      //   user.portfolio.push( new StockInPortfolio( { stock: stock, qty: 1 } ) );
-      // }
-      // user.save(function() {
-      //   user.populate('portfolio.stockInPortfolio', function(err, user) {
-      //     return res.json(201, user.portfolio );
-      //   });
-      // });
+
     });
   });
 
