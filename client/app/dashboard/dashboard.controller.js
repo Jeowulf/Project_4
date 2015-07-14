@@ -5,7 +5,7 @@ angular.module('proj4App')
 
     var that = this;
 
-    stockService.getUser();//helper for server
+    // stockService.getUser();//helper for server
 
     that.createStockInventory = function(){
       stockService.createStockInventory().success(function(json){
@@ -44,7 +44,8 @@ angular.module('proj4App')
   //TODO: call thsi when a user logs in and hits this page!!
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
-      that.myPortfolio = JSON.strignify(json);
+      that.myPortfolio = json;
+      console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
 
     });
   }

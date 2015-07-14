@@ -9,7 +9,8 @@ var StockSchema = new Schema({
     lastTradeDate: Date,
     lastTradePriceOnly: Number,
     dividendYield: Number,
-    peRatio: Number
+    peRatio: Number,
+    twitterHandle: String
 });
 
 module.exports = mongoose.model('Stock', StockSchema);

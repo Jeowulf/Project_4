@@ -103,11 +103,12 @@ exports.get = function(req, res) {
   console.log('userId is ' + userId);
 
   User.findById(userId)
-  .populate('portfolio.stocksInPortfolio')
+  .populate('portfolio', 'portfolio.stocksInPortfolio')
   .exec(function(err, user) {
     console.log('user: ' + user.name);
     if (err) { return handleError(res, err); }
     if (!user) { return res.send(404); }
+    console.log('returning portfolio.stocksInPortfolio: ' + JSON.stringify(user.portfolio.stocksInPortfolio));
     console.log('returning portfolio: ' + JSON.stringify(user.portfolio));
     res.json(200, user.portfolio);
   });

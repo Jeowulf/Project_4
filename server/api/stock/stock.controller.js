@@ -39,8 +39,12 @@ exports.create = function (req, res) {
 
 function saveStocks(stocks, res) {
   var savedStocks = [];
+  var twitterHandles = ['@BestBuy', '@adidasoriginals', '@Target', '@Delta', '@Nike', '@McDonalds', '@AmericanExpress','@CocaCola', '@VerizonWireless', '@Pepsi', '@BlackBerry', '@PlayStation', '@SouthwestAir', '@etsy', '@JetBlue', '@SamsungMobileUS', '@Starbucks',' @WholeFoods', '@Google', '@Microsoft', '@Yahoo', '@Intel', '@AT&T'];
   for (var i = 0; i < stocks.length ; i++) {
     var newStock = new Stock();
+    //Twitter insert start
+    newStock.twitterHandle = twitterHandles[i];
+    //Twitter insert end
     newStock.name = stocks[i].name;
     newStock.symbol = stocks[i].symbol;
     newStock.lastTradeDate = stocks[i].lastTradeDate;
