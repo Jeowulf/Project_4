@@ -39,6 +39,7 @@ angular.module('proj4App')
     portfolioService.buyStock(stock).then(function(json) {
       console.log(json);
       //TODO that.portfolio = json.something;
+      that.getUserPortfolio();
     });
   };
   //TODO: call thsi when a user logs in and hits this page!!
@@ -49,7 +50,8 @@ angular.module('proj4App')
 
     });
   }
-
+  //run when controller is instantiated
+  that.getUserPortfolio();
 
     // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
