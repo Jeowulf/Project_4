@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, yahooFinanceService) {
+  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
 
     var that = this;
 
@@ -34,6 +34,15 @@ angular.module('proj4App')
       });
       }
     }
+ that.buyStock = function(stock) {
+    portfolioService.buyStock(stock).then(function(json) {
+      console.log(json);
+      //TODO that.portfolio = json.something;
+    });
+  };
+
+
+    // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {
       // console.log(that.userStockInput);
