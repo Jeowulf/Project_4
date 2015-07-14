@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var Stock = require('../stock/stock.model');
+var deepPopulate = require('mongoose-deep-populate');
 
 var StockInPortfolioSchema = new Schema({
     stock : {
@@ -12,4 +13,5 @@ var StockInPortfolioSchema = new Schema({
   qty : Number
 });
 
+StockInPortfolioSchema.plugin(deepPopulate);
 module.exports = mongoose.model('StockInPortfolio', StockInPortfolioSchema);

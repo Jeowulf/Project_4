@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, yahooFinanceService) {
+  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
 
     var that = this;
 
-    stockService.getUser();//helper for server
+    // stockService.getUser();//helper for server
 
     that.createStockInventory = function(){
       stockService.createStockInventory().success(function(json){
@@ -19,7 +19,7 @@ angular.module('proj4App')
       console.log('getStockInventory was called');
       stockService.getInventory().success(function(json) {
         console.log(json);
-        that.stockInvetory = json;
+        that.stockInventory = json;
       });
     }
     that.twitSentQuery = function() {
@@ -34,6 +34,27 @@ angular.module('proj4App')
       });
       }
     }
+//User Portfolio functions
+ that.buyStock = function(stock) {
+    portfolioService.buyStock(stock).then(function(json) {
+      console.log(json);
+      //TODO that.portfolio = json.something;
+      that.getUserPortfolio();
+    });
+  };
+  //TODO: call thsi when a user logs in and hits this page!!
+  that.getUserPortfolio = function() {
+    portfolioService.getUserPortfolio().success(function(json) {
+      that.myPortfolio = json;
+      console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
+
+    });
+  }
+  //run when controller is instantiated
+  that.getStockInventory();
+  that.getUserPortfolio();
+
+    // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {
       // console.log(that.userStockInput);
