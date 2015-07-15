@@ -14,20 +14,23 @@
     <h4></h4>
   </div>
   <div class="col s8 myStocks">
-    <ul class="collapsible" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio" data-collapsible="expandable">
-        <li>
-            <div class="collapsible-header">{{stocksInPortfolio.name}} | {{stocksInPortfolio.twitterHandle}}</div>
-            <div class="collapsible-body">
-            <h2>hola</h2>
-                <!-- <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
-                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
-                <word>{{word}}</word>
-                </word-cloud> -->
+    <ul class="collapsible" data-collapsible="expandable">
+        <li ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
+            <div class="collapsible-header">
+              {{stocksInPortfolio.symbol}} | {{stocksInPortfolio.twitterHandle}}
             </div>
+            <div class="collapsible-body"><h2>hola</h2></div>
         </li>
     </ul>
   </div>
  </div>
+ <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+ </ul>
+
 
 <!-- ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
@@ -42,4 +45,47 @@
 //                 .lastTradePriceOnly
 //                 .lastTradeDate
 @Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}
- -->
+<h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
+                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
+                <word>{{word}}</word>
+                </word-cloud> -->
+
+<script>
+  'use strict';
+$(document).ready(function(){
+  $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+   // Initialize collapse button
+  $(".button-collapse").sideNav();
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
+   $('.button-collapse').sideNav({
+      menuWidth: 200, // Default is 240
+      edge: 'left', // Choose the horizontal origin
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    }
+  );
+  // Show sideNav
+  $('a.navbar-brand').click(function(){
+    $('.button-collapse').sideNav('show');
+  })
+  //Hide sideNav
+  // $('a.navbar-brand-slide').click(function(){
+  //     $('.button-collapse').sideNav('hide');
+  //   })
+  // $('.button-collapse').sideNav('hide');
+  console.log("stinky")
+});
+</script>
+<!-- <ul class="collapsible" data-collapsible="expandable">
+        <li>
+            <div class="collapsible-header" ng-click="ctrl.callingAllTwitterFunctions()" ng-repeat>@Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}</div>
+            <div class="collapsible-body">
+                <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
+                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
+                    <word>{{word}}</word>
+                </word-cloud>
+            </div>
+        </li>
+    </ul> -->
