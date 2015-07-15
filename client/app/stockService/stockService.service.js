@@ -19,6 +19,8 @@ angular.module('proj4App')
     this.updateStocks = function() {
       return $http.patch('/api/stocks');
     }
-
+    this.deleteAllStocks = function() {
+      return $http.delete('/api/stocks');
+    }
 
   });

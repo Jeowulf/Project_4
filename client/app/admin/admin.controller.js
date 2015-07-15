@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('AdminCtrl', function ($scope, $http, Auth, User) {
+  .controller('AdminCtrl', function ($scope, $http, Auth, User, stockService) {
 
+    this.deleteAllStocks = function(){
+      stockService.deleteAllStocks().success(function(json){
+        console.log(json);
+      });
+    }
     // Use the User $resource to fetch all users
     $scope.users = User.query();
 

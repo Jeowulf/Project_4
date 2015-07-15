@@ -150,10 +150,11 @@ exports.get = function(req, res) {
 
 //Get (all) portfolios from DB
 exports.index = function(req, res) {
-  Portfolio.find().deepPopulate("portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock").exec(function(err, portfolios){
+  User.find().deepPopulate('portfolio portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock').exec(function(err, users){
     if(err) { return handleError(res, err); }
-    console.log(portfolios[1].stocksInPortfolio[1]);
-    return res.json(200, portfolios);
+    // console.log(portfolios[1].stocksInPortfolio[0]);
+    console.log(users[1].portfolio.stocksInPortfolio[0]);
+    return res.json(200, users);
   });
 };
 
