@@ -1,15 +1,16 @@
 
-<nav ng-controller="NavbarCtrl" class="teal accent-3 topBand">
+
+<nav ng-controller="NavbarCtrl" class="teal accent-3">
   <ul class="left hide-on-med-and-down">
     <li>
-      <a href="" class="navbar-brand">Market Mental</i></a>
+      <a href="" class="navbar-brand">MarketMental  <i class="mdi-navigation-menu"></i></a>
     </li>
     <li>
 
     </li>
   </ul>
-  <ul id="slide-out" class="side-nav side-nav fixed">
-    <!-- <li><a href="" class="navbar-brand-slide"></a></li> -->
+  <ul id="slide-out" class="side-nav">
+    <li><a href="" class="navbar-brand-slide">MarketMental</a></li>
     <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
 
     <a ng-href="{{item.link}}">{{item.title}}</a>
@@ -25,75 +26,27 @@
     <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
     <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
   </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse "><i class="mdi-navigation-menu"></i></a>
-<!-- show-on-large
- -->
-
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 </nav>
 <script>
   'use strict';
-  $(document).ready(function(){
    // Initialize collapse button
-  //$(".button-collapse").sideNav();
+  $(".button-collapse").sideNav();
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
   //$('.collapsible').collapsible();
    $('.button-collapse').sideNav({
-      menuWidth: 150, // Default is 240
+      menuWidth: 200, // Default is 240
       edge: 'left', // Choose the horizontal origin
-      closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
     }
   );
-
   // Show sideNav
-  //$('.button-collapse').sideNav('show');
+  $('a.navbar-brand').click(function(){
+    $('.button-collapse').sideNav('show');
+  })
   //Hide sideNav
+  // $('a.navbar-brand-slide').click(function(){
+  //     $('.button-collapse').sideNav('hide');
+  //   })
   // $('.button-collapse').sideNav('hide');
-});
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <br>
-      <a href="" class="navbar-brand">MarketMental</a>
-    </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-        <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-<a href="#" class="button-collapse" data-activates="nav-mobile" data-sidenav="left" data-menuwidth="500" data-closeonclick="false">
-    Show side-nav
-</a>
- -->
