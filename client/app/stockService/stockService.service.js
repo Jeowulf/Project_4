@@ -16,5 +16,9 @@ angular.module('proj4App')
       console.log(this.userId + 'is userId');
     }
 
+    this.updateStocks = function() {
+      return $http.patch('/api/stocks');
+    }
+
 
   });

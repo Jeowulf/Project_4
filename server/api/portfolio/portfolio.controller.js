@@ -109,6 +109,8 @@ exports.sellStock = function(req, res) {
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore decrementing qty');
           if(found.qty > 0) {
+            //TODO: implement validation so that people cannot sell more than they have!!!!!!!!!!!!!!
+            // found.qty > stockQty ? found.qty - stock Qty : return handleError(res, err);
           found.qty = found.qty - stockQty;
           found.save(function() {
             console.log('Saved new qty.');
@@ -145,6 +147,15 @@ exports.get = function(req, res) {
     res.json(200, user.portfolio);
   });
 }
+
+//Get (all) portfolios from DB
+exports.index = function(req, res) {
+  Portfolio.find().deepPopulate("portfolios.stocksInPortfolio portfolios.stocksInPortfolio.stock").exec(function(err, portfolios){
+    if(err) { return handleError(res, err); }
+    console.log(portfolios.stocksInPortfolio);
+    return res.json(200, portfolios);
+  });
+};
 
 function handleError(res, err) {
   return res.send(500, err);
