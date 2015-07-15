@@ -7,10 +7,10 @@ angular.module('proj4App')
     console.log('twitSentQuery');
     return $http.post('/api/twitSent', {query: userInput});
   }
+
   this.findSpecificSentiment = function () {
     console.log('twitSentiment');
     return $http.post('/api/twitSent', {query: '@Madonna'});
   }
-
 });
 

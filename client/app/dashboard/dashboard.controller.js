@@ -71,13 +71,30 @@ angular.module('proj4App')
       })
     };
 //Gets the twitter sentiments for selected handle
-    that.getTwitterSentiments = function() {
-      twitSentService.findSpecificSentiment().success(function (json) {
-        that.specificSentiment = json;
-        console.log(that.specificSentiment);
-    console.log(that.specificSentiment + ' 2');
-      })
-    }
 
+  that.getTwitterSentiments = function() {
+    twitSentService.findSpecificSentiment().success(function (json) {
+      that.specificSentiment = json;
+      // console.log(that.specificSentiment);
+    })
+  }
+  that.getTwitterWords = function() {
+    twitSentService.findSpecificSentiment().success(function (json) {
+      that.specificSentiment = json;
+      console.log(that.specificSentiment.words)
+      return that.specificSentiment;
+      that.words = [];
+      for (var i = 0; i < that.specificSentiment.words.length; i++) {
+        that.words.push(that.specificSentiment.words[i]);
+      }
+      console.log("word = " + that.words)
+    })
+  }
+  that.callingAllTwitterFunctions = function () {
+    that.getTwitterSentiments();
+    that.getTwitterWords();
+  }
+  // console.log(that.words + " adf")
+  // console.log(that.specificSentiment)
+});
 
-  });
