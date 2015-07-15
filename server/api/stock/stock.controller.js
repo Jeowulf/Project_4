@@ -10,9 +10,16 @@ exports.index = function(req, res) {
     return res.json(200, stocks);
   });
 };
+//ADMIN onlly, destroys stock inventory
+exports.destroy = function(req, res) {
+  Stock.remove({}, function(err) {
+   console.log('collection removed');
+   return res.send(204);
+});
+}
 
 
-//Creates a new, single stock in DB
+//Admin only, Creates a new, single stock in DB
 exports.create = function (req, res) {
   // console.log(req.body.symbol + 'is symbol from postman');
 
@@ -64,9 +71,9 @@ function saveStocks(stocks, res) {
     });
   }
   console.log('responding with savedStocks: ' + savedStocks);
-  return res.send(201, savedStocks);
+  return res.json(201, savedStocks);
 }
-
+//Admin only, creates inventory of stocks from YAHOO API for stock trading in app
 exports.createSet = function (req, res) {
   yahooFinanceMultipleSymbolSearch(function (data, err) { //do API search and wait for data
       if (err) { return handleError(res, err); }
@@ -84,6 +91,27 @@ exports.createSet = function (req, res) {
       //  });
     });
 }
+//Admin only, updates stock prices
+//TODO: some validation to make sure correct stocks are matched
+exports.update = function (req, res) {
+  Stock.find({}, function(err, stocks) {
+    yahooFinanceMultipleSymbolSearch(function (data, err) {
+    if (err) return handleError(err);
+    for (var i = 0; i < stocks.length ; i++) {
+      stocks[i].lastTradeDate = data[i].lastTradeDate;
+      stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
+      stocks[i].dividendYield = data[i].dividendYield;
+      stocks[i].peRatio = data[i].peRatio;
+      stocks[i].save(function(err, stocks){
+        console.log(stocks);
+      });
+      console.log(stocks[i].name + '::::is stocks');
+      }
+    });
+    res.json(201, stocks);
+  });
+}
+
 
 function handleError(res, err) {
   return res.send(500, err);

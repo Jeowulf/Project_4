@@ -23,13 +23,13 @@ module.exports = function (text, callback) {
     if (twitterResults.statuses !== undefined) { //Defensive programming. TODO: refactor this
     for (var i = 0; i < twitterResults.statuses.length; i++) {
     tweetArray.push(twitterResults.statuses[i].text);
-    };
+    }
     var tweetString = tweetArray.join();
     var analyzedTweets = sentimentAnalysis(tweetString);
     var resultScore = analyzedTweets; //is this necessary?
     // console.log(resultScore); //to see full analysis in console
     callback(resultScore); //to see what we're getting now
-    };
+    }
   });
   // console.log('end');
 }

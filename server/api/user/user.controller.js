@@ -28,7 +28,7 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
-  var portfolio = new Portfolio;
+  var portfolio = new Portfolio();
   newUser.portfolio = portfolio;
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);

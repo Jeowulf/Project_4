@@ -10,10 +10,12 @@ This is ctrl.stockInventory - from DB
                 <li class="collection-item">Dividend Yield:  {{stock.dividendYield}}</li>
                 <li class="collection-item">PeRatio:  {{stock.peRatio}}</li>
                 <li>           <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(stock)">BUY</button>
-</li>
+              </li>
               </ul>
               <!-- Binding for stock qty, sends to portfolioservice.buyStock -->
           <input type="number" ng-model="stock.qty">
-          buuy
+
+         <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(stock)">BUY</button>
+         <button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(stock)">SELL</button>
         </div>
       </div>

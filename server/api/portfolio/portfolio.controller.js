@@ -27,11 +27,11 @@ function findStockInPortfolio(portfolio, id) {
 exports.buyStock = function(req, res) {
   // console.log('buyStock, url = ' + req.url);
   var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
-  console.log ('stockQty is:  +++' + stockQty);
+  // console.log ('stockQty is:  +++' + stockQty);
   var userId = req.params.userid.trim();
   var stockId = req.params.stockid.trim();
   // console.log('userId: ' + userId + ', stockId: ' + stockId);
-  console.log(', stockId: ' + stockId);
+  // console.log(', stockId: ' + stockId);
 
   Stock.findById(stockId, function(err, stock) {
     // console.log('stock is: ' + stock);
@@ -56,17 +56,19 @@ exports.buyStock = function(req, res) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
           found.qty = found.qty + stockQty;
           found.save(function() {
-            console.log('Saved new qty.');
+            console.log('Saved new qty. returning a response=====');
+            return res.json(201, portfolio);
+
           });
         }
         else {
           console.log('>>>>>>Stock not found');
           var newStockInPortfolio = new StockInPortfolio({stock: stock, qty: stockQty});
           newStockInPortfolio.save(function() {
-            console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
+            // console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
             portfolio.stocksInPortfolio.push(newStockInPortfolio);
             portfolio.save(function() {
-              console.log('saving and returning response');
+              console.log('saving and returning response portfolio::::::::' + stock);
               return res.json(201, portfolio);
             });
           });
@@ -77,26 +79,58 @@ exports.buyStock = function(req, res) {
 }
 
 exports.sellStock = function(req, res) {
+  // console.log('buyStock, url = ' + req.url);
+  var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
+  console.log ('stockQty is:  +++' + stockQty);
   var userId = req.params.userid.trim();
   var stockId = req.params.stockid.trim();
-  console.log('userId: ' + userId + ', stockId: ' + stockId);
+  // console.log('userId: ' + userId + ', stockId: ' + stockId);
+  // console.log(', stockId: ' + stockId);
 
-   Stock.findById(stockId, function(err, stock) {
-      // console.log('stock is: ' + stock);
+  Stock.findById(stockId, function(err, stock) {
+    // console.log('stock is: ' + stock);
+    if (err) { return handleError(res, err); }
+    if (!stock) { return res.send(404); }
+
+    User.findById(userId, function(err, user) {
       if (err) { return handleError(res, err); }
-      if (!stock) { return res.send(404); }
 
+      if (!user) { return res.send(404); }
+      // console.log('user is: ' + user);
+      var portfolioId = user.portfolio;
+      // console.log('portfolio id for user is:' + portfolioId);
 
-      // User.findById(userId, function(err, user) {
-      //   if (err) { return handleError(res, err); }
-
-      //   if (!user) { return res.send(404); }
-      //   // console.log('user is: ' + user);
-      //   var portfolioId = user.portfolio;
-
-      // )};
- });
+      Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
+        if (err) { return handleError(res, err); }
+        if (!portfolio) { return res.send(404); }
+        console.log(stock._id + 'is stock._id');
+        //Validation to see if stock is already in portfolio
+        var found = findStockInPortfolio(portfolio, stock._id);
+        if (found) {
+          console.log('Found stock ' + stock.name + ' in portfolio, therefore decrementing qty');
+          if(found.qty > 0) {
+            //TODO: implement validation so that people cannot sell more than they have!!!!!!!!!!!!!!
+            // found.qty > stockQty ? found.qty - stock Qty : return handleError(res, err);
+          found.qty = found.qty - stockQty;
+          found.save(function() {
+            console.log('Saved new qty.');
+          });
+          }
+          else  {
+            console.log('stockQty was 0!!!');
+            return res.send(404);
+          }
+        }
+        else {
+          console.log('>>>>>>Stock not found');
+//Send a 404 if there's no stock
+         return res.send(404);
+        }
+      });
+    });
+  });
 }
+
 //get user's portfolio from DB
 exports.get = function(req, res) {
   var userId = req.params.userid;
@@ -113,6 +147,15 @@ exports.get = function(req, res) {
     res.json(200, user.portfolio);
   });
 }
+
+//Get (all) portfolios from DB
+exports.index = function(req, res) {
+  Portfolio.find().deepPopulate("portfolios.stocksInPortfolio portfolios.stocksInPortfolio.stock").exec(function(err, portfolios){
+    if(err) { return handleError(res, err); }
+    console.log(portfolios.stocksInPortfolio);
+    return res.json(200, portfolios);
+  });
+};
 
 function handleError(res, err) {
   return res.send(500, err);

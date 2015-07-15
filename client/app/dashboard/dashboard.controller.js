@@ -37,11 +37,17 @@ angular.module('proj4App')
 //User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
-      console.log(json);
-      //TODO that.portfolio = json.something;
+      console.log(json.data + 'is returned after buyStock');
+       // that.myPortfolio = json.data; TODO: fix what the server is returning
       that.getUserPortfolio();
     });
   };
+  that.sellStock = function(stock) {
+    portfolioService.sellStock(stock).then(function(json) {
+      // that.myPortfolio = json.data; //  TODO: fix this
+      that.getUserPortfolio();
+    });
+  }
   //TODO: call thsi when a user logs in and hits this page!!
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
@@ -53,7 +59,7 @@ angular.module('proj4App')
   //run when controller is instantiated
   that.getStockInventory();
   that.getUserPortfolio();
-
+  that.getStockInventory();
     // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {
