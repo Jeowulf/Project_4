@@ -53,7 +53,7 @@ angular.module('proj4App')
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
       console.log("portfolio to follow: ")
-      console.log(that.myPortfolio.stocksInPortfolio[0].stock);
+      console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
 
     });
   }

@@ -16,17 +16,19 @@
   <div class="col s8 myStocks">
     <ul class="collapsible" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio" data-collapsible="expandable">
         <li>
-            <div class="collapsible-header">hola</div>
+            <div class="collapsible-header">{{stocksInPortfolio.name}} | {{stocksInPortfolio.twitterHandle}}</div>
             <div class="collapsible-body">
-                <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
+            <h2>hola</h2>
+                <!-- <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
                 <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
-                    <word>{{word}}</word>
-                </word-cloud>
+                <word>{{word}}</word>
+                </word-cloud> -->
             </div>
         </li>
     </ul>
   </div>
  </div>
+
 <!-- ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
