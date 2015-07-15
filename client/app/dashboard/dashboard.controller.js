@@ -52,7 +52,8 @@ angular.module('proj4App')
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
-      console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
+      console.log("portfolio to follow: ")
+      console.log(that.myPortfolio.stocksInPortfolio[0].stock);
 
     });
   }
@@ -103,4 +104,15 @@ angular.module('proj4App')
   // console.log(that.words + " adf")
   // console.log(that.specificSentiment)
 });
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
+//that.myPortfolio.stocksInPortfolio[i].stock
+//              ~> ._id
+//                 .peRatio
+//                 .dividendYield
+//                 .symbol
+//                 .twitterHandle
+//                 .name
+//                 .lastTradePriceOnly
+//                 .lastTradeDate
