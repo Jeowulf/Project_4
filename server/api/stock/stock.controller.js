@@ -85,6 +85,25 @@ exports.createSet = function (req, res) {
     });
 }
 
+exports.update = function (req, res) {
+  Stock.find({}, function(err, stocks) {
+    yahooFinanceMultipleSymbolSearch(function (data, err) {
+    if (err) return handleError(err);
+    for (var i = 0; i < stocks.length ; i++) {
+      stocks[i].lastTradeDate = data[i].lastTradeDate;
+      stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
+      stocks[i].dividendYield = data[i].dividendYield;
+      stocks[i].peRatio = data[i].peRatio;
+      stocks[i].save(function(err, stocks){
+        console.log(stocks);
+      })
+      console.log(stocks[i].name + '::::is stocks');
+      }
+    });
+  });
+}
+
+
 function handleError(res, err) {
   return res.send(500, err);
 }

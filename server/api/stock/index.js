@@ -13,7 +13,7 @@ router.get('/',    controller.index); //Gets all the stocks that we have saved
 // router.post('/',   controller.create); //creates a stock in the DB with data from Yahoo API
 
 router.put('/',    controller.createSet); //creates set of stocks in DB from Yahoo API data
-// router.patch('/:id', controller.update); //Updates the stock's price?? TODO: are we using this?
+router.patch('/', controller.update); //Updates the stock's price?? TODO: are we using this?
 //A stock cannot be deleted by a user
 
 module.exports = router;
