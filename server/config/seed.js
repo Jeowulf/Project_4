@@ -44,7 +44,7 @@ function addStocksInPortfoliosToPortfolios() {
 //     role: 'admin',
 //     name: 'Admin',
 //     email: 'admin@admin.com',
-//     password: 'admin'
+//     password: 'bourbonzilla93'
 //   }, function() {
 //       User.find({}, function(err, users) {
 //         // at this point we have created 2 users
