@@ -1,7 +1,7 @@
 
 This is ctrl.stockInventory - from DB
 <!-- {{ctrl.stockInventory}} -->
-  <div class="row">
+      <div class="row">
         <div class="col s12 m6 lg4" ng-repeat="stock in ctrl.stockInventory">
            <ul class="collection" >
               <li class="collection-item">Stock:  {{stock}}</li>
@@ -9,9 +9,11 @@ This is ctrl.stockInventory - from DB
                 <li class="collection-item">Last Trade Price:  {{stock.lastTradePriceOnly}}</li>
                 <li class="collection-item">Dividend Yield:  {{stock.dividendYield}}</li>
                 <li class="collection-item">PeRatio:  {{stock.peRatio}}</li>
-              </ul>
+              </li>
+           </ul>
               <!-- Binding for stock qty, sends to portfolioservice.buyStock -->
           <input type="number" ng-model="stock.qty">
+
          <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(stock)">BUY</button>
          <button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(stock)">SELL</button>
         </div>

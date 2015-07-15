@@ -31,9 +31,12 @@ body {
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
-.side-nav a {
-    color: #004d40;
-    font-size: 20px;
+.side-nav {
+    a {
+        color: #004d40;
+        font-size: 20px;
+    }
+    top: 68px;
 }
 nav {
     ul a {
@@ -42,6 +45,9 @@ nav {
     }
     font-size: 20px;
     color: #004d40;
+}
+.topBand {
+    position: fixed;
 }
 .navbar-brand {
     position: fixed;
@@ -65,16 +71,29 @@ h2 {
     border: 4px solid #ff3d00;
     padding: 20px;
 }
+h3 {
+    color: #546e7a;
+    font-family: "nimbus-sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: -.025em;
+    font-weight: 500;
+    font-size: 4.375rem;
+    line-height: .9;
+    border-right: 4px solid #ff3d00;
+    padding: 15px;
+}
 h6 {
     float: right;
+}
+.top {
+    height: 4vw;
 }
 .parallax-container {
     height: 500px;
 }
-
-
-
-
-
-
-
+.textLeft {
+    padding: 20px;
+}
+.myStocks {
+    border: 4px solid #546e7a;
+    border-left: 4px solid #ff3d00;
+}

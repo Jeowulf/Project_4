@@ -1,0 +1,29 @@
+<div class="row top">
+  <div class="col s3 offset-s2">
+  </div>
+</div>
+<div class="row">
+  <div class="col s3 offset-s2">
+    <h3 class="textLeft">Date <br> Portfolio</h3>
+  </div>
+<div class="col s4">
+</div>
+</div>
+<div class="row">
+  <div class="col s2">
+    <h4></h4>
+  </div>
+  <div class="col s8 myStocks">
+    <ul class="collapsible" data-collapsible="expandable">
+        <li>
+            <div class="collapsible-header" ng-click="ctrl.callingAllTwitterFunctions()" ng-repeat>@Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}</div>
+            <div class="collapsible-body">
+                <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
+                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
+                    <word>{{word}}</word>
+                </word-cloud>
+            </div>
+        </li>
+    </ul>
+  </div>
+ </div>
