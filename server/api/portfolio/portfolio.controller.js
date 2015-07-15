@@ -139,7 +139,7 @@ exports.get = function(req, res) {
   User.findById(userId)
   .deepPopulate('portfolio portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock')
   .exec(function(err, user) {
-    console.log('user: ' + user.name);
+    // console.log('user: ' + user.name);
     if (err) { return handleError(res, err); }
     if (!user) { return res.send(404); }
     // console.log('returning portfolio.stocksInPortfolio: ' + JSON.stringify(user.portfolio.stocksInPortfolio));
@@ -150,9 +150,9 @@ exports.get = function(req, res) {
 
 //Get (all) portfolios from DB
 exports.index = function(req, res) {
-  Portfolio.find().deepPopulate("portfolios.stocksInPortfolio portfolios.stocksInPortfolio.stock").exec(function(err, portfolios){
+  Portfolio.find().deepPopulate("portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock").exec(function(err, portfolios){
     if(err) { return handleError(res, err); }
-    console.log(portfolios.stocksInPortfolio);
+    console.log(portfolios[1].stocksInPortfolio[1]);
     return res.json(200, portfolios);
   });
 };
