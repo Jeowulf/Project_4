@@ -33,48 +33,48 @@ function addPortfoliosToUsers(users) {
 function addStocksInPortfoliosToPortfolios() {
 
 }
-// User.find({}).remove(function() {
-//   User.create({
-//     provider: 'local',
-//     name: 'Test User',
-//     email: 'test@test.com',
-//     password: 'test'
-//   }, {
-//     provider: 'local',
-//     role: 'admin',
-//     name: 'Admin',
-//     email: 'admin@admin.com',
-//     password: 'admin'
-//   }, function() {
-//       User.find({}, function(err, users) {
-//         // at this point we have created 2 users
-//         Portfolio.find({}).remove(function() {
-//           Portfolio.create(
-//           {stocksValue: 1000, cash: 1000, stocksInPortfolio: []},
-//           {stocksValue: 1000, cash: 1000, stocksInPortfolio: []}
-//          ,
-//            function() {
-//             addPortfoliosToUsers(users);
-//             console.log('2 portfolios saved');
-//           }
-//           // ,
-//           // Portfolio.find({}, function(err, portfolios){
-//           //   StockInPortfolio.find({}).remove(function(){
-//           //     StockInPortfolio.create(
-//           //     {qty: 1},
-//           //     {qty: 1},
-//           //     function() {
-//           //       addStocksInPortfoliosToPortfolios(portfolios);
-//           //       });
-//           //   });
-//           // });//end stockinport find
+User.find({}).remove(function() {
+  User.create({
+    provider: 'local',
+    name: 'Test User',
+    email: 'test@test.com',
+    password: 'test'
+  }, {
+    provider: 'local',
+    role: 'admin',
+    name: 'Admin',
+    email: 'admin@admin.com',
+    password: 'admin'
+  }, function() {
+      User.find({}, function(err, users) {
+        // at this point we have created 2 users
+        Portfolio.find({}).remove(function() {
+          Portfolio.create(
+          {stocksValue: 1000, cash: 1000, stocksInPortfolio: []},
+          {stocksValue: 1000, cash: 1000, stocksInPortfolio: []}
+         ,
+           function() {
+            addPortfoliosToUsers(users);
+            console.log('2 portfolios saved');
+          }
+          // ,
+          // Portfolio.find({}, function(err, portfolios){
+          //   StockInPortfolio.find({}).remove(function(){
+          //     StockInPortfolio.create(
+          //     {qty: 1},
+          //     {qty: 1},
+          //     function() {
+          //       addStocksInPortfoliosToPortfolios(portfolios);
+          //       });
+          //   });
+          // });//end stockinport find
 
-//           );
-//         });
-//     }
-//   );
-//   });
-// });
+          );
+        });
+    }
+  );
+  });
+});
 // StockInPortfolio.remove({}, function(err){
 //   console.log("StockInPortfolio collection removed");
 // })
