@@ -44,7 +44,8 @@ angular.module('proj4App')
   };
   that.sellStock = function(stock) {
     portfolioService.sellStock(stock).then(function(json) {
-      that.myPortfolio = json.data; //
+      // that.myPortfolio = json.data; //  TODO: fix this
+      that.getUserPortfolio();
     });
   }
   //TODO: call thsi when a user logs in and hits this page!!

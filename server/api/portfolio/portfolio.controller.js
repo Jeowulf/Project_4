@@ -108,10 +108,16 @@ exports.sellStock = function(req, res) {
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore decrementing qty');
+          if(found.qty > 0) {
           found.qty = found.qty - stockQty;
           found.save(function() {
             console.log('Saved new qty.');
           });
+          }
+          else  {
+            console.log('stockQty was 0!!!');
+            return res.send(404);
+          }
         }
         else {
           console.log('>>>>>>Stock not found');
