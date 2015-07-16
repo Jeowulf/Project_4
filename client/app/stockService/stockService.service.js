@@ -3,6 +3,9 @@
 angular.module('proj4App')
   .service('stockService', function ($http, Auth) {
 
+    this.findStockById = function(id) {
+    return $http.get('/api/stocks/' + id);
+    };
 
     this.createStockInventory = function (){
       return $http.put('/api/stocks');

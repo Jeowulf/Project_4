@@ -1,0 +1,7 @@
+{{ctrl.stock}}
+<input type="number" ng-model="stock.qty">
+<button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(ctrl.stock)">BUY</button>
+<button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(ctrl.stock)">SELL</button>
+<button class="btn btn-inverse btn-lg" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">TWITSENT</button>
+<br>
+<div ng-include="'app/dashboard/partials/twitsent.html'"></div>

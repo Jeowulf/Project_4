@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
+  .controller('DashboardCtrl', function ($http, $state, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
 
     var that = this;
 
@@ -47,6 +47,12 @@ angular.module('proj4App')
    // console.log(collection + ' is collection passed into matchTwit!!');
    // console.log(id + ' is id passed into matchTwit!!');
   }
+
+// get inviddual stock's showpage
+   that.goStock = function (stock) {
+    console.log(stock._id + 'is stock._id');
+    $state.go( 'stockShow', { stockId : stock._id } );
+  };
 //User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {

@@ -54,6 +54,14 @@ exports.put = function (req, res) {
   yahooHistorical( function (data, err) {
     if (err) { return handleError(res, err); }
     console.log("aliens" + JSON.stringify(data));
+    // saveStocks(data, res);
+  });
+}
+
+exports.histoicalSearch = function (req, res) {
+  yahooHistorical( function (data, err) {
+    if (err) { return handleError(res, err); }
+    console.log("aliens" + JSON.stringify(data));
     saveStocks(data, res);
   });
 }

@@ -4,11 +4,21 @@ var async = require('async');
 var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultipleSymbolSearch');
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
 
+//Gets all da stocks
 exports.index = function(req, res) {
   console.log('stocks get was hit');
   Stock.find(function (err, stocks) {
     if(err) { return handleError(res, err); }
     return res.json(200, stocks);
+  });
+};
+
+// Get a single player
+exports.show = function(req, res) {
+  Stock.findById(req.params.id, function (err, stock) {
+    if(err) { return handleError(res, err); }
+    if(!stock) { return res.send(404); }
+    return res.json(stock);
   });
 };
 //ADMIN onlly, destroys stock inventory

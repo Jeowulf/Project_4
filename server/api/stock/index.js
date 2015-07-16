@@ -8,7 +8,7 @@ var auth = require('../../auth/auth.service'); //TODO add in auth portion
 // auth.isAuthenticated()
 
 
-// router.get('/:id', controller.show); //indivdual show for a particular stock
+router.get('/:id', controller.show); //indivdual show for a particular stock
 // router.post('/',   controller.create); //creates a stock in the DB with data from Yahoo API
 router.get('/',    controller.index); //Gets all the stocks that we have saved
 router.put('/', auth.hasRole('admin'),    controller.createSet); // Admin only creates set of stocks in DB from Yahoo API data
