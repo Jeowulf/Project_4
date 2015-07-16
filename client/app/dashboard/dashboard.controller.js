@@ -9,7 +9,7 @@ angular.module('proj4App')
 
     that.createStockInventory = function(){
       stockService.createStockInventory().success(function(json){
-        console.log(json);
+        // console.log(json);
       });
     }
     //call to get when controller is creatd/alive
@@ -17,31 +17,43 @@ angular.module('proj4App')
     //Gets the stock inventory from the DB
     that.getStockInventory = function() {
       stockService.getInventory().success(function(json) {
-        console.log(json + '   is getInvetory json');
+        // console.log(json + '   is getInvetory json');
         that.stockInventory = json;
       });
     }
-    that.twitSentQuery = function(userInput, id) {
+    //Array stores the twitter analysis after they are sought/found and then we will map the correct analysis to the correct stock!!!!!!!!!!!!!
+    that.twitAnalysis = [];
+    that.twitSentQuery = function(userInput, id, name) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
-
       twitSentService.search(userInput).success(function(json) {
-        console.log('twitSentQuery from DashboardCtrl');
-        // console.log(json.score);
-        that.twitAnalysisScore = [];
-        that.twitAnalysisScore.push({id: id, score: json.score});
-        console.log(JSON.stringify(that.twitAnalysisScore) + 'is that.twitAnalysisScore array');
+        // console.log('twitSentQuery from DashboardCtrl');
+        // console.log(json);
+
+        that.twitAnalysis.push({id: id, name: name, score: json.score, comparative: json.comparative,  tokens: json.tokens, words: json.words});
+
+        console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
         // that.twitAnaylsisData = json;
-        return that.twitAnalysisScore
+
       });
       }
     }
+
+//Let's try and map the twitAnalysis to the correct stock!!!!!!!!!!
+  that.matchTwit = function(collection, id) {
+
+    that.matchingTwit = _.findWhere(collection, {id: id}, 'stock');
+    console.log(that.matchingTwit.id + ' is matchTwit!!');
+   // console.log(collection + ' is collection passed into matchTwit!!');
+   // console.log(id + ' is id passed into matchTwit!!');
+  }
 //User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
       console.log(JSON.stringify(json.data) + 'is returned after buyStock');
        that.myPortfolio = json.data; //TODO: fix what the server is returning
       // that.getUserPortfolio();
+      console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
     });
   };
   that.sellStock = function(stock) {
@@ -54,7 +66,7 @@ angular.module('proj4App')
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
-      console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
+      // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
 
     });
   }
