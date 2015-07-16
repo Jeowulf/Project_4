@@ -21,15 +21,18 @@ angular.module('proj4App')
         that.stockInventory = json;
       });
     }
-    that.twitSentQuery = function(userInput) {
+    that.twitSentQuery = function(userInput, id) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
 
       twitSentService.search(userInput).success(function(json) {
         console.log('twitSentQuery from DashboardCtrl');
         // console.log(json.score);
-        that.twitAnalysisScore = json.score;
-        that.twitAnaylsisData = json;
+        that.twitAnalysisScore = [];
+        that.twitAnalysisScore.push({id: id, score: json.score});
+        console.log(JSON.stringify(that.twitAnalysisScore) + 'is that.twitAnalysisScore array');
+        // that.twitAnaylsisData = json;
+        return that.twitAnalysisScore
       });
       }
     }
