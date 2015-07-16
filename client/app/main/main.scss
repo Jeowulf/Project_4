@@ -46,12 +46,55 @@ nav {
     font-size: 20px;
     color: #004d40;
 }
-.topBand {
+.topNav {
     position: fixed;
 }
 .navbar-brand {
     position: fixed;
     border-bottom: 4px solid #546e7a;
+    width: 200px;
+}
+.navIcon {
+    width: 50px;
+    padding: 5px;
+
+}
+.stocksNav {
+  position: fixed;
+  width: 100px;
+  left: 100px;
+  top: 63px;
+  margin: 0;
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: white;
+  border: 4px solid #546e7a;
+  z-index: 50;
+}
+.stocksNavHidden {
+  position: fixed;
+  width: 100px;
+  left: -200px;
+  top: 68px;
+  margin: 0;
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: #fff;
+  z-index: 0;
+
+}
+.stats {
+    height: 3vw;
+    border: 4px solid #ff3d00;
+    width: 100%;
+}
+.graphics {
+    height: 20vw;
+    width: 100%;
 }
 h1 {
     color: #546e7a;
@@ -97,3 +140,19 @@ h6 {
     border: 4px solid #546e7a;
     border-left: 4px solid #ff3d00;
 }
+header, main, footer {
+    padding-left: 240px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
+  div.stocksNav.col.s1 a.ng-binding {
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: red;
+   font-size: 20px;
+   z-index: 200;
+  }
