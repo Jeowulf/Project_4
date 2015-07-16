@@ -45,19 +45,19 @@ exports.buyStock = function(req, res) {
       // console.log('user is: ' + user);
       var portfolioId = user.portfolio;
       // console.log('portfolio id for user is:' + portfolioId);
-
+//TODO: Fix what the server is returning, it's not populating the stocks
       Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
         if (err) { return handleError(res, err); }
         if (!portfolio) { return res.send(404); }
-        console.log(stock._id + 'is stock._id');
+        console.log(stock + 'is stock._id');
         //Validation to see if stock is already in portfolio
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
           found.qty = found.qty + stockQty;
           found.save(function() {
-            console.log('Saved new qty. returning a response=====');
-            return res.json(201, portfolio);
+            console.log('Saved new qty. returning a response=====' + portfolio.stocksInPortfolio);
+            return res.json(201, portfolio.stocksInPortfolio);
 
           });
         }
@@ -68,8 +68,8 @@ exports.buyStock = function(req, res) {
             // console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
             portfolio.stocksInPortfolio.push(newStockInPortfolio);
             portfolio.save(function() {
-              console.log('saving and returning response portfolio::::::::' + stock);
-              return res.json(201, portfolio);
+              console.log('saving and returning response portfolio::::::::' + portfolio.stocksInPortfolio);
+              return res.json(201, portfolio.stocksInPortfolio);
             });
           });
         }

@@ -122,11 +122,8 @@ exports.update = function (req, res) {
       for (var i = 0; i < stocks.length ; i++) {
         if (isValidData(data[i])) {
           stocks[i].lastTradeDate = data[i].lastTradeDate;
-          // stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
-
+          stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
           // TODO: just for testing, remove the following line
-          stocks[i].lastTradePriceOnly = 99.99;
-
           stocks[i].dividendYield = data[i].dividendYield;
           stocks[i].peRatio = data[i].peRatio;
           // stocks[i].save(function(err, stocks) {

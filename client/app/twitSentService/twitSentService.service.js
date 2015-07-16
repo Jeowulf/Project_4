@@ -4,7 +4,7 @@ angular.module('proj4App')
 .service('twitSentService', function($http){
 
   this.search = function (userInput) {
-    console.log('twitSentQuery');
+    console.log('twitSentQuery' + userInput);
     return $http.post('/api/twitSent', {query: userInput});
   }
 

@@ -9,6 +9,7 @@ angular.module('proj4App')
     }//creates a stock inventory call this before you cal get inventory!!!
 
     this.getInventory = function() { //gets stock inventory from DB
+      console.log('getStockInventory was called');
       return $http.get('/api/stocks');
     }
     this.getUser = function() { //for testing

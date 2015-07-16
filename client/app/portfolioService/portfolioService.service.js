@@ -22,4 +22,8 @@ angular.module('proj4App')
       return $http.get('/api/users/' + userId + '/portfolio/');
     }
 
+    this.getAllPortfolios = function() {
+      return $http.get('/api/portfolio');
+    }
+
   });

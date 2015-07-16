@@ -16,17 +16,16 @@ angular.module('proj4App')
 
     //Gets the stock inventory from the DB
     that.getStockInventory = function() {
-      console.log('getStockInventory was called');
       stockService.getInventory().success(function(json) {
-        console.log(json);
+        console.log(json + '   is getInvetory json');
         that.stockInventory = json;
       });
     }
-    that.twitSentQuery = function() {
+    that.twitSentQuery = function(userInput) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
 
-      twitSentService.search(that.userInput).success(function(json) {
+      twitSentService.search(userInput).success(function(json) {
         console.log('twitSentQuery from DashboardCtrl');
         // console.log(json.score);
         that.twitAnalysisScore = json.score;
@@ -37,9 +36,9 @@ angular.module('proj4App')
 //User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
-      console.log(json.data + 'is returned after buyStock');
-       // that.myPortfolio = json.data; TODO: fix what the server is returning
-      that.getUserPortfolio();
+      console.log(JSON.stringify(json.data) + 'is returned after buyStock');
+       that.myPortfolio = json.data; //TODO: fix what the server is returning
+      // that.getUserPortfolio();
     });
   };
   that.sellStock = function(stock) {
@@ -59,7 +58,6 @@ angular.module('proj4App')
   //run when controller is instantiated
   that.getStockInventory();
   that.getUserPortfolio();
-  that.getStockInventory();
     // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {
