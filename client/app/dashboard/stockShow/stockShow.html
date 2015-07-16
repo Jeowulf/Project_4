@@ -5,3 +5,7 @@
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">TWITSENT</button>
 <br>
 <div ng-include="'app/dashboard/partials/twitsent.html'"></div>
+<br>
+
+<button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
+{{ctrl.historicalData}}

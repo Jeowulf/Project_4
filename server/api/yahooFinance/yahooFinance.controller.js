@@ -2,6 +2,7 @@
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
 var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultipleSymbolSearch');
 var yahooHistorical = require('../../logic/yahooHistorical');
+var yahooHistoricalSingle = require('../../logic/yahooHistoricalSingle');
 
 function saveStocks(stocks, res) {
   var savedStocks = [];
@@ -39,8 +40,9 @@ function saveStocks(stocks, res) {
 
 exports.search = function  (req, res) {
 
-  yahooFinanceSearch(req.body.symbol, function (data) {
+  yahooFinanceSearch(req.body.symbol, function (data, err) {
     // console.log(data.name + 'is data name');
+    if (err) { return handleError(res, err); }
     return res.json(201,data);
   });
 }
@@ -54,15 +56,17 @@ exports.put = function (req, res) {
   yahooHistorical( function (data, err) {
     if (err) { return handleError(res, err); }
     console.log("aliens" + JSON.stringify(data));
-    // saveStocks(data, res);
+    saveStocks(data, res);
+    resturn
   });
 }
 
-exports.histoicalSearch = function (req, res) {
-  yahooHistorical( function (data, err) {
+exports.historicalSearch = function (req, res) {
+  console.log('req.body is ' + JSON.stringify(req.body));
+  yahooHistoricalSingle(req.body.symbol, function(data, err) {
     if (err) { return handleError(res, err); }
     console.log("aliens" + JSON.stringify(data));
-    saveStocks(data, res);
+    return res.json(201,data);
   });
 }
 

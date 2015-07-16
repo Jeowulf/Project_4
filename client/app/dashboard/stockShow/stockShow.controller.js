@@ -24,9 +24,17 @@ angular.module('proj4App')
   that.sellStock = function(stock) {
     portfolioService.sellStock(stock).then(function(json) {
       // that.myPortfolio = json.data; //  TODO: fix this
-      that.getUserPortfolio();
+
     });
   };
+
+  //Get historical stock data
+  that.getHistorical = function(input) {
+    yahooFinanceService.historicalSingle(input).success(function(json) {
+      that.historicalData = json;
+      console.log(that.historicalData);
+    });
+  }
 //twitter
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
