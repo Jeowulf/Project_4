@@ -8,4 +8,11 @@
 <br>
 
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
-{{ctrl.historicalData}}
+<hr>
+<h4>a nice chart here:</h4>
+<div class="container">
+<canvas id="line" class="chart chart-line" data="ctrl.data"
+  labels="ctrl.labels" legend="true" series="ctrl.series"
+  click="ctrl.onClick">
+</canvas>
+</div>

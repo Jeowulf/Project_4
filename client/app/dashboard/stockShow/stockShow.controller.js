@@ -32,7 +32,7 @@ angular.module('proj4App')
   that.getHistorical = function(input) {
     yahooFinanceService.historicalSingle(input).success(function(json) {
       that.historicalData = json;
-      console.log(that.historicalData);
+       that.chart();
     });
   }
 //twitter
@@ -50,5 +50,33 @@ angular.module('proj4App')
       });
       }
     }
+    that.open;
+    that.close;
+    that.low;
+    that.volume;
+    that.adjClose;
+    //chart.js stuff
+    that.chart = function() {
+      that.open = _.pluck(that.historicalData, 'open');
+      that.close = _.pluck(that.historicalData, 'close');
+      that.low = _.pluck(that.historicalData, 'low');
+      that.volume = _.pluck(that.historicalData, 'volume');
+      that.adjClose = _.pluck(that.historicalData, 'adjClose');
+      console.log(that.open);
 
-  });
+
+    that.labels = ["2010", "2011", "2012", "2013", "2014", "2015"];
+    that.series = ["Open", "Close", "Low", "Volume", "Adjusted Close"];
+    that.data = [
+      that.open
+      // that.close,
+      // that.low,
+      // that.volume,
+      // that.adjClose
+  ];
+  }
+  that.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
+
+});

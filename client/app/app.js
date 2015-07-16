@@ -5,7 +5,8 @@ angular.module('proj4App', [
   'ngResource',
   'ngSanitize',
   'btford.socket-io',
-  'ui.router'
+  'ui.router',
+  'chart.js'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
