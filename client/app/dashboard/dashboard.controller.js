@@ -5,7 +5,7 @@ angular.module('proj4App')
 
     var that = this;
 
-    that.tab;
+    that.tab = 0;
     // stockService.getUser();//helper for server
 
     that.createStockInventory = function(){
@@ -117,9 +117,11 @@ angular.module('proj4App')
     that.getTwitterSentiments();
     that.getTwitterWords();
   }
+  //get date
+that.date = new Date();
 
-  // console.log(that.words + " adf")
-  // console.log(that.specificSentiment)
+
+
 });
 
 ///////////////////////////////////////////////////////////////////

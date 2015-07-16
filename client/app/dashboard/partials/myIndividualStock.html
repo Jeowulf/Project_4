@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="row">
+    <!-- for spacing -->
+  </div>
+  <div class="col s3 offset-s2">
+    <h3 id="textLeft"></h3>
+  </div>
+  <div class="col s3">
+    <h5>{{ctrl.total | currency}}</h5>
+    <h1 class="totalValue">
+      Total Stock Value: {{stocksInPortfolio.stock.lastTradePriceOnly * stocksInPortfolio.qty | currency}}
+    </h1>
+  </div>
+  <div class="stats">
+    {{stocksInPortfolio.stock.symbol || 'N/A'}} | {{stocksInPortfolio.stock.twitterHandle || 'N/A'}} | peRatio: {{stocksInPortfolio.stock.peRatio || 'N/A'}} | Dividend Yield: {{stocksInPortfolio.stock.dividendYield || 'N/A'}} | Current Value: {{stocksInPortfolio.stock.lastTradePriceOnly || 'N/A'}} | Quantity: {{stocksInPortfolio.qty}}, {{ctrl.tab.stock._id}}
+  </div>
+</div>
+<script>
+  'use strict';
+$(document).ready(function(){
+  $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+
+  var currentDate = new Date()
+  var day = currentDate.getDate()
+  var month = currentDate.getMonth() + 1
+  var year = currentDate.getFullYear()
+  var date = document.getElementById("textLeft");
+  date.innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
+  console.log("funky")
+});
+</script>
+<!-- <div ng-include="'/app/dashboard/partials/show.html'"></div>
+partial reference -->

@@ -1,0 +1,98 @@
+<div class="row top">
+  <div class="col s3 offset-s2">
+  </div>
+</div>
+<div class="row">
+
+
+<div class="stocksNav col s1" ng-init="tab = 0">
+  <div class="myStockList" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
+    <ul>
+      <li><a href ng-click="ctrl.tab = stocksInPortfolio.stock._id">{{stocksInPortfolio.stock.name | limitTo:10}}</a></li>
+    </ul>
+    <div class="myStockView" ng-show="ctrl.tab === stocksInPortfolio.stock._id">
+      <div class="{ active:ctrl.tab === stocksInPortfolio.stock._id">
+        {{stocksInPortfolio.stock._id}}
+      </div>
+    </div>
+  </div>
+  {{ctrl.tab}}
+  <!-- stocksInPortfolio.stock._id -->
+ </div>
+  <div class="col s3 offset-s2">
+    <h3 class="textLeft">Date <br> Portfolio</h3>
+  </div>
+  <div class="col s3">
+    <h5>{{ctrl.total | currency}}</h5>
+  </div>
+  <div class="col s4">
+  </div>
+</div>
+<div class="stats">
+  {{stocksInPortfolio.stock.symbol || 'N/A'}} | {{stocksInPortfolio.stock.twitterHandle || 'N/A'}} | {{stocksInPortfolio.stock.peRatio || 'N/A'}} | {{stocksInPortfolio.stock.dividendYield || 'N/A'}} | {{stocksInPortfolio.stock.lastTradePriceOnly || 'N/A'}} | Quantity: {{stocksInPortfolio.qty}} | Total Stock Value: {{stocksInPortfolio.stock.lastTradePriceOnly * stocksInPortfolio.qty | currency}}
+</div>
+<div class="graphics">
+
+</div>
+<div class="row">
+  <div class="col s2">
+    <h4></h4>
+  </div>
+  <div class="col s8 myStocks" >
+    <ul class="collapsible" data-collapsible="accordion" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
+
+        <li>
+            <div class="collapsible-header">
+              {{stocksInPortfolio.stock.symbol || 'N/A'}} | {{stocksInPortfolio.stock.twitterHandle || 'N/A'}} | {{stocksInPortfolio.stock.peRatio || 'N/A'}} | {{stocksInPortfolio.stock.dividendYield || 'N/A'}} | {{stocksInPortfolio.stock.lastTradePriceOnly || 'N/A'}} | Quantity: {{stocksInPortfolio.qty}} | Total Stock Value: {{stocksInPortfolio.stock.lastTradePriceOnly * stocksInPortfolio.qty | currency}}
+            </div>
+            <div class="collapsible-body"><h2>hola</h2></div>
+        </li>
+
+    </ul>
+  </div>
+ </div>
+ <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+ </ul>
+
+
+<!-- ///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//that.myPortfolio.stocksInPortfolio[i].stock
+//              ~> ._id
+//                 .peRatio
+//                 .dividendYield
+//                 .symbol
+//                 .twitterHandle
+//                 .name
+//                 .lastTradePriceOnly
+//                 .lastTradeDate
+@Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}
+<h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
+                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
+                <word>{{word}}</word>
+                </word-cloud> -->
+
+<script>
+  'use strict';
+$(document).ready(function(){
+  $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+});
+</script>
+<!-- <ul class="collapsible" data-collapsible="expandable">
+        <li>
+            <div class="collapsible-header" ng-click="ctrl.callingAllTwitterFunctions()" ng-repeat>@Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}</div>
+            <div class="collapsible-body">
+                <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
+                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
+                    <word>{{word}}</word>
+                </word-cloud>
+            </div>
+        </li>
+    </ul> -->

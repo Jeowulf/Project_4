@@ -61,7 +61,7 @@ nav {
 }
 .stocksNav {
   position: fixed;
-  width: 100px;
+  width: 133px;
   left: 100px;
   top: 63px;
   margin: 0;
@@ -72,10 +72,11 @@ nav {
   background-color: white;
   border: 4px solid #546e7a;
   z-index: 50;
+  padding-left: 10px;
 }
 .stocksNavHidden {
   position: fixed;
-  width: 100px;
+  width: 133px;
   left: -200px;
   top: 68px;
   margin: 0;
@@ -89,8 +90,20 @@ nav {
 }
 .stats {
     height: 3vw;
-    border: 4px solid #ff3d00;
-    width: 100%;
+    border-top: 4px solid #ff3d00;
+    border-bottom: 4px solid #ff3d00;
+    width: calc(100% - 233px);
+    float: right;
+}
+stats.ng-binding {
+    padding-right: 30px;
+}
+.statsEmpty {
+    height: 3vw;
+    border-top: 4px solid #ff3d00;
+    border-bottom: 4px solid #ff3d00;
+    width: calc(100% - 100px);
+    float: right;
 }
 .graphics {
     height: 20vw;
@@ -155,4 +168,7 @@ header, main, footer {
    -webkit-text-stroke-color: red;
    font-size: 20px;
    z-index: 200;
+  }
+  .totalValue {
+    position: absolute;
   }
