@@ -4,15 +4,26 @@
   </div>
   <div class="col s3 offset-s2">
     <h3 id="textLeft"></h3>
+    <h4 id="stockLeft">{{ctrl.tab.stock.name}}</h4>
   </div>
   <div class="col s3">
     <h5>{{ctrl.total | currency}}</h5>
-    <h1 class="totalValue">
-      Total Stock Value: {{stocksInPortfolio.stock.lastTradePriceOnly * stocksInPortfolio.qty | currency}}
+    <h1 class="totalValueText">
+      Total Stock Value: <br>
+      <br>
+      <br>
+      <br>
     </h1>
   </div>
+  <div class="stockValue col s3 ">
+    <h1 class="totalValueNumber">
+      {{ctrl.tab.stock.lastTradePriceOnly * ctrl.tab.qty | currency}}
+    </h1>
+  </div>
+
+  </div>
   <div class="stats">
-    {{stocksInPortfolio.stock.symbol || 'N/A'}} | {{stocksInPortfolio.stock.twitterHandle || 'N/A'}} | peRatio: {{stocksInPortfolio.stock.peRatio || 'N/A'}} | Dividend Yield: {{stocksInPortfolio.stock.dividendYield || 'N/A'}} | Current Value: {{stocksInPortfolio.stock.lastTradePriceOnly || 'N/A'}} | Quantity: {{stocksInPortfolio.qty}}, {{ctrl.tab.stock._id}}
+    <h5>{{ctrl.tab.stock.symbol || 'N/A'}} | {{ctrl.tab.stock.twitterHandle || 'N/A'}} | peRatio: {{ctrl.tab.stock.peRatio || 'N/A'}} | Dividend Yield: {{ctrl.tab.stock.dividendYield || 'N/A'}} | Current Value: {{ctrl.tab.stock.lastTradePriceOnly || 'N/A'}} | Quantity: {{ctrl.tab.qty}}</h5>
   </div>
 </div>
 <script>

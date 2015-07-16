@@ -2,15 +2,16 @@
 <div class="stocksNav col s1">
     <div class="myStockList" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
       <ul>
-        <li style="position: relative"><a href ng-click="ctrl.tab = stocksInPortfolio.stock._id">{{stocksInPortfolio.stock.name | limitTo:10}}</a></li>
+        <li style="position: relative"><a href ng-click="ctrl.tab = stocksInPortfolio">{{stocksInPortfolio.stock.name | limitTo:10}}</a></li>
       </ul>
-    <div class="myStockView" ng-show="ctrl.tab === stocksInPortfolio.stock._id">
-      <div class="{ active:ctrl.tab === stocksInPortfolio.stock._id }">
-      <div ng-include="'/app/dashboard/partials/myIndividualStock.html'"></div>
+    <div class="myStockView" ng-show="ctrl.tab === stocksInPortfolio">
+      <div class="{ active:ctrl.tab === stocksInPortfolio }">
       </div>
     </div>
   </div>
 </div>
+<div ng-show="ctrl.tab === 0"><div ng-include="'/app/dashboard/partials/dashWelcome.html'"></div></div>
+<div ng-show="ctrl.tab !== 0"><div ng-include="'/app/dashboard/partials/myIndividualStock.html'"></div></div>
 
  <!-- class="{ active:ctrl.tab === stocksInPortfolio.stock._id }" -->
 <!-- function find(collection, id) {
@@ -22,6 +23,4 @@ result.stockid
 result.score
 {{result}}
 /ng-repeat -->
-<!-- <div ng-include="'/app/dashboard/partials/dashWelcome.html'"></div> -->
-<!-- <div ng-include="'/app/dashboard/partials/show.html'"></div> -->
 

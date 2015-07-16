@@ -169,6 +169,20 @@ header, main, footer {
    font-size: 20px;
    z-index: 200;
   }
-  .totalValue {
-    position: absolute;
+
+  h1.totalValueNumber.ng-binding {
+    border-left: white;
   }
+  .totalValueText {
+    font-size: 35px;
+  }
+  .stockValue {
+    top: 450px;
+  }
+  #stockLeft {
+    float: right;
+  }
+  h5 {
+  text-align: center;
+  }
+
