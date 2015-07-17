@@ -20,6 +20,29 @@
     </div>
     <div id="sentimentData" class="col s3 gridColTwo"></div>
   </div>
+<h3>My Stocks</h3>
+<table class="hoverable responsive-table centered">
+
+<!-- <th><th>
+<th>Shares Owned<th>
+<th>Current Price<th> -->
+ <thead>
+  <tr>
+      <th data-field="id">Company</th>
+      <th data-field="name">Shares Owned</th>
+      <th data-field="price">Current Price</th>
+  </tr>
+</thead>
+<tbody>
+  <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio">
+    <td>{{ stock.stock.name }}</td>
+    <td>{{stock.qty}}</td>
+    <td>{{ stock.stock.lastTradePriceOnly | currency}}</td>
+  </tr>
+</tbody>
+</table>
+
+
 <script>
   'use strict';
 $(document).ready(function(){

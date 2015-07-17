@@ -73,7 +73,7 @@ angular.module('proj4App')
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
       // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
-      console.log("portfolio to follow: ")
+      console.log("portfolio to follow: ");
       // stockNavService.testies();
       // console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
       // console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
@@ -83,6 +83,7 @@ angular.module('proj4App')
         var price = portfolio.stock.lastTradePriceOnly * portfolio.qty;
         that.total += price;
       });
+      console.log(JSON.stringify(that.myPortfolio.stocksInPortfolio) + 'is portfolio');
       console.log(that.total + ' is user portfolio total');
     });
   }
