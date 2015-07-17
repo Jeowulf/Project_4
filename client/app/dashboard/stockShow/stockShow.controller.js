@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('StockShowCtrl', function ($stateParams, yahooFinanceService, twitSentService, stockService, portfolioService) {
+  .controller('StockShowCtrl', function ($scope, $stateParams, yahooFinanceService, twitSentService, stockService, portfolioService) {
     console.log('StockShowCtrl is alive!!' + $stateParams);
 
   var that = this;
@@ -27,6 +27,25 @@ angular.module('proj4App')
 
     });
   };
+  //portfolio
+  that.getUserPortfolio = function() {
+    portfolioService.getUserPortfolio().success(function(json) {
+      that.myPortfolio = json;
+      // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
+      console.log("portfolio to follow: ")
+      // stockNavService.testies();
+      // console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
+      // console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
+      var portfolios = that.myPortfolio.stocksInPortfolio;
+      that.total = 0;
+      portfolios.map(function(portfolio) {
+        var price = portfolio.stock.lastTradePriceOnly * portfolio.qty;
+        that.total += price;
+      });
+      console.log(that.total + ' is user portfolio total');
+    });
+  }
+  that.getUserPortfolio();
 
   //Get historical stock data
   that.getHistorical = function(input) {
@@ -41,8 +60,20 @@ angular.module('proj4App')
     that.currentData = json;
    })
   }
-that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:"thanks",size:8},{id:8,word:"diamond",size:8},{id:8,word:"thank",size:8},{id:8,word:"help",size:8},{id:8,word:"want",size:8},{id:8,word:"better",size:8},{id:8,word:"thank",size:8},{id:8,word:"good",size:8},{id:8,word:"better",size:8},{id:8,word:"yes",size:8},{id:8,"word":"classy",size:8},{id:8,"word":"fit",size:8},{id:8,"word":"thanks",size:8},{id:8,"word":"please",size:8},{id:8,"word":"care",size:8},{id:8,"word":"thank",size:8},{id:8,"word":"safety",size:8},{id:8,"word":"want",size:8},{id:8,"word":"want",size:8},{id:8,"word":"like",size:8},{id:8,"word":"fit",size:8},{id:8,"word":"better",size:8},{id:8,"word":"thank",size:8},{id:8,"word":"better",size:8},{id:8,"word":"yes",size:8}]
-//twitter
+//twitter/ wordcloud
+  that.words = [];
+  that.wordArray = function  (my_array) {
+
+     _(my_array).forEach(function(n) {
+        var x = Math.floor(Math.random() * 10) + 1;
+        that.words.push({id: x, word: n, size: x});
+
+      });
+     console.log(that.words);
+
+  }
+
+   console.log(that.words + ' is word array');
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
@@ -50,7 +81,8 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
         // console.log('twitSentQuery from DashboardCtrl');
         // console.log(json);
         that.twitAnalysis = json;
-
+        console.log(that.twitAnalysis.negative.length);
+       return that.wordArray(that.twitAnalysis.negative);
         // console.log(that.twitAnalysis.positive  + '     is that.twitAnalysis');
         // that.twitAnaylsisData = json;
         //wordcloud
@@ -64,9 +96,24 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
     that.volume;
     that.adjClose;
     //chart.js stuff
+
     function getMaxOfArray(numArray) {
       return Math.max.apply(null, numArray);
     }
+
+    function getMinOfArray(numArray) {
+      return Math.min.apply(Math, numArray)
+    }
+
+   function getArrayAvg(array) {
+
+    var total = 0;
+        for(var i = 0; i < array.length; i++) {
+        total += array[i];
+    }
+    var avg = total / array.length;
+    return avg;
+   }
     function twoDecimal(my_array){
       _(my_array).forEach(function(n) {
 
@@ -83,10 +130,13 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
       that.volume = _.pluck(that.historicalData, 'volume');
       // var x = twoDecimal(that.volume);
       // console.log(x);
-      // var max = getMaxOfArray(that.open);
+
+
 
       // console.log(that.open);
+  var labels = [];
 
+  //line graph settings
     that.labels = ["2011", "2012", "2013", "2014"];
     that.series = ["Open", "Close" , "Low", "Adjusted Close"];
     that.data = [
@@ -95,8 +145,35 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
       that.low,
       that.adjClose
   ];
+  //custom settings
+  //maths:
+  //scale steps = 5
+  //step width = max - min/5
+  //stepstart = 5
+  var flatten = _.flatten(that.data);
+  var avg = getArrayAvg(flatten);
+  var max = getMaxOfArray(flatten);
+  var min = getMinOfArray(flatten);
+
+  console.log(that.open.length);
+  console.log(max + ' is max');
+  console.log(min + ' is min!');
+  var steps = 3;
+  // var start = 10;
+  that.options = {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: ((max - min)  / steps),
+    scaleStartValue: min,
+    scaleIntegersOnly: true,
+    scaleLabel: '<%= Number(value).toFixed(2) %>',
+    showXLabels: 10
+    };
+
+  console.log("is max" + max);
+  // console.log(that.close + ' is that.close');
   that.barLabels = ["2011", "2012", "2013", "2014"];
-  console.log(that.volume);
+  // console.log(that.volume);
   that.barData = [
     that.volume
   ];
@@ -109,13 +186,6 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
   //create  {id: 1, word: "oke", size: 1}, format
 
 
-  function wordCloud (my_array) {
-   var x = Math.floor(Math.random() * 10) + 1;
-   _(my_array).forEach(function(n) {
 
-    that.words.push({id: x, word: n, size: x});
-    console.log(that.words);
-    });
-  }
 
 });
