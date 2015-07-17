@@ -7,12 +7,33 @@
 <div ng-include="'app/dashboard/partials/twitsent.html'"></div>
 <br>
 
-<button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
+<button class="btn btn-inverse btn-lg" ng-click="ctrl.getCurrent(ctrl.stock.symbol)">Get Current</button>
+<br>
+<div class="container">
+<ul class="collection">
+      <li class="collection-item">dividendYield: {{ctrl.currentData.dividendYield}}</li>
+      <li class="collection-item">change: {{ctrl.currentData.change}}</li>
+      <li class="collection-item">changeFrom200DayMovingAverage: {{ctrl.currentData.changeFrom200DayMovingAverage}}</li>
+      <li class="collection-item">changeAndPercentChange: {{ctrl.currentData.changeAndPercentChange}}</li>
+     <!--  <li class="collection-item">52WeekHigh: {{ctrl.currentData.52WeekHigh}}</li> -->
+      <li class="collection-item">open: {{ctrl.currentData.open}}</li>
+      <li class="collection-item">volume: {{ctrl.currentData.volume}}</li>
+      <li class="collection-item">marketCapitalization: {{ctrl.currentData.marketCapitalization}}</li>
+      <li class="collection-item">epsEstimateCurrentYear: {{ctrl.currentData.epsEstimateCurrentYear}}</li>
+      <li class="collection-item">epsEstimateNextQuarter: {{ctrl.currentData.epsEstimateNextQuarter}}</li>
+    </ul>
+    {{ctrl.currentData}}
+</div>
 <hr>
+<button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
+
 <h4>a nice chart here:</h4>
 <div class="container">
-<canvas id="line" class="chart chart-line" data="ctrl.data"
+<canvas id="line" class="chart chart-line" options="ctrl.options" data="ctrl.data"
   labels="ctrl.labels" legend="true" series="ctrl.series"
   click="ctrl.onClick">
 </canvas>
+<br>
+<canvas id="bar" class="chart chart-bar" data="ctrl.barData"
+  labels="ctrl.barLabels"></canvas>
 </div>

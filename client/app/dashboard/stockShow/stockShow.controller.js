@@ -35,6 +35,13 @@ angular.module('proj4App')
        that.chart();
     });
   }
+  //Get current stock data
+  that.getCurrent = function(input){
+   yahooFinanceService.search(input).success(function(json) {
+    that.currentData = json;
+   })
+  }
+
 //twitter
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
@@ -56,23 +63,41 @@ angular.module('proj4App')
     that.volume;
     that.adjClose;
     //chart.js stuff
+    function getMaxOfArray(numArray) {
+      return Math.max.apply(null, numArray);
+    }
+    function twoDecimal(my_array){
+      _(my_array).forEach(function(n) {
+
+        var x = n.toFixed(2);
+        console.log(n);
+        return x;
+      });
+     }
     that.chart = function() {
       that.open = _.pluck(that.historicalData, 'open');
       that.close = _.pluck(that.historicalData, 'close');
       that.low = _.pluck(that.historicalData, 'low');
-      that.volume = _.pluck(that.historicalData, 'volume');
       that.adjClose = _.pluck(that.historicalData, 'adjClose');
-      console.log(that.open);
+      that.volume = _.pluck(that.historicalData, 'volume');
+      // var x = twoDecimal(that.volume);
+      // console.log(x);
+      // var max = getMaxOfArray(that.open);
 
+      // console.log(that.open);
 
-    that.labels = ["2010", "2011", "2012", "2013", "2014", "2015"];
-    that.series = ["Open", "Close", "Low", "Volume", "Adjusted Close"];
+    that.labels = ["2011", "2012", "2013", "2014"];
+    that.series = ["Open", "Close" , "Low", "Adjusted Close"];
     that.data = [
-      that.open
-      // that.close,
-      // that.low,
-      // that.volume,
-      // that.adjClose
+      that.open,
+      that.close,
+      that.low,
+      that.adjClose
+  ];
+  that.barLabels = ["2011", "2012", "2013", "2014"];
+  console.log(that.volume);
+  that.barData = [
+    that.volume
   ];
   }
   that.onClick = function (points, evt) {
