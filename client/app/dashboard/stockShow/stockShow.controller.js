@@ -41,7 +41,6 @@ angular.module('proj4App')
     that.currentData = json;
    })
   }
-that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:"thanks",size:8},{id:8,word:"diamond",size:8},{id:8,word:"thank",size:8},{id:8,word:"help",size:8},{id:8,word:"want",size:8},{id:8,word:"better",size:8},{id:8,word:"thank",size:8},{id:8,word:"good",size:8},{id:8,word:"better",size:8},{id:8,word:"yes",size:8},{id:8,"word":"classy",size:8},{id:8,"word":"fit",size:8},{id:8,"word":"thanks",size:8},{id:8,"word":"please",size:8},{id:8,"word":"care",size:8},{id:8,"word":"thank",size:8},{id:8,"word":"safety",size:8},{id:8,"word":"want",size:8},{id:8,"word":"want",size:8},{id:8,"word":"like",size:8},{id:8,"word":"fit",size:8},{id:8,"word":"better",size:8},{id:8,"word":"thank",size:8},{id:8,"word":"better",size:8},{id:8,"word":"yes",size:8}]
 //twitter
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
@@ -67,6 +66,16 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
     function getMaxOfArray(numArray) {
       return Math.max.apply(null, numArray);
     }
+
+   function getArrayAvg(array) {
+
+    var total = 0;
+        for(var i = 0; i < array.length; i++) {
+        total += array[i];
+    }
+    var avg = total / array.length;
+    return avg;
+   }
     function twoDecimal(my_array){
       _(my_array).forEach(function(n) {
 
@@ -83,7 +92,8 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
       that.volume = _.pluck(that.historicalData, 'volume');
       // var x = twoDecimal(that.volume);
       // console.log(x);
-      // var max = getMaxOfArray(that.open);
+
+
 
       // console.log(that.open);
 
@@ -95,8 +105,13 @@ that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:
       that.low,
       that.adjClose
   ];
+
+  var flatten = _.flatten(that.data);
+  var max = getArrayAvg(flatten) + 10;
+  console.log("is max" + max);
+  // console.log(that.close + ' is that.close');
   that.barLabels = ["2011", "2012", "2013", "2014"];
-  console.log(that.volume);
+  // console.log(that.volume);
   that.barData = [
     that.volume
   ];
