@@ -234,8 +234,14 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/public/{,*/}*.js',
             '<%= yeoman.dist %>/public/{,*/}*.css',
+            '!<%= yeoman.dist %>/public/bower_components/animate.css',
+            '<%= yeoman.dist %>/public/bower_components/animate.css/{,*/}*.css',
             '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/public/assets/fonts/*'
+            '<%= yeoman.dist %>/public/assets/fonts/*',
+            '!<%= yeoman.dist %>/public/bower_components/Chart.js',
+            '<%= yeoman.dist %>/public/bower_components/Chart.js/{,*/}*.js',
+            '!<%= yeoman.dist %>/public/bower_components/angular-chart.js',
+            '<%= yeoman.dist %>/public/bower_components/angular-chart.js/{,*/}*.js'
           ]
         }
       }
@@ -254,8 +260,12 @@ module.exports = function (grunt) {
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/public/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
+      css: ['<%= yeoman.dist %>/public/{,*/}*.css', '!<%= yeoman.dist %>/public/bower_components/animate.css',
+            '<%= yeoman.dist %>/public/bower_components/animate.css/{,*/}*.css'],
+      js: ['<%= yeoman.dist %>/public/{,*/}*.js', '!<%= yeoman.dist %>/public/bower_components/Chart.js',
+            '<%= yeoman.dist %>/public/bower_components/Chart.js/{,*/}*.js',
+            '!<%= yeoman.dist %>/public/bower_components/angular-chart.js',
+            '<%= yeoman.dist %>/public/bower_components/angular-chart.js/{,*/}*.js'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>/public',
@@ -569,7 +579,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:server',
         'injector',
         'wiredep',
@@ -581,7 +591,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:sass', 
+      'injector:sass',
       'concurrent:server',
       'injector',
       'wiredep',
@@ -611,7 +621,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -624,7 +634,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'wiredep',
@@ -642,7 +652,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:sass', 
+    'injector:sass',
     'concurrent:dist',
     'injector',
     'wiredep',
