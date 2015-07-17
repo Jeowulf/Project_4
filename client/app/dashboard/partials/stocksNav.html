@@ -1,6 +1,6 @@
 
-<div class="stocksNav col s1">
-    <div class="myStockList" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
+<div class="stocksNav col s1" ng-show="ctrl.vis" ng-animate="{show: 'menu-show', hide: 'menu-hide'}">
+  <div class="myStockList" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
       <ul>
         <li style="position: relative"><a href ng-click="ctrl.tab = stocksInPortfolio">{{stocksInPortfolio.stock.name | limitTo:10}}</a></li>
       </ul>
@@ -10,17 +10,7 @@
     </div>
   </div>
 </div>
-<div ng-show="ctrl.tab === 0"><div ng-include="'/app/dashboard/partials/dashWelcome.html'"></div></div>
+<!-- <div ng-show="ctrl.tab === 0"><div ng-include="'/app/dashboard/partials/dashWelcome.html'"></div></div>
 <div ng-show="ctrl.tab !== 0"><div ng-include="'/app/dashboard/partials/myIndividualStock.html'"></div></div>
-
- <!-- class="{ active:ctrl.tab === stocksInPortfolio.stock._id }" -->
-<!-- function find(collection, id) {
- found = _.findWhere(collection, {id: id})
-}
-ng-repeat
-var result = find(twitArray, stock.id);
-result.stockid
-result.score
-{{result}}
-/ng-repeat -->
-
+ -->
+ <!-- class="{ active:ctrl.tab === stocksInPortfolio.stock._id }"

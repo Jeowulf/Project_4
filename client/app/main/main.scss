@@ -1,5 +1,6 @@
 body {
   color: #004d40;
+  font-family: raleway;
 }
 .thing-form {
     margin: 20px 0;
@@ -37,6 +38,7 @@ body {
         font-size: 20px;
     }
     top: 68px;
+    left: 100px;
 }
 nav {
     ul a {
@@ -49,11 +51,7 @@ nav {
 .topNav {
     position: fixed;
 }
-.navbar-brand {
-    position: fixed;
-    border-bottom: 4px solid #546e7a;
-    width: 200px;
-}
+
 .navIcon {
     width: 50px;
     padding: 5px;
@@ -68,7 +66,7 @@ nav {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: white;
+  background-color: rgba(1, 1, 1, .5);
   border: 4px solid #546e7a;
   z-index: 50;
   padding-left: 10px;
@@ -126,19 +124,8 @@ h2 {
     border: 4px solid #ff3d00;
     padding: 20px;
 }
-h3 {
-    color: #546e7a;
-    font-family: "nimbus-sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    letter-spacing: -.025em;
-    font-weight: 500;
-    font-size: 4.375rem;
-    line-height: .9;
-    // border-right: 4px solid #ff3d00;
-    padding: 15px;
-}
-h6 {
-    float: right;
-}
+
+
 .top {
     height: 4vw;
 }
@@ -153,8 +140,9 @@ h6 {
     border-left: 4px solid #ff3d00;
 }
 header, main, footer {
-    padding-left: 240px;
+    padding-left: 100px;
   }
+
 
   @media only screen and (max-width : 992px) {
     header, main, footer {
@@ -162,12 +150,14 @@ header, main, footer {
     }
   }
   div.stocksNav.col.s1 a.ng-binding {
-   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: red;
-   font-size: 20px;
-   z-index: 200;
+    color: #1de9b6;
+    font-weight: medium;
+    font-size: 20px;
   }
+ div.stocksNav.col.s1 a.ng-binding:hover {
+    color: white;
+  }
+
 
   h1.totalValueNumber.ng-binding {
     border-left: white;
@@ -181,7 +171,83 @@ header, main, footer {
   #stockLeft {
     float: right;
   }
-  h5 {
-  text-align: center;
-  }
 
+  nav ul a {
+    font-size: 15px;
+  }
+  .navbar-brand {
+    position: fixed;
+    border-bottom: 4px solid #546e7a;
+    width: 200px;
+    font-size: 22px;
+  }
+  #side-nav-main {
+    width: 100px;
+    z-index: 1000;
+  }
+#sidenav-overlay {
+    background-color: rgba(0, 0, 0, 0.0);
+}
+.menu-show-setup, .menu-hide-setup {
+  transition:all 0.5s ease-out;
+  overflow:hidden
+}
+
+.menu-show-setup {
+  max-height:0;
+}
+.menu-show-setup.menu-show-start {
+  max-height:200px;
+}
+
+.menu-hide-setup {
+  max-height:300px;
+}
+.menu-hide-setup.menu-hide-start {
+  max-height:0;
+}
+
+.gridRow {
+    border: 2px solid blue;
+    padding: 0px;
+    margin: 0px;
+}
+.gridColOne {
+    margin: 10px 40px 10px 40px;
+    border: 1px solid white;
+    height: 131px;
+    width: 260px;
+}
+
+#financeGraph {
+    margin: 10px 40px 10px 40px;
+    border: 1px solid white;
+    height: 400px;
+    width: 720px;
+}
+#sentimentData {
+    margin: 10px 40px 10px 40px;
+    border: 1px solid white;
+    height: 300px;
+    width: 400px;
+}
+.graph-header {
+    width: 100%;
+    height: 15%;
+    border-color: 1px solid white;
+}
+.graph-body {
+    width: 100%;
+    height: 85%;
+    border-color: 1px solid white;
+}
+h5.ng-binding {
+    padding: 15px 10px 35px 40px;
+}
+#portValue {
+    padding-top: 25px;
+    float: right;
+}
+p.ng-binding {
+    padding: 15px 10px 35px 40px;
+}
