@@ -46,12 +46,67 @@ nav {
     font-size: 20px;
     color: #004d40;
 }
-.topBand {
+.topNav {
     position: fixed;
 }
 .navbar-brand {
     position: fixed;
     border-bottom: 4px solid #546e7a;
+    width: 200px;
+}
+.navIcon {
+    width: 50px;
+    padding: 5px;
+}
+.stocksNav {
+  position: fixed;
+  width: 133px;
+  left: 100px;
+  top: 63px;
+  margin: 0;
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: white;
+  border: 4px solid #546e7a;
+  z-index: 50;
+  padding-left: 10px;
+}
+.stocksNavHidden {
+  position: fixed;
+  width: 133px;
+  left: -200px;
+  top: 68px;
+  margin: 0;
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: #fff;
+  z-index: 0;
+
+}
+.stats {
+    height: 3vw;
+    border-top: 4px solid #ff3d00;
+    border-bottom: 4px solid #ff3d00;
+    width: calc(100% - 233px);
+    float: right;
+}
+stats.ng-binding {
+    padding-right: 30px;
+}
+.statsEmpty {
+    height: 3vw;
+    border-top: 4px solid #ff3d00;
+    border-bottom: 4px solid #ff3d00;
+    width: calc(100% - 100px);
+    float: right;
+}
+.graphics {
+    height: 20vw;
+    width: 100%;
 }
 h1 {
     color: #546e7a;
@@ -78,7 +133,7 @@ h3 {
     font-weight: 500;
     font-size: 4.375rem;
     line-height: .9;
-    border-right: 4px solid #ff3d00;
+    // border-right: 4px solid #ff3d00;
     padding: 15px;
 }
 h6 {
@@ -97,3 +152,36 @@ h6 {
     border: 4px solid #546e7a;
     border-left: 4px solid #ff3d00;
 }
+header, main, footer {
+    padding-left: 240px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
+  div.stocksNav.col.s1 a.ng-binding {
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: red;
+   font-size: 20px;
+   z-index: 200;
+  }
+
+  h1.totalValueNumber.ng-binding {
+    border-left: white;
+  }
+  .totalValueText {
+    font-size: 35px;
+  }
+  .stockValue {
+    top: 450px;
+  }
+  #stockLeft {
+    float: right;
+  }
+  h5 {
+  text-align: center;
+  }
+

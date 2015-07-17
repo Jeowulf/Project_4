@@ -40,4 +40,5 @@ angular.module('proj4App')
         $scope.stockInventory = json.data;
     });
   }
+
   });

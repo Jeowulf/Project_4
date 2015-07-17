@@ -5,6 +5,7 @@ angular.module('proj4App')
 
     var that = this;
 
+    that.tab = 0;
     // stockService.getUser();//helper for server
 
     that.createStockInventory = function(){
@@ -56,10 +57,9 @@ angular.module('proj4App')
 //User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
-      console.log(JSON.stringify(json.data) + 'is returned after buyStock');
-       that.myPortfolio = json.data; //TODO: fix what the server is returning
-      // that.getUserPortfolio();
-      console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
+      // console.log(JSON.stringify(json.data) + 'is returned after buyStock');
+       // that.myPortfolio = json.data; //TODO: fix what the server is returning
+      that.getUserPortfolio();
     });
   };
   that.sellStock = function(stock) {
@@ -73,9 +73,25 @@ angular.module('proj4App')
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
       // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
-
+      console.log("portfolio to follow: ")
+      // stockNavService.testies();
+      console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
+      console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
+      var portfolios = that.myPortfolio.stocksInPortfolio;
+      that.total = 0;
+      portfolios.map(function(portfolio) {
+        var price = portfolio.stock.lastTradePriceOnly * portfolio.qty;
+        that.total += price;
+      });
+      console.log(that.total);
     });
   }
+  // that.portFolioTotalValue = function (portfolio) {
+  //   portfolioService.getPortfolioTotal(portfolio);
+  //   console.log("colin says")
+  // }
+  // that.portFolioTotalValue(that.myPortfolio);
+
   //run when controller is instantiated
   that.getStockInventory();
   that.getUserPortfolio();
@@ -119,7 +135,22 @@ angular.module('proj4App')
     that.getTwitterSentiments();
     that.getTwitterWords();
   }
-  // console.log(that.words + " adf")
-  // console.log(that.specificSentiment)
+  //get date
+that.date = new Date();
+
+
+
 });
 
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//that.myPortfolio.stocksInPortfolio[i].stock
+//              ~> ._id
+//                 .peRatio
+//                 .dividendYield
+//                 .symbol
+//                 .twitterHandle
+//                 .name
+//                 .lastTradePriceOnly
+//                 .lastTradeDate
