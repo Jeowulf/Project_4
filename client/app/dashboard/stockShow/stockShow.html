@@ -1,4 +1,34 @@
+<div class="container">
 {{ctrl.stock}}
+ <table class="hoverable">
+        <thead>
+          <tr>
+              <th data-field="id">{{ctrl.stock.name}}</th>
+
+              <th data-field="price">Item Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>PE Ratio</td>
+            <td>{{ctrl.stock.peRatio}}</td>
+          </tr>
+          <tr>
+            <td>Dividend Yield</td>
+            <td>{{ctrl.stock.dividendYield}}</td>
+          </tr>
+          <tr>
+            <td>Last Trade Price</td>
+            <td>{{ctrl.stock.lastTradePriceOnly}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+
 <input type="number" ng-model="stock.qty">
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(ctrl.stock)">BUY</button>
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(ctrl.stock)">SELL</button>
@@ -9,7 +39,7 @@
 
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.getCurrent(ctrl.stock.symbol)">Get Current</button>
 <br>
-<div class="container">
+
 <ul class="collection">
       <li class="collection-item">dividendYield: {{ctrl.currentData.dividendYield}}</li>
       <li class="collection-item">change: {{ctrl.currentData.change}}</li>
