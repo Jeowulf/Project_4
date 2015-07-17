@@ -10,9 +10,11 @@
   <ul class="side-nav fixed" id="side-nav-main">
     <li><a href="/" class="navbar-brand-slide"><img src="../../../../assets/images/homeIcon.png" class="navIcon"></a></li>
     <li><a href="" ng-click="ctrl.tab = 0" class="navbar-brand-slide"><img src="../../../../assets/images/news.png" class="navIcon"></a></li>
-    <li id="stockToggle"><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/stockIcon.png" class="navIcon"></a></li>
+    <li><a href="" ng-click="ctrl.vis = !ctrl.vis" class="navbar-brand-slide"><img src="../../../../assets/images/stockIcon.png" class="navIcon"></a></li>
     <li><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/moneyIcon.png" class="navIcon"></a></li>
+    {{ctrl.vis}}
   </ul>
+
 <!--  -->
   <ul class="right navbar-nav navbar-right">
     <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">

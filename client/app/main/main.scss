@@ -66,7 +66,7 @@ nav {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: white;
+  background-color: rgba(1, 1, 1, .5);
   border: 4px solid #546e7a;
   z-index: 50;
   padding-left: 10px;
@@ -160,11 +160,9 @@ header, main, footer {
     }
   }
   div.stocksNav.col.s1 a.ng-binding {
-   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: red;
-   font-size: 20px;
-   z-index: 200;
+    color: #1de9b6;
+    font-weight: medium;
+    font-size: 20px;
   }
 
   h1.totalValueNumber.ng-binding {
@@ -197,5 +195,28 @@ header, main, footer {
   }
 #sidenav-overlay {
     background-color: rgba(0, 0, 0, 0.0);
-  }
+}
+.menu-show-setup, .menu-hide-setup {
+  transition:all 0.5s ease-out;
+  overflow:hidden
+}
+
+.menu-show-setup {
+  max-height:0;
+}
+.menu-show-setup.menu-show-start {
+  max-height:200px;
+}
+
+.menu-hide-setup {
+  max-height:300px;
+}
+.menu-hide-setup.menu-hide-start {
+  max-height:0;
+}
+@media screen and (max-width: 300px) {
+    body {
+        background-color: lightblue;
+    }
+}
 

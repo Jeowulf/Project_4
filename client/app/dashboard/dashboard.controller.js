@@ -4,7 +4,7 @@ angular.module('proj4App')
   .controller('DashboardCtrl', function ($http, $state, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
 
     var that = this;
-
+    that.vis = false;
     that.tab = 0;
     // stockService.getUser();//helper for server
 
