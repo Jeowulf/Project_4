@@ -10,9 +10,6 @@
     <h5>{{ctrl.total | currency}}</h5>
     <h1 class="totalValueText">
       Total Stock Value: <br>
-      <br>
-      <br>
-      <br>
     </h1>
   </div>
   <div class="stockValue col s3 ">
@@ -32,7 +29,6 @@ $(document).ready(function(){
   $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-
   var currentDate = new Date()
   var day = currentDate.getDate()
   var month = currentDate.getMonth() + 1

@@ -4,53 +4,11 @@
 </div>
 <div ng-include="'/app/dashboard/partials/stocksNav.html'"></div>
 
-
-
-
-
-
-<!-- ///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-
-//that.myPortfolio.stocksInPortfolio[i].stock
-//              ~> ._id
-//                 .peRatio
-//                 .dividendYield
-//                 .symbol
-//                 .twitterHandle
-//                 .name
-//                 .lastTradePriceOnly
-//                 .lastTradeDate
-@Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}
-<h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
-                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
-                <word>{{word}}</word>
-                </word-cloud> -->
-
 <script>
   'use strict';
 $(document).ready(function(){
   $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-
-  // var currentDate = new Date()
-  // var day = currentDate.getDate()
-  // var month = currentDate.getMonth() + 1
-  // var year = currentDate.getFullYear()
-  // var date = document.getElementById("textLeft");
-  // date.innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
-  // console.log("funky")
 });
 </script>
-<!-- <ul class="collapsible" data-collapsible="expandable">
-        <li>
-            <div class="collapsible-header" ng-click="ctrl.callingAllTwitterFunctions()" ng-repeat>@Madonna, MDN, Sentiment score = {{ctrl.specificSentiment.score}}</div>
-            <div class="collapsible-body">
-                <h5>sentiment score = {{ctrl.specificSentiment.score}} | peRatio ={{}}</h5>
-                <word-cloud ng-repeat="word in ctrl.specificSentiment.words track by $index">
-                    <word>{{word}}</word>
-                </word-cloud>
-            </div>
-        </li>
-    </ul> -->
