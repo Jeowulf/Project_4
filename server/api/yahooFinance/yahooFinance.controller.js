@@ -47,7 +47,9 @@ exports.search = function  (req, res) {
   });
 }
 exports.index = function (req, res) {
+  console.log(req.body.symbol + ' is req.body.symbol ');
   yahooFinanceMultipleSymbolSearch(function (data) {
+
     return res.json(201, data);
   })
 }
