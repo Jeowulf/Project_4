@@ -12,9 +12,9 @@
     <div class="col s2"><h5 id="portValue">Portfolio Value:</h5></div>
     <div class="col s3"><h3>{{ctrl.total | currency}}</h3></div>
   </div>
-  <div ng-show="ctrl.tab === 0"><div ng-include="'/app/dashboard/partials/dashWelcome.html'"></div></div>
-  <div ng-show="ctrl.tab !== 0 && ctrl.tab !== 2"><div ng-include="'/app/dashboard/partials/myIndividualStock.html'"></div></div>
-  <div ng-show="ctrl.tab === 2"><div ng-include="'/app/dashboard/partials/stockInventory.html'"></div></div>
+  <div ng-show="ctrl.tab === 0"><div ng-include="'app/dashboard/partials/dashWelcome.html'"></div></div>
+  <div ng-show="ctrl.tab !== 0 && ctrl.tab !== 2"><div ng-include="'app/dashboard/partials/myIndividualStock.html'"></div></div>
+  <div ng-show="ctrl.tab === 2"><div ng-include="'app/dashboard/partials/stockInventory.html'"></div></div>
 
 </main>
 <!-- <div class="row">
@@ -49,25 +49,4 @@ $(document).ready(function(){
 </script>
 
 
-
-
-
-
-<!-- <div ng-include="'/app/dashboard/partials/subScript.html'"></div>
-<div ng-include="'/app/dashboard/partials/portfolio.html'"></div>
-<button ng-click="ctrl.getStockInventory()">Get Stock Inventory</button>
-<div ng-include="'/app/dashboard/partials/twitsent.html'"></div>
-<div ng-include="'/app/dashboard/partials/twitsearch.html'"></div>
-  {{ctrl.twitAnaylsisData.tokens}}
-
- -->
-
-<!-- <div ng-include="'/app/dashboard/partials/stockinventory.html'"></div>
- -->
-
-<!-- <div ng-include="'app/dashboard/partials/subScript.html'"></div>
-<div ng-include="'app/dashboard/partials/portfolio.html'"></div>
-<div ng-include="'app/dashboard/partials/stockinventory.html'"></div>
-<div ng-include="'app/dashboard/partials/twitsent.html'"></div>
-<div ng-include="'app/dashboard/partials/twitsearch.html'"></div> -->
 
