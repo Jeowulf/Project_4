@@ -12,5 +12,9 @@ angular.module('proj4App')
     return $http.get('/api/yahooFinance');
   }
 
+  this.historicalSingle = function (input) {
+    return $http.patch('/api/yahooFinance', {symbol: input});
+  }
+
 });
 

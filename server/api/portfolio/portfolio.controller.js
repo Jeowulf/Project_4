@@ -45,19 +45,19 @@ exports.buyStock = function(req, res) {
       // console.log('user is: ' + user);
       var portfolioId = user.portfolio;
       // console.log('portfolio id for user is:' + portfolioId);
-
+//TODO: Fix what the server is returning, it's not populating the stocks
       Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
         if (err) { return handleError(res, err); }
         if (!portfolio) { return res.send(404); }
-        console.log(stock._id + 'is stock._id');
+        console.log(stock + 'is stock._id');
         //Validation to see if stock is already in portfolio
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore incrementing qty');
           found.qty = found.qty + stockQty;
           found.save(function() {
-            console.log('Saved new qty. returning a response=====');
-            return res.json(201, portfolio);
+            console.log('Saved new qty. returning a response=====' + portfolio.stocksInPortfolio);
+            return res.json(201, portfolio.stocksInPortfolio);
 
           });
         }
@@ -68,8 +68,8 @@ exports.buyStock = function(req, res) {
             // console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
             portfolio.stocksInPortfolio.push(newStockInPortfolio);
             portfolio.save(function() {
-              console.log('saving and returning response portfolio::::::::' + stock);
-              return res.json(201, portfolio);
+              console.log('saving and returning response portfolio::::::::' + portfolio.stocksInPortfolio);
+              return res.json(201, portfolio.stocksInPortfolio);
             });
           });
         }
@@ -139,7 +139,7 @@ exports.get = function(req, res) {
   User.findById(userId)
   .deepPopulate('portfolio portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock')
   .exec(function(err, user) {
-    console.log('user: ' + user.name);
+    // console.log('user: ' + user.name);
     if (err) { return handleError(res, err); }
     if (!user) { return res.send(404); }
     // console.log('returning portfolio.stocksInPortfolio: ' + JSON.stringify(user.portfolio.stocksInPortfolio));
@@ -150,10 +150,11 @@ exports.get = function(req, res) {
 
 //Get (all) portfolios from DB
 exports.index = function(req, res) {
-  Portfolio.find().deepPopulate("portfolios.stocksInPortfolio portfolios.stocksInPortfolio.stock").exec(function(err, portfolios){
+  User.find().deepPopulate('portfolio portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock').exec(function(err, users){
     if(err) { return handleError(res, err); }
-    console.log(portfolios.stocksInPortfolio);
-    return res.json(200, portfolios);
+    // console.log(portfolios[1].stocksInPortfolio[0]);
+    console.log(users[1].portfolio.stocksInPortfolio[0]);
+    return res.json(200, users);
   });
 };
 

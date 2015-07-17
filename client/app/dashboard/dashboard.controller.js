@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
+  .controller('DashboardCtrl', function ($http, $state, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
 
     var that = this;
 
@@ -10,36 +10,55 @@ angular.module('proj4App')
 
     that.createStockInventory = function(){
       stockService.createStockInventory().success(function(json){
-        console.log(json);
+        // console.log(json);
       });
     }
     //call to get when controller is creatd/alive
 
     //Gets the stock inventory from the DB
     that.getStockInventory = function() {
-      console.log('getStockInventory was called');
       stockService.getInventory().success(function(json) {
-        console.log(json);
+        // console.log(json + '   is getInvetory json');
         that.stockInventory = json;
       });
     }
-    that.twitSentQuery = function() {
+    //Array stores the twitter analysis after they are sought/found and then we will map the correct analysis to the correct stock!!!!!!!!!!!!!
+    that.twitAnalysis = [];
+    that.twitSentQuery = function(userInput, id, name) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
+      twitSentService.search(userInput).success(function(json) {
+        // console.log('twitSentQuery from DashboardCtrl');
+        // console.log(json);
 
-      twitSentService.search(that.userInput).success(function(json) {
-        console.log('twitSentQuery from DashboardCtrl');
-        // console.log(json.score);
-        that.twitAnalysisScore = json.score;
-        that.twitAnaylsisData = json;
+        that.twitAnalysis.push({id: id, name: name, score: json.score, comparative: json.comparative,  tokens: json.tokens, words: json.words});
+
+        console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
+        // that.twitAnaylsisData = json;
+
       });
       }
     }
+
+//Let's try and map the twitAnalysis to the correct stock!!!!!!!!!!
+  that.matchTwit = function(collection, id) {
+
+    that.matchingTwit = _.findWhere(collection, {id: id}, 'stock');
+    console.log(that.matchingTwit.id + ' is matchTwit!!');
+   // console.log(collection + ' is collection passed into matchTwit!!');
+   // console.log(id + ' is id passed into matchTwit!!');
+  }
+
+// get inviddual stock's showpage
+   that.goStock = function (stock) {
+    console.log(stock._id + 'is stock._id');
+    $state.go( 'stockShow', { stockId : stock._id } );
+  };
 //User Portfolio functions
  that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
-      console.log(json.data + 'is returned after buyStock');
-       // that.myPortfolio = json.data; TODO: fix what the server is returning
+      // console.log(JSON.stringify(json.data) + 'is returned after buyStock');
+       // that.myPortfolio = json.data; //TODO: fix what the server is returning
       that.getUserPortfolio();
     });
   };
@@ -53,11 +72,11 @@ angular.module('proj4App')
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
+      // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
       console.log("portfolio to follow: ")
       // stockNavService.testies();
       console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
       console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
-
       var portfolios = that.myPortfolio.stocksInPortfolio;
       that.total = 0;
       portfolios.map(function(portfolio) {
@@ -76,7 +95,6 @@ angular.module('proj4App')
   //run when controller is instantiated
   that.getStockInventory();
   that.getUserPortfolio();
-  that.getStockInventory();
     // NOT CURRENTLY USING:
 //search for individual stock by ticker symbol and saves it to DB
     that.yahooFinanceQuery = function () {

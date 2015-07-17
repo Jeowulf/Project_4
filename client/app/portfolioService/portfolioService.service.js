@@ -8,6 +8,7 @@ angular.module('proj4App')
       var userId = Auth.getCurrentUser()._id;
       var qty = stock.qty;
       console.log(qty + "is qty");
+      console.log(stock._id + "is stock._id");
       return $http.post('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
     }
 
@@ -22,6 +23,12 @@ angular.module('proj4App')
       var userId = Auth.getCurrentUser()._id;
       return $http.get('/api/users/' + userId + '/portfolio/');
     }
+
+    this.getAllPortfolios = function() {
+      return $http.get('/api/portfolio');
+    }
+
+
   //   that.getPortfolioTotal = function(portfolio) {
   //   var value = 0;
   //   console.log('this is portfolio from the service:' + portfolio);

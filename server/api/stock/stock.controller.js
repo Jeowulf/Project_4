@@ -1,13 +1,24 @@
 'use strict';
 var Stock = require('./stock.model');
+var async = require('async');
 var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultipleSymbolSearch');
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
 
+//Gets all da stocks
 exports.index = function(req, res) {
   console.log('stocks get was hit');
   Stock.find(function (err, stocks) {
     if(err) { return handleError(res, err); }
     return res.json(200, stocks);
+  });
+};
+
+// Get a single player
+exports.show = function(req, res) {
+  Stock.findById(req.params.id, function (err, stock) {
+    if(err) { return handleError(res, err); }
+    if(!stock) { return res.send(404); }
+    return res.json(stock);
   });
 };
 //ADMIN onlly, destroys stock inventory
@@ -91,27 +102,61 @@ exports.createSet = function (req, res) {
       //  });
     });
 }
+
+function isValidData(dataFromYahoo) {
+  // if (!dataFromYahoo.lastTradeDate) {
+  //   console.log('WARN: dataFromYahoo has no lastTradeDate');
+  //   return false;
+  // }
+  if (!dataFromYahoo.lastTradePriceOnly) {
+    console.log('WARN: dataFromYahoo has no lastTradePriceOnly');
+    return false;
+  }
+  if (!dataFromYahoo.dividendYield) {
+    console.log('WARN: dataFromYahoo has no dividendYield');
+    return false;
+  }
+  if (!dataFromYahoo.peRatio) {
+    console.log('WARN: dataFromYahoo has no peRatio');
+    return false;
+  }
+  return true;
+}
 //Admin only, updates stock prices
 //TODO: some validation to make sure correct stocks are matched
 exports.update = function (req, res) {
   Stock.find({}, function(err, stocks) {
     yahooFinanceMultipleSymbolSearch(function (data, err) {
-    if (err) return handleError(err);
-    for (var i = 0; i < stocks.length ; i++) {
-      stocks[i].lastTradeDate = data[i].lastTradeDate;
-      stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
-      stocks[i].dividendYield = data[i].dividendYield;
-      stocks[i].peRatio = data[i].peRatio;
-      stocks[i].save(function(err, stocks){
-        console.log(stocks);
-      });
-      console.log(stocks[i].name + '::::is stocks');
+      if (err) return handleError(err);
+      var functions = [];
+      for (var i = 0; i < stocks.length ; i++) {
+        if (isValidData(data[i])) {
+          stocks[i].lastTradeDate = data[i].lastTradeDate;
+          stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
+          // TODO: just for testing, remove the following line
+          stocks[i].dividendYield = data[i].dividendYield;
+          stocks[i].peRatio = data[i].peRatio;
+          // stocks[i].save(function(err, stocks) {
+          //   console.log(stocks);
+          // });
+          functions.push((function(doc) {
+            return function(callback) {
+              console.log('Saving updated stock: ' + doc);
+              doc.save(callback);
+            };
+          })(stocks[i]));
+          console.log(stocks[i].name + '::::is stocks');
+        }
       }
+      console.log('Parallel save of ' + functions.length + ' stocks.');
+      async.parallel(functions, function(err, results) {
+        if (err) return handleError(res, err);
+        console.log("All the updated stocks are now saved.");
+        res.json(201, results);
+      })
     });
-    res.json(201, stocks);
   });
 }
-
 
 function handleError(res, err) {
   return res.send(500, err);

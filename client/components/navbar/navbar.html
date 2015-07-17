@@ -7,17 +7,18 @@
     </li>
 
   </ul>
-  <ul id="slide-out" class="side-nav fixed">
-    <li><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/homeIcon.png" class="navIcon"></a></li>
-    <li><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/stockIcon.png" class="navIcon"></a></li>
+  <ul class="side-nav fixed" id="side-nav-main">
+    <li><a href="/" class="navbar-brand-slide"><img src="../../../../assets/images/homeIcon.png" class="navIcon"></a></li>
+    <li><a href="" ng-click="ctrl.tab = 0" class="navbar-brand-slide"><img src="../../../../assets/images/news.png" class="navIcon"></a></li>
+    <li id="stockToggle"><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/stockIcon.png" class="navIcon"></a></li>
     <li><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/moneyIcon.png" class="navIcon"></a></li>
-    <li><a href="" class="navbar-brand-slide"><img src="../../../../assets/images/calculatorIcon.png" class="navIcon"></a></li>
   </ul>
-
+<!--  -->
   <ul class="right navbar-nav navbar-right">
     <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
       <a ng-href="{{item.link}}" ng-click="ctrl.tab = 0">{{item.title}}</a>
     </li>
+
     <li ng-show="isAdmin()" ><a href="" ng-click="update()">Update Stocks</a></li>
     <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
     <li ng-show="isAdmin()" ><a href="/admin" ng-click="createStockInventory()">Create Stocks</a></li>
@@ -30,24 +31,27 @@
   <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 </nav>
 <script>
-  'use strict';
-   // Initialize collapse button
+  'use strict'
+$( document ).ready(function() {
+  // Handler for .ready() called.
+// Initialize collapse button
   $(".button-collapse").sideNav();
-  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-  //$('.collapsible').collapsible();
-   $('.button-collapse').sideNav({
-      menuWidth: 100, // Default is 240
+  $('.button-collapse').sideNav({
+      menuWidth: 200, // Default is 240
       edge: 'left', // Choose the horizontal origin
       closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+
     }
   );
   // Show sideNav
-  // $('a.navbar-brand').click(function(){
-  //   $('.button-collapse').sideNav('show');
-  // })
-  //Hide sideNav
-  // $('a.navbar-brand-slide').click(function(){
-  //     $('.button-collapse').sideNav('hide');
-  //   })
-  // $('.button-collapse').sideNav('hide');
+  $("#stockToggle").click(function () {
+    console.log("baby baby");
+    $('.button-collapse').sideNav('show');
+  });
+  // Hide sideNav
+  // $("#stockToggle").click(function() {
+  //  $('.button-collapse').sideNav('hide');
+  // });
+
+});
 </script>

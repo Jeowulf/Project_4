@@ -1,6 +1,7 @@
 
 This is ctrl.stockInventory - from DB
 <!-- {{ctrl.stockInventory}} -->
+<h4>This is ctrl.twitanalysis</h4>
       <div class="row">
         <div class="col s12 m6 lg4" ng-repeat="stock in ctrl.stockInventory">
            <ul class="collection" >
@@ -9,12 +10,20 @@ This is ctrl.stockInventory - from DB
                 <li class="collection-item">Last Trade Price:  {{stock.lastTradePriceOnly}}</li>
                 <li class="collection-item">Dividend Yield:  {{stock.dividendYield}}</li>
                 <li class="collection-item">PeRatio:  {{stock.peRatio}}</li>
-              </li>
+                <li class="collection-item">Twitter:  {{stock.twitterHandle}}</li>
+                <li class="collection-item">TwitterSentiment:  {{ctrl.twitAnalysisScore}}</li>
+<!--   ctrl.matchingTwit -->
+
+
+
            </ul>
               <!-- Binding for stock qty, sends to portfolioservice.buyStock -->
           <input type="number" ng-model="stock.qty">
-
+          <button class="btn btn-inverse btn-lg" ng-click="ctrl.twitSentQuery(stock.twitterHandle, stock._id, stock.name)">TWITSENT</button>
+          <button class="btn btn-inverse btn-lg" ng-click="ctrl.matchTwit(ctrl.twitAnalysis, stock._id)">MatchIt</button>
+          <button class="btn btn-inverse btn-lg" ng-click="ctrl.goStock(stock)">MORE</button>
          <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(stock)">BUY</button>
          <button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(stock)">SELL</button>
+
         </div>
       </div>
