@@ -6,7 +6,8 @@ angular.module('proj4App', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'chart.js'
+  'chart.js',
+  'tangcloud'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');

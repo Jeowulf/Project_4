@@ -2,8 +2,8 @@
 
 <!-- PLACE TO DISPLAY TWITTER SENTIMENT ANALYSIS RESULTS -->
 
-
-  <!--     {{ctrl.twitAnalysis.tokens}}
+<!-- <tang-cloud></tangcloud>
+ -->  <!--     {{ctrl.twitAnalysis.tokens}}
       {{ctrl.twitAnalysis.words}} -->
 
 
@@ -13,3 +13,6 @@
       <li class="collection-item">Negative: {{ctrl.twitAnalysis.negative}} </li>
       <li class="collection-item">Positive: {{ctrl.twitAnalysis.positive}} </li>
     </ul>
+    <tang-cloud words="words"></tang-cloud>
+
+{{ctrl.words}}

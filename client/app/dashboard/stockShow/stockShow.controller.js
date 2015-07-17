@@ -41,7 +41,7 @@ angular.module('proj4App')
     that.currentData = json;
    })
   }
-
+that.words = [{id:8,word:"great",size:8},{id:8,word:"thanks",size:8},{id:8,word:"thanks",size:8},{id:8,word:"diamond",size:8},{id:8,word:"thank",size:8},{id:8,word:"help",size:8},{id:8,word:"want",size:8},{id:8,word:"better",size:8},{id:8,word:"thank",size:8},{id:8,word:"good",size:8},{id:8,word:"better",size:8},{id:8,word:"yes",size:8},{id:8,"word":"classy",size:8},{id:8,"word":"fit",size:8},{id:8,"word":"thanks",size:8},{id:8,"word":"please",size:8},{id:8,"word":"care",size:8},{id:8,"word":"thank",size:8},{id:8,"word":"safety",size:8},{id:8,"word":"want",size:8},{id:8,"word":"want",size:8},{id:8,"word":"like",size:8},{id:8,"word":"fit",size:8},{id:8,"word":"better",size:8},{id:8,"word":"thank",size:8},{id:8,"word":"better",size:8},{id:8,"word":"yes",size:8}]
 //twitter
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
@@ -51,9 +51,10 @@ angular.module('proj4App')
         // console.log(json);
         that.twitAnalysis = json;
 
-        console.log(that.twitAnalysis  + '     is that.twitAnalysis');
+        // console.log(that.twitAnalysis.positive  + '     is that.twitAnalysis');
         // that.twitAnaylsisData = json;
-
+        //wordcloud
+        // wordCloud(that.twitAnalysis.positive);
       });
       }
     }
@@ -104,5 +105,17 @@ angular.module('proj4App')
     console.log(points, evt);
   };
 
+  //wordcloud
+  //create  {id: 1, word: "oke", size: 1}, format
+
+
+  function wordCloud (my_array) {
+   var x = Math.floor(Math.random() * 10) + 1;
+   _(my_array).forEach(function(n) {
+
+    that.words.push({id: x, word: n, size: x});
+    console.log(that.words);
+    });
+  }
 
 });

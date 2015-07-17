@@ -8,7 +8,7 @@
 // // 'use strict';
 
 // angular.module('proj4App')
-//   .service( 'd3Service', function () {
+//   .factory( 'd3Service', function () {
 
 //         this.d3WorldCloudDecorator = function($delegate){
 
