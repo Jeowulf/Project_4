@@ -1,20 +1,19 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div ng-include="'app/dashboard/partials/dash.html'"></div>
-
-
-
-<div class="stocksNav col s1" ng-show="ctrl.vis" ng-animate="{show: 'menu-show', hide: 'menu-hide'}">
-  <div class="myStockList" ng-repeat="stocksInPortfolio in ctrl.myPortfolio.stocksInPortfolio">
-      <ul>
-        <li style="position: relative"><a href ng-click="ctrl.tab = stocksInPortfolio">{{stocksInPortfolio.stock.name | limitTo:10}}</a></li>
-      </ul>
-    <div class="myStockView" ng-show="ctrl.tab === stocksInPortfolio">
-      <div class="{ active:ctrl.tab === stocksInPortfolio }">
-      </div>
-    </div>
+<div ng-include="'app/dashboard/partials/stocksNav.html'"></div>
+<main>
+  <div class="row">
+    <div class="col s2"></div>
+    <div class="col s1"><h3 id="clock"></h3></div>
+    <div class="col s2"></div>
+    <div class="col s2"></div>
+    <div class="col s2"><h5 id="portValue">Portfolio Value:</h5></div>
+    <div class="col s3"><h3>{{ctrl.total | currency}}</h3></div>
   </div>
-</div>
+  <div ng-show="ctrl.tab === 0"><div ng-include="'/app/dashboard/partials/dashWelcome.html'"></div></div>
+  <div ng-show="ctrl.tab !== 0"><div ng-include="'/app/dashboard/partials/myIndividualStock.html'"></div></div>
 
+</main>
 <!-- <div class="row">
 
 <div class="col s2 offset-s6">
@@ -30,7 +29,20 @@
 </div> -->
 
 <script>
+  'use strict';
+$(document).ready(function(){
+  $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
 
+  var currentDate = new Date()
+  var day = currentDate.getDate()
+  var month = currentDate.getMonth() + 1
+  var year = currentDate.getFullYear()
+  var date = document.getElementById("clock");
+  date.innerHTML = "<b>" + month + "/" + day + "/" + year + "</b>";
+  console.log("funky")
+});
 </script>
 
 

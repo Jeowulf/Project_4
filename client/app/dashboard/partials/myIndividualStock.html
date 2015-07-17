@@ -1,28 +1,26 @@
-<div class="row">
-  <div class="row">
-    <!-- for spacing -->
-  </div>
-  <div class="col s3 offset-s2 squareOne">
-    <h3 id="textLeft"></h3>
-    <h4 id="stockLeft">{{ctrl.tab.stock.name}}</h4>
-  </div>
-  <div class="col s3">
-    <h5>{{ctrl.total | currency}}</h5>
-    <h1 class="totalValueText">
-      Total Stock Value: <br>
-    </h1>
-  </div>
-  <div class="stockValue col s3 ">
-    <h1 class="totalValueNumber">
-      {{ctrl.tab.stock.lastTradePriceOnly * ctrl.tab.qty | currency}}
-    </h1>
-  </div>
+<div class="row gridRow">
+    <div class="col s2 offset-s2 gridColOne">
+      <h5>{{ctrl.tab.stock.name}}</h5>
+    </div>
+    <div class="col s2 gridColOne">
+      <h5>{{ctrl.tab.stock.symbol || 'N/A'}} | {{ctrl.tab.stock.twitterHandle || 'N/A'}}</h5>
+    </div>
+    <div class="col s2 gridColOne">
+      <p>peRatio: {{ctrl.tab.stock.peRatio || 'N/A'}} <br> Dividend Yield: {{ctrl.tab.stock.dividendYield || 'N/A'}} <br> Current Value: {{ctrl.tab.stock.lastTradePriceOnly || 'N/A'}}</p>
+    </div>
+    <div class="col s2 gridColOne">
+      <h5>This Stock's total value is {{ctrl.tab.stock.lastTradePriceOnly * ctrl.tab.qty | currency}}</h5>
+    </div>
 
   </div>
-  <div class="stats">
-    <h5>{{ctrl.tab.stock.symbol || 'N/A'}} | {{ctrl.tab.stock.twitterHandle || 'N/A'}} | peRatio: {{ctrl.tab.stock.peRatio || 'N/A'}} | Dividend Yield: {{ctrl.tab.stock.dividendYield || 'N/A'}} | Current Value: {{ctrl.tab.stock.lastTradePriceOnly || 'N/A'}} | Quantity: {{ctrl.tab.qty}}</h5>
+  <div class="row gridRow">
+    <div class="col s1"></div>
+    <div id="financeGraph" class="col s6">
+      <div class="graph-header"></div>
+      <div class="graph-body"></div>
+    </div>
+    <div id="sentimentData" class="col s3 gridColTwo"></div>
   </div>
-</div>
 <script>
   'use strict';
 $(document).ready(function(){
