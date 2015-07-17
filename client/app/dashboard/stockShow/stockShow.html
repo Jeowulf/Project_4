@@ -1,5 +1,132 @@
 
-<div class="container">
+
+<nav ng-controller="NavbarCtrl" class="teal accent-3 topNav">
+  <ul class="left hide-on-med-and-down">
+    <li>
+      <a href="" class="navbar-brand">MarketMental</a>
+    </li>
+
+  </ul>
+  <ul class="side-nav fixed" id="side-nav-main">
+    <li><a href="/" class="navbar-brand-slide"><img src="../../../../assets/images/homeIcon.png" class="navIcon"></a></li>
+    <li><a href="" ng-click="ctrl.tab = 0" class="navbar-brand-slide"><img src="../../../../assets/images/news.png" class="navIcon"></a></li>
+    <li><a href="" ng-click="ctrl.tab = 2" class="navbar-brand-slide"><img src="../../../../assets/images/moneyIcon.png" class="navIcon"></a></li>
+    <li><a href="" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)"><img src="../../../../assets/images/twitterIcon.png" class="navIcon"></a></li>
+    <li><a href="" ng-click="ctrl.buyStock(ctrl.stock)">BUY</a></li>
+    <li><a href="" ng-click="ctrl.sellStock(ctrl.stock)">SELL</a></li>
+  </ul>
+<!--  -->
+  <ul class="right navbar-nav navbar-right">
+    <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+      <a ng-href="{{item.link}}" ng-click="ctrl.tab = 0">{{item.title}}</a>
+    </li>
+
+    <li ng-show="isAdmin()" ><a href="" ng-click="update()">Update Stocks</a></li>
+    <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
+    <li ng-show="isAdmin()" ><a href="/admin" ng-click="createStockInventory()">Create Stocks</a></li>
+    <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
+    <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+    <li ng-show="isLoggedIn()" ng-class="navbar-text">Hello {{ getCurrentUser().name }}</li>
+    <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+    <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</nav>
+<div ng-include="'app/dashboard/partials/dash.html'"></div>
+<div ng-include="'app/dashboard/partials/stocksNav.html'"></div>
+<div class="row clock">
+  <div class="col s2"></div>
+  <div class="col s1"><h3 id="textLeft"></h3></div>
+  <div class="col s2"></div>
+  <div class="col s2"></div>
+  <div class="col s2"><h5 id="portValue"></h5></div>
+  <div class="col s3"><h3>Market Value: {{ctrl.stock.lastTradePriceOnly}}</h3></div>
+</div>
+<div class="row gridRow">
+    <div class="col s2 offset-s2 gridColShow">
+      <h5>{{ctrl.stock.name}}</h5>
+    </div>
+    <div class="col s2 gridColShow">
+      <h5>
+             PE Ratio:
+            {{ctrl.stock.peRatio}}
+      </h5>
+    </div>
+    <div class="col s2 gridColShow">
+      <p>Dividend Yield: {{ctrl.stock.dividendYield}} <br> Last Trade Price: {{ctrl.stock.lastTradePriceOnly}}</p>
+    </div>
+    <div class="col s2 gridColShow" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">
+      <h5>{{ctrl.stock.twitterHandle}} <br> Sentiment Score: {{ctrl.twitAnalysis.score}}</h5>
+    </div>
+  </div>
+  <div class="row gridRow">
+   <div class="col s1"></div>
+    <div id="financeGraph" class="col s6" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">
+    <div class="container">
+      <div class="graph-header">
+        <h4>Process Historical Data</h4>
+      </div>
+
+      </div>
+        <div class="graph-body">
+          <canvas id="line" class="chart chart-line" options="ctrl.options" data="ctrl.data"
+          labels="ctrl.labels" legend="true" series="ctrl.series"
+          click="ctrl.onClick">
+          </canvas>
+        </div>
+      </div>
+      <div id="sentimentData" class="col s3 gridColTwo"></div>
+    </div>
+  </div>
+
+
+
+
+
+
+<script>
+  'use strict'
+$( document ).ready(function() {
+  // Handler for .ready() called.
+// Initialize collapse button
+  $(".button-collapse").sideNav();
+  $('.button-collapse').sideNav({
+      menuWidth: 200, // Default is 240
+      edge: 'left', // Choose the horizontal origin
+      closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+
+    }
+  );
+  // Show sideNav
+  $("#stockToggle").click(function () {
+    console.log("baby baby");
+    $('.button-collapse').sideNav('show');
+  });
+  // Hide sideNav
+  // $("#stockToggle").click(function() {
+  //  $('.button-collapse').sideNav('hide');
+  // });
+  var currentDate = new Date()
+  var day = currentDate.getDate()
+  var month = currentDate.getMonth() + 1
+  var year = currentDate.getFullYear()
+  var date = document.getElementById("textLeft");
+  date.innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
+  console.log("funky")
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
 {{ctrl.stock}}
  <table class="hoverable">
         <thead>
@@ -46,7 +173,7 @@
       <li class="collection-item">change: {{ctrl.currentData.change}}</li>
       <li class="collection-item">changeFrom200DayMovingAverage: {{ctrl.currentData.changeFrom200DayMovingAverage}}</li>
       <li class="collection-item">changeAndPercentChange: {{ctrl.currentData.changeAndPercentChange}}</li>
-     <!--  <li class="collection-item">52WeekHigh: {{ctrl.currentData.52WeekHigh}}</li> -->
+     <! <li class="collection-item">52WeekHigh: {{ctrl.currentData.52WeekHigh}}</li>
       <li class="collection-item">open: {{ctrl.currentData.open}}</li>
       <li class="collection-item">volume: {{ctrl.currentData.volume}}</li>
       <li class="collection-item">marketCapitalization: {{ctrl.currentData.marketCapitalization}}</li>
@@ -56,7 +183,7 @@
     {{ctrl.currentData}}
 </div>
 <hr>
-<button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
+<!<button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
 
 <h4>a nice chart here:</h4>
 <div class="container">
@@ -65,6 +192,7 @@
   click="ctrl.onClick">
 </canvas>
 <br>
-<!-- <canvas id="bar" class="chart chart-bar" data="ctrl.barData"
+<! <canvas id="bar" class="chart chart-bar" data="ctrl.barData"
   labels="ctrl.barLabels"></canvas>
+<<<<<<< HEAD
 </div> -->
