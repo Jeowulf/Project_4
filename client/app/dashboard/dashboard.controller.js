@@ -83,7 +83,7 @@ angular.module('proj4App')
         var price = portfolio.stock.lastTradePriceOnly * portfolio.qty;
         that.total += price;
       });
-      console.log(that.total);
+      console.log(that.total + ' is user portfolio total');
     });
   }
   // that.portFolioTotalValue = function (portfolio) {

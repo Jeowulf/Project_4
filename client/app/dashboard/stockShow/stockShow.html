@@ -1,6 +1,6 @@
 
 
-<nav ng-controller="NavbarCtrl" class="teal accent-3 topNav">
+<nav ng-controller="NavbarCtrl" id="shownav"class="teal accent-3 topNav">
   <ul class="left hide-on-med-and-down">
     <li>
       <a href="" class="navbar-brand">MarketMental</a>
@@ -36,15 +36,15 @@
 <div ng-include="'app/dashboard/partials/stocksNav.html'"></div>
 <div class="row clock">
   <div class="col s2"></div>
-  <div class="col s1"><h3 id="textLeft"></h3></div>
+  <div class="col s1"></div>
   <div class="col s2 buyAndSell"></div>
-  <div class="col s2 buyAndSell"></div>
+  <div class="col s2 buyAndSell"><h3 id="textLeft"></h3></div>
   <div class="col s2"><h5 id="portValue"></h5></div>
   <div class="col s3"><h3>Market Value: {{ctrl.stock.lastTradePriceOnly}}</h3></div>
   <div class="container">
     <div class="row">
       <div class="col s1"><button class="btn-floating btn-large waves-effect waves-light red" ng-click="ctrl.buyStock(ctrl.stock)">BUY</button></div>
-      <div class="col s3"><input placeholder="Stock Quantity"type="number"></div>
+      <div class="col s3"><input placeholder="Stock Quantity"type="number" ng-model="ctrl.stock.qty"></div>
       <div class="col s1"><button class="btn-floating btn-large waves-effect waves-light blue" ng-click="ctrl.sellStock(ctrl.stock)">SELL</button></div>
     </div>
   </div>
@@ -86,7 +86,8 @@
     </div>
   </div>
 
-
+{{ctrl.myPortfolio}}
+{{ctrl.total}}
 
 
 
