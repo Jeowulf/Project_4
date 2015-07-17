@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('StockShowCtrl', function ($stateParams, yahooFinanceService, twitSentService, stockService, portfolioService) {
+  .controller('StockShowCtrl', function ($scope, $stateParams, yahooFinanceService, twitSentService, stockService, portfolioService) {
     console.log('StockShowCtrl is alive!!' + $stateParams);
 
   var that = this;
@@ -41,7 +41,20 @@ angular.module('proj4App')
     that.currentData = json;
    })
   }
-//twitter
+//twitter/ wordcloud
+  that.words = [];
+  that.wordArray = function  (my_array) {
+
+     _(my_array).forEach(function(n) {
+        var x = Math.floor(Math.random() * 10) + 1;
+        that.words.push({id: x, word: n, size: x});
+
+      });
+     console.log(that.words);
+
+  }
+
+   console.log(that.words + ' is word array');
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
@@ -49,7 +62,8 @@ angular.module('proj4App')
         // console.log('twitSentQuery from DashboardCtrl');
         // console.log(json);
         that.twitAnalysis = json;
-
+        console.log(that.twitAnalysis.negative.length);
+       return that.wordArray(that.twitAnalysis.negative);
         // console.log(that.twitAnalysis.positive  + '     is that.twitAnalysis');
         // that.twitAnaylsisData = json;
         //wordcloud
@@ -153,13 +167,6 @@ angular.module('proj4App')
   //create  {id: 1, word: "oke", size: 1}, format
 
 
-  function wordCloud (my_array) {
-   var x = Math.floor(Math.random() * 10) + 1;
-   _(my_array).forEach(function(n) {
 
-    that.words.push({id: x, word: n, size: x});
-    console.log(that.words);
-    });
-  }
 
 });
