@@ -75,7 +75,11 @@
           </canvas>
         </div>
       </div>
-      <div id="sentimentData" class="col s3 gridColTwo"></div>
+      <div id="sentimentData" class="col s3 gridColTwo">
+        <h6 class="tweets">
+          {{ctrl.twitAnalysis.positive}}
+        </h6>
+      </div>
     </div>
   </div>
 
@@ -114,6 +118,7 @@ $( document ).ready(function() {
   date.innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
   console.log("funky")
 });
+
 </script>
 
 

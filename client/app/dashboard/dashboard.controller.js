@@ -24,6 +24,7 @@ angular.module('proj4App')
     }
     //Array stores the twitter analysis after they are sought/found and then we will map the correct analysis to the correct stock!!!!!!!!!!!!!
     that.twitAnalysis = [];
+    that.positiveTweets = [];
     that.twitSentQuery = function(userInput, id, name) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
@@ -35,7 +36,9 @@ angular.module('proj4App')
 
         console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
         // that.twitAnaylsisData = json;
-
+        for (var i = 0; i < that.twitAnalysis.length; i++) {
+          that.positiveTweets.push(1);
+        }
       });
       }
     }
@@ -75,7 +78,7 @@ angular.module('proj4App')
       // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
       console.log("portfolio to follow: ")
       // stockNavService.testies();
-      // console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
+      console.log(that.myPortfolio);
       // console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
       var portfolios = that.myPortfolio.stocksInPortfolio;
       that.total = 0;
@@ -86,6 +89,7 @@ angular.module('proj4App')
       console.log(that.total);
     });
   }
+
   // that.portFolioTotalValue = function (portfolio) {
   //   portfolioService.getPortfolioTotal(portfolio);
   //   console.log("colin says")
