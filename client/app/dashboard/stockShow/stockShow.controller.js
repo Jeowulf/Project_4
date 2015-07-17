@@ -63,8 +63,13 @@ angular.module('proj4App')
     that.volume;
     that.adjClose;
     //chart.js stuff
+
     function getMaxOfArray(numArray) {
       return Math.max.apply(null, numArray);
+    }
+
+    function getMinOfArray(numArray) {
+      return Math.min.apply(Math, numArray)
     }
 
    function getArrayAvg(array) {
@@ -96,7 +101,9 @@ angular.module('proj4App')
 
 
       // console.log(that.open);
+  var labels = [];
 
+  //line graph settings
     that.labels = ["2011", "2012", "2013", "2014"];
     that.series = ["Open", "Close" , "Low", "Adjusted Close"];
     that.data = [
@@ -105,9 +112,31 @@ angular.module('proj4App')
       that.low,
       that.adjClose
   ];
-
+  //custom settings
+  //maths:
+  //scale steps = 5
+  //step width = max - min/5
+  //stepstart = 5
   var flatten = _.flatten(that.data);
-  var max = getArrayAvg(flatten) + 10;
+  var avg = getArrayAvg(flatten);
+  var max = getMaxOfArray(flatten);
+  var min = getMinOfArray(flatten);
+
+  console.log(that.open.length);
+  console.log(max + ' is max');
+  console.log(min + ' is min!');
+  var steps = 3;
+  // var start = 10;
+  that.options = {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: ((max - min)  / steps),
+    scaleStartValue: min,
+    scaleIntegersOnly: true,
+    scaleLabel: '<%= Number(value).toFixed(2) %>',
+    showXLabels: 10
+    };
+
   console.log("is max" + max);
   // console.log(that.close + ' is that.close');
   that.barLabels = ["2011", "2012", "2013", "2014"];

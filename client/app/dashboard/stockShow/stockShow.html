@@ -30,7 +30,7 @@
 
 
 
-<input type="number" ng-model="stock.qty">
+<input type="number" ng-model="ctrl.stock.qty">
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(ctrl.stock)">BUY</button>
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(ctrl.stock)">SELL</button>
 <button class="btn btn-inverse btn-lg" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">TWITSENT</button>
@@ -65,6 +65,6 @@
   click="ctrl.onClick">
 </canvas>
 <br>
-<canvas id="bar" class="chart chart-bar" data="ctrl.barData"
+<!-- <canvas id="bar" class="chart chart-bar" data="ctrl.barData"
   labels="ctrl.barLabels"></canvas>
-</div>
+</div> -->
