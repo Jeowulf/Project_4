@@ -1,6 +1,29 @@
-Welcome to user Portfolio Partial or portfolio.html
-<!-- {{ctrl.myPortfolio}}
- -->
-<div ng-repeat="stock in ctrl.myPortfolio">
-{{stock}}
+<main>
+<div class="portfolio-total indigo z-depth-5 white-text">
+  <h4 class="center-align">Current Value: {{ctrl.total | currency}}</h4>
 </div>
+
+<hr>
+<div class="container">
+    <table class="hoverable responsive-table centered">
+    <h4 class="center-align">Your Portfolio</h4>
+    <!-- <th><th>
+    <th>Shares Owned<th>
+    <th>Current Price<th> -->
+     <thead>
+      <tr>
+          <th data-field="id">Company</th>
+          <th data-field="name">Shares Owned</th>
+          <th data-field="price">Current Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio" ng-click="ctrl.goStock(stock.stock)">
+        <td>{{ stock.stock.name }}</td>
+        <td>{{stock.qty}}</td>
+        <td>{{ stock.stock.lastTradePriceOnly | currency}}</td>
+      </tr>
+    </tbody>
+    </table>
+</div>
+</main>

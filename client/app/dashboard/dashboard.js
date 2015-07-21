@@ -12,5 +12,10 @@ angular.module('proj4App')
       url: '/stockinventory',
       templateUrl: 'app/dashboard/partials/stockinventory.html',
       controller: 'DashboardCtrl as ctrl'
+    })
+     .state('dashwelcome', {
+      url: '/portfolio',
+      templateUrl: 'app/dashboard/partials/portfolio.html',
+      controller: 'DashboardCtrl as ctrl'
     });
   });
