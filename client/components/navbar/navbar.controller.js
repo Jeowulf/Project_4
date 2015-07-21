@@ -5,9 +5,10 @@ angular.module('proj4App')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    },
-    {'title': 'Dashboard',
-    'link': '/dashboard'}
+    }
+    // ,
+    // {'title': 'Dashboard',
+    // 'link': '/dashboard'}
     ];
 
     $scope.isCollapsed = true;

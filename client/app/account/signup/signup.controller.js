@@ -16,7 +16,7 @@ angular.module('proj4App')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/dashboard');
+          $location.path('/portfolio');
         })
         .catch( function(err) {
           err = err.data;

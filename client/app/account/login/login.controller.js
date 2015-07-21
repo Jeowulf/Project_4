@@ -15,7 +15,7 @@ angular.module('proj4App')
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/dashboard');
+          $location.path('/portfolio');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
