@@ -11,8 +11,7 @@ angular.module('proj4App')
         params: {
           controller:'password'
         }
-      }
-      ,
+      },
       get: {
         method: 'GET',
         params: {

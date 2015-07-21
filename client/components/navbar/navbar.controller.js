@@ -12,6 +12,7 @@ angular.module('proj4App')
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
+    console.log($scope.isLoggedIn + ' is looged in');
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
