@@ -122,6 +122,10 @@ function isValidData(dataFromYahoo) {
   }
   return true;
 }
+function hello() {
+  console.log('hi its from do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*****');
+}
+hello();
 //Admin only, updates stock prices
 //TODO: some validation to make sure correct stocks are matched
 exports.update = function (req, res) {
@@ -133,19 +137,17 @@ exports.update = function (req, res) {
         if (isValidData(data[i])) {
           stocks[i].lastTradeDate = data[i].lastTradeDate;
           stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
-          // TODO: just for testing, remove the following line
           stocks[i].dividendYield = data[i].dividendYield;
           stocks[i].peRatio = data[i].peRatio;
-          // stocks[i].save(function(err, stocks) {
-          //   console.log(stocks);
-          // });
+
+    //Found this on stackoverflow
           functions.push((function(doc) {
             return function(callback) {
-              console.log('Saving updated stock: ' + doc);
+              // console.log('Saving updated stock: ' + doc);
               doc.save(callback);
             };
           })(stocks[i]));
-          console.log(stocks[i].name + '::::is stocks');
+          // console.log(stocks[i].name + '::::is stocks');
         }
       }
       console.log('Parallel save of ' + functions.length + ' stocks.');
