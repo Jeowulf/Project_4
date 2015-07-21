@@ -23,9 +23,11 @@ angular.module('proj4App')
       });
     }
     //Array stores the twitter analysis after they are sought/found and then we will map the correct analysis to the correct stock!!!!!!!!!!!!!
+    that.twitAnalysisWithReset = [];
     that.twitAnalysis = [];
     that.positiveTweets = [];
     that.twitSentQuery = function(userInput, id, name) {
+      that.twitAnalysisWithReset = [];
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
       twitSentService.search(userInput).success(function(json) {
@@ -33,11 +35,14 @@ angular.module('proj4App')
         // console.log(json);
 
         that.twitAnalysis.push({id: id, name: name, score: json.score, comparative: json.comparative,  tokens: json.tokens, words: json.words});
+        that.twitAnalysisWithReset.push({id: id, name: name, score: json.score, comparative: json.comparative,  tokens: json.tokens, words: json.words});
 
         console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
+        console.log(ctrl.twitAnalysis)
         // that.twitAnaylsisData = json;
+        console.log("dog = " + ctrl.twitAnalysisWithReset.positive)
         for (var i = 0; i < that.twitAnalysis.length; i++) {
-          that.positiveTweets.push(1);
+          that.positiveTweets.push(that.twitAnalysisWithReset[0]);
         }
       });
       }

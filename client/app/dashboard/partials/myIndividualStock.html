@@ -19,8 +19,17 @@
       <div class="graph-header"></div>
       <div class="graph-body"></div>
     </div>
-    <div id="sentimentData" class="col s3 gridColTwo"></div>
-  </div>
+    <div id="sentimentData" class="col s3 gridColTwo" ng-click="ctrl.twitSentQuery(ctrl.tab.stock.twitterHandle)">
+      <h3>Twitter Sentiment Score:
+        <p ng-show"ctl.tab.stock.twitterHandle === ctrl.myPortfolio.stocksInPortfolio.stock.twitterHandle">{{ctrl.twitAnalysisWithReset[0].score}}</p>
+      </h3>
+      <div id="sentimentDataTwo" class="col s3 gridColTwo">
+        <h5 class="tweets" ng-repeat="positive in ctrl.twitAnalysis.positive track by $index">
+          {{positive}}
+        </h5>
+      </div>
+    </div>
+    </div>
 <script>
   'use strict';
 $(document).ready(function(){
