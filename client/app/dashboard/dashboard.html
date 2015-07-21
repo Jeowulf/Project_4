@@ -12,40 +12,10 @@
     <div class="col s2"><h5 id="portValue">Portfolio Value:</h5></div>
     <div class="col s2"><h3>{{ctrl.total | currency}}</h3></div>
   </div>
-  <div ng-show="ctrl.tab === 0"><div ng-include="'app/dashboard/partials/dashWelcome.html'"></div></div>
-  <div ng-show="ctrl.tab !== 0 && ctrl.tab !== 2"><div ng-include="'app/dashboard/partials/myIndividualStock.html'"></div></div>
+  <!-- <div ng-show="ctrl.tab === 0"><div ng-include="'app/dashboard/partials/dashWelcome.html'"></div></div>
+  <div ng-show="ctrl.tab !== 0 && ctrl.tab !== 2"><div ng-include="'app/dashboard/partials/myIndividualStock.html'"></div></div> -->
 
 </main>
-<!-- <div class="row">
-
-<div class="col s2 offset-s6">
-  <h1>hola</h1>
-  <a href="#" ng-click="ctrl.vis = !ctrl.vis">Toggle</a><br/>
-    {{vis}}
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-    </ul>
-</div>
-
-</div> -->
-
-<script>
-  'use strict';
-$(document).ready(function(){
-  $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
-
-  var currentDate = new Date()
-  var day = currentDate.getDate()
-  var month = currentDate.getMonth() + 1
-  var year = currentDate.getFullYear()
-  var date = document.getElementById("clock");
-  date.innerHTML = "<b>" + month + "/" + day + "/" + year + "</b>";
-  console.log("funky")
-});
-</script>
 
 
 
