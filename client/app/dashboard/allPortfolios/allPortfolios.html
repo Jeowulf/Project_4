@@ -1,0 +1,39 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-include="'app/dashboard/partials/stocksNav.html'"></div>
+<div class="container">
+  <main>
+    <table>
+        <thead>
+          <tr>
+              <th data-field="id">Name</th>
+              <th data-field="name">stocksValue</th>
+              <th data-field="price">Current Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="portfolio in ctrl.allPortfolios">
+            <td>{{ portfolio.name }}</td>
+            <td>{{portfolio.portfolio.stocksValue}}</td>
+            <td>{{portfolio.stocksInPortfolio}}</td>
+          </tr>
+        </tbody>
+    </table>
+  <div>
+      <ul class="collection card">
+        <li class="collection-item avatar" ng-repeat="portfolio in ctrl.allPortfolios">
+        <!-- avatar image here? -->
+          <img src="" alt="" class="circle">
+            <span class="title">User: {{ portfolio.name }}</span>
+             <p>{{portfolio.stocksInPortfolio[0].stock.name}} <br>
+                Second Line
+            </p>
+          <p class="secondary-content">Value: {{portfolio.portfolio.stocksValue}}</p>
+        </li>
+      </ul>
+   </div>
+
+  <div></div>
+      {{ctrl.allPortfolios}}
+
+  </main>
+</div>

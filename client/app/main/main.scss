@@ -141,9 +141,10 @@ h2 {
     border: 4px solid #546e7a;
     border-left: 4px solid #ff3d00;
 }
-header, main, footer {
-    padding-left: 100px;
-  }
+//changed to a percentage and put in app.scss since it's an appwide style
+// header, main, footer {
+//     padding-left: 100px;
+//   }
 
 
   @media only screen and (max-width : 992px) {
