@@ -16,6 +16,7 @@ angular.module('proj4App')
       var qty = stock.qty; //TODO: find another way!!!
       console.log(qty + 'is sell qty');
       var userId = Auth.getCurrentUser()._id;
+      console.log('sell clicked' + userId);
       return $http.patch('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
     }
 

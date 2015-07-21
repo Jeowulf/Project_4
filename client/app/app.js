@@ -7,7 +7,8 @@ angular.module('proj4App', [
   'btford.socket-io',
   'ui.router',
   'chart.js',
-  'tangcloud'
+  'tangcloud',
+  'toastr'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');

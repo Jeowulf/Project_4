@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('StockShowCtrl', function ($scope, $stateParams, yahooFinanceService, twitSentService, stockService, portfolioService) {
+  .controller('StockShowCtrl', function ($scope, $stateParams, yahooFinanceService, twitSentService, stockService, portfolioService, toastr) {
     console.log('StockShowCtrl is alive!!' + $stateParams);
 
-  var that = this;
 
+
+
+  var that = this;
+  that.date = new Date();
   var id = $stateParams.stockId;
 
   console.log('StockShowCtrl id is :' + id);
@@ -19,12 +22,14 @@ angular.module('proj4App')
       // console.log(JSON.stringify(json.data) + 'is returned after buyStock');
        that.myPortfolio = json; //TODO: fix what the server is returning
       // that.getUserPortfolio();
+      toastr.success(stock.qty + 'share(s) purchased!');
     });
   };
   that.sellStock = function(stock) {
     portfolioService.sellStock(stock).then(function(json) {
-      // that.myPortfolio = json.data; //  TODO: fix this
-
+      that.myPortfolio = json; //  TODO: fix this
+      console.log('sell clicked');
+      toastr.warning('Your computer is about to explode!', 'Warning');
     });
   };
   //portfolio

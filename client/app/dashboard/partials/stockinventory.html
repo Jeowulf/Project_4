@@ -1,6 +1,6 @@
 <main>
   <div class="companies row">
-    <div class="company col s3 s3 12" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
+    <div class="company col s12 m6 l3" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
       <ul>
         <li class="collection-item">Name:  {{stock.name}}</li>
         <li class="collection-item">Last Trade Price:  {{stock.lastTradePriceOnly}}</li>
