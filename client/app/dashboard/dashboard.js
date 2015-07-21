@@ -7,5 +7,10 @@ angular.module('proj4App')
         url: '/dashboard',
         templateUrl: 'app/dashboard/dashboard.html',
         controller: 'DashboardCtrl as ctrl'
-      });
+      })
+     .state('stockInventory', {
+      url: '/stockinventory',
+      templateUrl: 'app/dashboard/partials/stockinventory.html',
+      controller: 'DashboardCtrl as ctrl'
+    });
   });
