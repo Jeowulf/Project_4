@@ -113,12 +113,15 @@
           </canvas>
         </div>
       </div>
-      <div id="sentimentData" class="col s3 gridColTwo"></div>
+      <div id="sentimentData" class="col s3 gridColTwo">
+        <h5 class="tweets" ng-repeat="positive in ctrl.twitAnalysis.positive track by $index">
+          {{positive}}
+        </h5>
+      </div>
     </div>
   </div>
 </main>
-{{ctrl.myPortfolio}}
-{{ctrl.total}}
+
 
 
 
@@ -153,6 +156,7 @@ $( document ).ready(function() {
   date.innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
   console.log("funky")
 });
+
 </script>
 
 

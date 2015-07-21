@@ -318,6 +318,9 @@ canvas#line {
     width: 260px;
     background-color: white;
     color: #ff3d00;
+    border: 2px solid #ff3d00;
+    overflow: hidden;
+    overflow-x:scroll;
 }
 .gridColShow:hover {
     margin: 10px 40px 10px 40px;
@@ -326,4 +329,17 @@ canvas#line {
     width: 260px;
     background-color: #ff3d00;
     color: white;
+}
+.tweets {
+    color: #ff3d00;
+    overflow: hidden;
+}
+#sentimentData {
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 2px solid #ff3d00;
+}
+#sentimentDataTwo {
+    overflow: hidden;
+    overflow-y: scroll;
 }
