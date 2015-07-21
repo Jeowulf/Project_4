@@ -114,6 +114,7 @@ exports.sellStock = function(req, res) {
           found.qty = found.qty - stockQty;
           found.save(function() {
             console.log('Saved new qty.');
+            return res.json(201, portfolio.stocksInPortfolio)
           });
           }
           else  {

@@ -22,14 +22,15 @@ angular.module('proj4App')
       // console.log(JSON.stringify(json.data) + 'is returned after buyStock');
        that.myPortfolio = json; //TODO: fix what the server is returning
       // that.getUserPortfolio();
-      toastr.success(stock.qty + 'share(s) purchased!');
+      toastr.success(stock.qty + 'share(s) purchased');
     });
   };
   that.sellStock = function(stock) {
+    console.log('sell clicked');
     portfolioService.sellStock(stock).then(function(json) {
       that.myPortfolio = json; //  TODO: fix this
-      console.log('sell clicked');
-      toastr.warning('Your computer is about to explode!', 'Warning');
+
+      toastr.warning('You sold ' + stock.qty + ' shares');
     });
   };
   //portfolio
