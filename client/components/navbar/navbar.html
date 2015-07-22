@@ -5,7 +5,7 @@
     </li>
 
   </ul>
-  <ul class="side-nav fixed" id="side-nav-main">
+  <ul class="side-nav fixed" id="slide-out">
     <li><a href="/" class="navbar-brand-slide"><img src="../../../../assets/images/homeIcon.png" class="navIcon"></a></li>
     <!-- <li><a href="" ng-click="ctrl.tab = 0" class="navbar-brand-slide"><img src="../../../../assets/images/news.png" class="navIcon"></a></li>
     <li><a href="" ng-click="ctrl.vis = !ctrl.vis" class="navbar-brand-slide"></a></li>
@@ -38,7 +38,7 @@ $( document ).ready(function() {
 // Initialize collapse button
   $(".button-collapse").sideNav();
   $('.button-collapse').sideNav({
-      menuWidth: 200, // Default is 240
+      menuWidth: 100, // Default is 240
       edge: 'left', // Choose the horizontal origin
       closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
 
