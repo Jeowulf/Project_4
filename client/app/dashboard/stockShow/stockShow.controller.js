@@ -13,6 +13,15 @@ angular.module('proj4App')
 
   console.log('StockShowCtrl id is :' + id);
 
+  that.checked = false; // This will be binded using the ps-open attribute
+
+  that.toggle = function(){
+      that.checked = !that.checked;
+      //janky, but attempting to get the current info in the slideout panel
+      that.getUserPortfolio();
+  }
+
+
   stockService.findStockById(id).then(function(json) {
     that.stock = json.data;
   });
@@ -20,8 +29,8 @@ angular.module('proj4App')
    that.buyStock = function(stock) {
     portfolioService.buyStock(stock).then(function(json) {
       // console.log(JSON.stringify(json.data) + 'is returned after buyStock');
-       that.myPortfolio = json; //TODO: fix what the server is returning
-      // that.getUserPortfolio();
+      that.myPortfolio = json; //TODO: fix what the server is returning
+      that.getUserPortfolio(); //janky workaround!!
       toastr.success(stock.qty + 'share(s) purchased');
     });
   };
@@ -29,7 +38,7 @@ angular.module('proj4App')
     console.log('sell clicked');
     portfolioService.sellStock(stock).then(function(json) {
       that.myPortfolio = json; //  TODO: fix this
-
+      that.getUserPortfolio(); //janky workaround!!
       toastr.warning('You sold ' + stock.qty + ' shares');
     });
   };

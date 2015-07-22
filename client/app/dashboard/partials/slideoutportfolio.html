@@ -1,0 +1,20 @@
+<div pageslide ps-open="ctrl.checked" class="blue-grey darken-1 white-text">
+                    <a ng-click="ctrl.toggle()" class="button">&#x2716;</a>
+                    <div style="padding:20px" id="demo-right">
+                        <table class="bordered responsive-table">
+                          <thead>
+                            <tr>
+                                <th data-field="id">Company</th>
+                                <th data-field="name">Shares Owned</th>
+                            </tr>
+                          </thead>
+                           <tbody>
+                               <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio">
+                                      <td>{{stock.stock.name}}</td>
+                                      <td>{{stock.qty}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      Portfolio: {{ctrl.total | currency}}
+                    </div>
+                </div>

@@ -8,7 +8,8 @@ angular.module('proj4App', [
   'ui.router',
   'chart.js',
   'tangcloud',
-  'toastr'
+  'toastr',
+  'pageslide-directive'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
