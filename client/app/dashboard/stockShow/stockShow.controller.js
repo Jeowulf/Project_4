@@ -38,7 +38,7 @@ angular.module('proj4App')
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
       // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
-      console.log("portfolio to follow: ")
+      console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio.stocksInPortfolio[0]));
       // stockNavService.testies();
       // console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
       // console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
