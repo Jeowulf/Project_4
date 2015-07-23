@@ -1,12 +1,10 @@
 
   <main>
-    <div class="overlay">
-
-    </div>
 
       <div class="companies row">
         <div class="col s12 m6 l3" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
-          <div class="card">
+          <div class="overlay">
+            <div class="card">
             <div class="card-image">
               <img src="assets/images/{{stock.name | limitTo:4}}.jpg">
             </div>
@@ -14,6 +12,7 @@
               <span class="card-title center-align"><h4>{{stock.twitterHandle}} </h4></span>
               <h5 class="price">Last Trade Price: <br>  {{stock.lastTradePriceOnly | currency}} </h5>
             </div>
+          </div>
           </div>
         </div>
       </div>

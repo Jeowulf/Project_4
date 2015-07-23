@@ -352,3 +352,8 @@ canvas#line {
 .card .card-content h5 {
   color: white;
 }
+.overlay {
+  color: black;
+  position: relative;
+  z-index: 5000;
+}
