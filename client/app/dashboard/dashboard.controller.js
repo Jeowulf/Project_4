@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('DashboardCtrl', function ($http, $state, Auth, twitSentService, stockService, portfolioService, yahooFinanceService) {
+  .controller('DashboardCtrl', function ($http, $state, Auth, twitSentService, stockService, portfolioService, yahooFinanceService, socket) {
 
     var that = this;
     that.vis = false;
@@ -23,8 +23,12 @@ angular.module('proj4App')
       stockService.getInventory().success(function(json) {
         // console.log(json + '   is getInvetory json');
         that.stockInventory = json;
-      });
-    }
+        socket.syncUpdates('stock', that.stockInventory, function(event, stock, object){
+          console.log('SOCKET HAS ARRIVED!');
+        });
+        });
+
+    };
     //Array stores the twitter analysis after they are sought/found and then we will map the correct analysis to the correct stock!!!!!!!!!!!!!
     that.twitAnalysisWithReset = [];
     that.twitAnalysis = [];

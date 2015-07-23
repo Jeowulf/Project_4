@@ -125,7 +125,7 @@ function isValidData(dataFromYahoo) {
 
 //Admin only, updates stock prices
 //TODO: some validation to make sure correct stocks are matched
-exports.update = function (req, res) {
+var updateStocks = function (req, res) {
   Stock.find({}, function(err, stocks) {
     yahooFinanceMultipleSymbolSearch(function (data, err) {
       if (err) return handleError(err);
@@ -134,6 +134,9 @@ exports.update = function (req, res) {
         if (isValidData(data[i])) {
           stocks[i].lastTradeDate = data[i].lastTradeDate;
           stocks[i].lastTradePriceOnly = data[i].lastTradePriceOnly;
+          //testing only:
+          // stocks[i].lastTradePriceOnly += 90;
+
           stocks[i].dividendYield = data[i].dividendYield;
           stocks[i].peRatio = data[i].peRatio;
 
@@ -151,10 +154,17 @@ exports.update = function (req, res) {
       async.parallel(functions, function(err, results) {
         if (err) return handleError(res, err);
         console.log("All the updated stocks are now saved.");
-        res.json(201, results);
+        // res.json(201, results);
       })
     });
   });
+}
+function foo() {
+  console.log('BAR!!!!!!!!!!!!!!!');
+}
+exports.update = function (req, res) {
+  setInterval(updateStocks, 3600000);
+  res.send(200);
 }
 
 function handleError(res, err) {
