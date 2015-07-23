@@ -297,6 +297,7 @@ div.company {
 }
 .companies {
     border: 0px;
+    position: relative;
 }
 #line {
     height: 300px;
@@ -352,8 +353,6 @@ canvas#line {
 .card .card-content h5 {
   color: white;
 }
-.overlay {
-  color: black;
-  position: relative;
-  z-index: 5000;
+.card:hover {
+  background-color: #ff3d00;
 }
