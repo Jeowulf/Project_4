@@ -123,12 +123,21 @@ exports.sellStock = function(req, res) {
           if(found.qty > 0 && found.qty > stockQty) {
             //TODO: implement validation so that people cannot sell more than they have!!!!!!!!!!!!!!
             // found.qty > stockQty ? found.qty - stock Qty : return handleError(res, err);
+            var price = stock.lastTradePriceOnly * stockQty;
+            //let's get a price to deduct from total!
+            console.log(price + ' is PRICE!!!!!!!!!!!');
+
+            portfolio.cash = portfolio.cash + price;
+            console.log(portfolio.cash + ' is portfolio.cash');
+
           found.qty = found.qty - stockQty;
           found.save(function() {
             console.log('Saved new qty.');
-            return res.json(201, portfolio.stocksInPortfolio)
+            portfolio.save(function(){
+              return res.json(201, portfolio);
+            });
           });
-          }
+        }
           else  {
             console.log('stockQty was 0!!!');
             return res.send(404);
