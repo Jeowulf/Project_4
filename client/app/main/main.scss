@@ -343,4 +343,12 @@ canvas#line {
     overflow: hidden;
     overflow-y: scroll;
 }
-
+.card .card-title {
+  color: white;
+}
+.card .card-content {
+  background: rgba(84,110,122, 1);
+}
+.card .card-content h5 {
+  color: white;
+}
