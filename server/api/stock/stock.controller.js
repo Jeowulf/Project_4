@@ -112,20 +112,17 @@ function isValidData(dataFromYahoo) {
     console.log('WARN: dataFromYahoo has no lastTradePriceOnly');
     return false;
   }
-  if (!dataFromYahoo.dividendYield) {
-    console.log('WARN: dataFromYahoo has no dividendYield');
-    return false;
-  }
-  if (!dataFromYahoo.peRatio) {
-    console.log('WARN: dataFromYahoo has no peRatio');
-    return false;
-  }
+  // if (!dataFromYahoo.dividendYield) {
+  //   console.log('WARN: dataFromYahoo has no dividendYield');
+  //   return false;
+  // }
+  // if (!dataFromYahoo.peRatio) {
+  //   console.log('WARN: dataFromYahoo has no peRatio');
+  //   return false;
+  // }
   return true;
 }
-function hello() {
-  console.log('hi its from do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*****');
-}
-hello();
+
 //Admin only, updates stock prices
 //TODO: some validation to make sure correct stocks are matched
 exports.update = function (req, res) {
@@ -146,7 +143,7 @@ exports.update = function (req, res) {
               // console.log('Saving updated stock: ' + doc);
               doc.save(callback);
             };
-          })(stocks[i]));
+          })(stocks[i])); //IIFE
           // console.log(stocks[i].name + '::::is stocks');
         }
       }
