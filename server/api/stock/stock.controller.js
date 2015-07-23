@@ -163,6 +163,7 @@ function foo() {
   console.log('BAR!!!!!!!!!!!!!!!');
 }
 exports.update = function (req, res) {
+  //
   setInterval(updateStocks, 3600000);
   res.send(200);
 }
