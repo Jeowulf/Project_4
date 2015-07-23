@@ -1,16 +1,25 @@
-<main>
-  <div class="companies row">
-    <div class="company col s12 m6 l3" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
-      <ul>
-        <li class="collection-item">Name:  {{stock.name}}</li>
-        <li class="collection-item">Last Trade Price:  {{stock.lastTradePriceOnly}}</li>
-        <li class="collection-item">Dividend Yield:  {{stock.dividendYield}}</li>
-        <li class="collection-item">PeRatio:  {{stock.peRatio}}</li>
-        <li class="collection-item">Twitter:  {{stock.twitterHandle}}</li>
-      </ul>
+
+  <main>
+    <div class="overlay">
+
     </div>
-  </div>
-</main>
+
+      <div class="companies row">
+        <div class="col s12 m6 l3" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
+          <div class="card">
+            <div class="card-image">
+              <img src="assets/images/{{stock.name | limitTo:4}}.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title center-align"><h4>{{stock.twitterHandle}} </h4></span>
+              <h5 class="price">Last Trade Price: <br>  {{stock.lastTradePriceOnly | currency}} </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+
+
 
 
 

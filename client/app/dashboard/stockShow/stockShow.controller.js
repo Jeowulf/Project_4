@@ -199,8 +199,53 @@ angular.module('proj4App')
 
   //wordcloud
   //create  {id: 1, word: "oke", size: 1}, format
+  that.twitAnalysisWithReset = [];
+    that.twitAnalysis = [];
+    that.wordsArray = [];
+    that.words = [{word: 'love', size: 1}, {word: 'hate', size: 5}];
+    that.twitSentQuery = function(userInput, id, name) {
+      that.tab = 0;
+      that.twitAnalysisWithReset = [];
+      // console.log(that.userInput + 'is userInput');
+      if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
+      twitSentService.search(userInput).success(function(json) {
+        // console.log('twitSentQuery from DashboardCtrl');
+        // console.log(json);
+        that.twitAnalysis = json;
+        // that.twitAnalysis.push({id: id, name: name, score: json.score, comparative: json.comparative,  tokens: json.tokens, words: json.words});
 
+        console.log(that.twitAnalysis  + '     is that.twitAnalysisScore array');
 
-
-
+        // that.twitAnaylsisData = json;
+        console.log("dog = " + that.twitAnalysis.words)
+        for (var i = 0; i < that.twitAnalysis.words.length; i++) {
+          var slot;
+          if (that.wordsArray.indexOf(that.twitAnalysis.words[i]) !== -1) {
+            for (var j = 0; j < that.words.length; j++) {
+             if (that.words[j].word === that.twitAnalysis.words[i] && that.words[j].size < 11) {
+              that.words[j].size += 1;
+             }
+            }
+          } else {
+          that.words.push({word: that.twitAnalysis.words[i], size: 1});
+          that.wordsArray.push(that.twitAnalysis.words[i]);
+          }
+        }
+        // console.log(that.words)
+        // // console.log("array = " + that.wordsArray)
+        // that.tab = 1;
+        // var change = document.getElementById("cloudster");
+        // var cln = change.cloneNode(true);
+        // change.appendChild(cln)
+        // var node = document.createTextNode("this is new");
+        // tangy.appendChild(node);
+        // tangy.words = "ctrl.words"
+        // change.appendChild(tangy);
+        // //change.innerHTML = <tang-cloud words="ctrl.words"></tang-cloud>;
+      });
+      }
+    }
 });
+// var para = document.createElement("p");
+// var node = document.createTextNode("This is new.");
+// para.appendChild(node);

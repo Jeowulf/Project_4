@@ -91,14 +91,23 @@
           </canvas>
         </div>
       </div>
-      <div id="sentimentData" class="col s3 gridColTwo">
-        <h5 class="tweets" ng-repeat="positive in ctrl.twitAnalysis.positive track by $index">
-          {{positive}}
+      <div id="sentimentData" class="col s3 gridColTwo" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">
+      {{ctrl.twitAnalysis.score}}
+        <h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
         </h5>
       </div>
     </div>
+  <div id="cloudster">
+    <tang-cloud words="ctrl.words"></tang-cloud>
   </div>
+
+
+  <!-- {{ctrl.words}}
+    {{ctrl.tab}} -->
+
 </main>
+
 
 
 
