@@ -7,8 +7,6 @@ angular.module('proj4App')
     this.buyStock = function(stock) {
       var userId = Auth.getCurrentUser()._id;
       var qty = stock.qty;
-      console.log(qty + "is qty");
-      console.log(stock._id + "is stock._id");
       return $http.post('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
     }
 

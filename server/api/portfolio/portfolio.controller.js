@@ -38,6 +38,7 @@ exports.buyStock = function(req, res) {
     if (err) { return handleError(res, err); }
     if (!stock) { return res.send(404); }
 
+
     User.findById(userId, function(err, user) {
       if (err) { return handleError(res, err); }
 
@@ -49,7 +50,6 @@ exports.buyStock = function(req, res) {
       Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
         if (err) { return handleError(res, err); }
         if (!portfolio) { return res.send(404); }
-        console.log(stock + 'is stock._id');
         //Validation to see if stock is already in portfolio
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
@@ -57,8 +57,15 @@ exports.buyStock = function(req, res) {
           found.qty = found.qty + stockQty;
           found.save(function() {
             console.log('Saved new qty. returning a response=====' + portfolio.stocksInPortfolio);
-            return res.json(201, portfolio.stocksInPortfolio);
+            var price = stock.lastTradePriceOnly * stockQty;
+            //let's get a price to deduct from total!
+            console.log(price + ' is PRICE!!!!!!!!!!!');
 
+            portfolio.cash = portfolio.cash - price;
+            console.log(portfolio.cash + ' is portfolio.cash');
+            portfolio.save(function(){
+              return res.json(201, portfolio);
+            });
           });
         }
         else {
@@ -67,6 +74,11 @@ exports.buyStock = function(req, res) {
           newStockInPortfolio.save(function() {
             // console.log('portfolio.stocksInPortfolio is :' + portfolio.stocksInPortfolio.stock);
             portfolio.stocksInPortfolio.push(newStockInPortfolio);
+            var price = stock.lastTradePriceOnly * stockQty;
+            //let's get a price to deduct from total!
+            console.log(price + ' is PRICE!!!!!!!!!!!');
+            portfolio.cash = portfolio.cash - price;
+            console.log(portfolio.cash + ' is portfolio.cash')
             portfolio.save(function() {
               console.log('saving and returning response portfolio::::::::' + portfolio.stocksInPortfolio);
               return res.json(201, portfolio.stocksInPortfolio);
@@ -108,15 +120,24 @@ exports.sellStock = function(req, res) {
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore decrementing qty');
-          if(found.qty > 0) {
+          if(found.qty > 0 && found.qty >= stockQty) {
             //TODO: implement validation so that people cannot sell more than they have!!!!!!!!!!!!!!
             // found.qty > stockQty ? found.qty - stock Qty : return handleError(res, err);
+            var price = stock.lastTradePriceOnly * stockQty;
+            //let's get a price to deduct from total!
+            console.log(price + ' is PRICE!!!!!!!!!!!');
+
+            portfolio.cash = portfolio.cash + price;
+            console.log(portfolio.cash + ' is portfolio.cash');
+
           found.qty = found.qty - stockQty;
           found.save(function() {
             console.log('Saved new qty.');
-            return res.json(201, portfolio.stocksInPortfolio)
+            portfolio.save(function(){
+              return res.json(201, portfolio);
+            });
           });
-          }
+        }
           else  {
             console.log('stockQty was 0!!!');
             return res.send(404);
