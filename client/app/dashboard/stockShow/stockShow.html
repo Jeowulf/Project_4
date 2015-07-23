@@ -42,9 +42,13 @@
   </div>
   that.myPortfolio.stocksInPortfolio[0].stock._id
 <!-- page slide stuff for portfolio -->
-   <a class="large button" href="" ng-click="ctrl.toggle()">Open Demo</a>
 
-    <div ng-include="'app/dashboard/partials/slideoutportfolio.html'"></div>
+<div ng-include="'app/dashboard/partials/slideoutportfolio.html'"></div>
+ <div title="PORT" class="fixed-action-btn">
+    <a class="btn-floating btn-large red" ng-click="ctrl.toggle()">
+      <i class="large material-icons">insert_chart</i>
+    </a>
+  </div>
    <!-- page slide stuff for portfolio -->
 
 <!--  -->
@@ -101,11 +105,6 @@
   <div id="cloudster">
     <tang-cloud words="ctrl.words"></tang-cloud>
   </div>
-
-
-  <!-- {{ctrl.words}}
-    {{ctrl.tab}} -->
-
 </main>
 
 

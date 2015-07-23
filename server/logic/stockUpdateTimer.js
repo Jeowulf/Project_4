@@ -13,4 +13,4 @@ function updateStocks() {
 
 }
 
-myTimer = setInterval(timer, 1000);
+// myTimer = setInterval(timer, 1000);

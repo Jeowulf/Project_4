@@ -66,6 +66,13 @@
 .stock-show {
     padding: 100em;
 }
-// .ng-pageslide {
-//     background-color: red;
-// }
+
+#slidepage {
+    direction: rtl;
+    overflow: scroll;
+}
+
+.ng-pageslide {
+    direction: rtl;
+    overflow: scroll;
+}

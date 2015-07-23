@@ -84,11 +84,10 @@ angular.module('proj4App')
         that.words.push({id: x, word: n, size: x});
 
       });
-     console.log(that.words);
-
+console.log(that.words + ' is word array');
   }
 
-   console.log(that.words + ' is word array');
+
       that.twitSentQuery = function(input) {
       // console.log(that.userInput + 'is userInput');
       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
@@ -97,7 +96,7 @@ angular.module('proj4App')
         // console.log(json);
         that.twitAnalysis = json;
         console.log(that.twitAnalysis.negative.length);
-       return that.wordArray(that.twitAnalysis.negative);
+        that.wordArray(that.twitAnalysis.negative);
         // console.log(that.twitAnalysis.positive  + '     is that.twitAnalysis');
         // that.twitAnaylsisData = json;
         //wordcloud

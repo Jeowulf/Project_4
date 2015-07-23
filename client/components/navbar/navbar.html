@@ -6,13 +6,9 @@
 
   </ul>
   <ul class="side-nav fixed" id="slide-out">
-    <li><a href="/" class="navbar-brand-slide"><img src="../../../../assets/images/homeIcon.png" class="navIcon"></a></li>
-    <!-- <li><a href="" ng-click="ctrl.tab = 0" class="navbar-brand-slide"><img src="../../../../assets/images/news.png" class="navIcon"></a></li>
-    <li><a href="" ng-click="ctrl.vis = !ctrl.vis" class="navbar-brand-slide"></a></li>
-    <li><a href="" ng-click="ctrl.tab = 2" class="navbar-brand-slide"></a></li> -->
-    <li><a href="/allPortfolios" class="navbar-brand-slide">ALL</a></li>
-    <li><a href="/stockinventory" class="navbar-brand-slide"><img src="../../../../assets/images/stockIcon.png" class="navIcon"></a></li>
-    <li><a href="/portfolio" class="navbar-brand-slide"><img src="../../../../assets/images/moneyIcon.png" class="navIcon"></a></li>
+    <li ng-repeat="item in sideMenu" ng-class="{active: isActive(item.link)}">
+      <a ng-href="{{item.link}}"><img src="{{item.img}}" class="navIcon"></a>
+    </li>
   </ul>
 
 <!--  -->
@@ -21,7 +17,7 @@
       <a ng-href="{{item.link}}" ng-click="ctrl.tab = 0">{{item.title}}</a>
     </li>
 
-    <li ng-show="isAdmin()" ><a href="" ng-click="update()">Update Stocks</a></li>
+    <li ng-show="isAdmin()" ><a href="" ng-click="update()">Start Update Timer</a></li>
     <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
     <li ng-show="isAdmin()" ><a href="/admin" ng-click="createStockInventory()">Create Stocks</a></li>
     <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
@@ -31,6 +27,7 @@
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 </nav>
+
 <script>
   'use strict'
 $( document ).ready(function() {

@@ -10,6 +10,36 @@ angular.module('proj4App')
     // {'title': 'Dashboard',
     // 'link': '/dashboard'}
     ];
+    $scope.checked = false;
+    $scope.toggle = function(){
+      console.log('hello!! :');
+      $scope.checked = !$scope.checked;
+      //janky, but attempting to get the current info in the slideout panel
+  }
+
+
+    $scope.sideMenu = [{
+      'title': 'Home',
+      'link': '/',
+      'img': "../../../../assets/images/homeIcon.png"
+      },
+      // {
+      // 'title': 'allPortfolios',
+      // 'link': '/allPortfolios',
+      // 'img': ""
+      // },
+     {
+      'title': 'Stocks',
+      'link': '/stockinventory',
+      'img': "../../../../assets/images/stockIcon.png"
+      },
+      {
+      'title': 'My Portfolio',
+      'link': '/portfolio',
+      'img': "../../../../assets/images/moneyIcon.png"
+      },
+
+    ]
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
