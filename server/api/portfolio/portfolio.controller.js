@@ -108,7 +108,7 @@ exports.sellStock = function(req, res) {
         var found = findStockInPortfolio(portfolio, stock._id);
         if (found) {
           console.log('Found stock ' + stock.name + ' in portfolio, therefore decrementing qty');
-          if(found.qty > 0) {
+          if(found.qty > 0 && found.qty > stockQty) {
             //TODO: implement validation so that people cannot sell more than they have!!!!!!!!!!!!!!
             // found.qty > stockQty ? found.qty - stock Qty : return handleError(res, err);
           found.qty = found.qty - stockQty;

@@ -11,7 +11,7 @@ angular.module('proj4App')
   that.date = new Date();
   var id = $stateParams.stockId;
 
-  console.log('StockShowCtrl id is :' + id);
+
 
   that.checked = false; // This will be binded using the ps-open attribute
 
@@ -27,34 +27,49 @@ angular.module('proj4App')
   });
 //Stock Stuffs
    that.buyStock = function(stock) {
-    portfolioService.buyStock(stock).then(function(json) {
-      // console.log(JSON.stringify(json.data) + 'is returned after buyStock');
-      that.myPortfolio = json; //TODO: fix what the server is returning
-      that.getUserPortfolio(); //janky workaround!!
-      toastr.success(stock.qty + 'share(s) purchased');
-    });
+    //Let's get the price of the current order!!!!
+    var price = stock.lastTradePriceOnly * stock.qty;
+    console.log(that.total + ' is total from buystock' + price + ' is price');
+    console.log(that.myPortfolio.cash + "$$$$$");
+    //VALIDATION to check that user has enough cash in portfolio(amt is in DB)
+    if(price <= that.myPortfolio.cash){
+      portfolioService.buyStock(stock).then(function(json) {
+        that.myPortfolio = json; //TODO: fix what the server is returning
+        that.getUserPortfolio(); //janky workaround!!
+        toastr.success(stock.qty + 'share(s) purchased');
+
+      });
+    }
+      else {
+        toastr.error("You can't afford this");
+      };        //end if statemen
   };
   that.sellStock = function(stock) {
-    console.log('sell clicked');
+    console.log(that.myPortfolio.cash + "$$$$$");
     portfolioService.sellStock(stock).then(function(json) {
-      that.myPortfolio = json; //  TODO: fix this
-      that.getUserPortfolio(); //janky workaround!!
-      toastr.warning('You sold ' + stock.qty + ' shares');
+      console.log('promise here!');
+        that.myPortfolio = json; //  TODO: fix this
+        console.log(json);
+        that.getUserPortfolio(); //janky workaround!!
+        toastr.success('You sold ' + stock.qty + ' shares');
+    }).catch(function(response) {
+      console.log('Error ' + JSON.stringify(response));
+      toastr.error("Not enough to sell");
     });
   };
   //portfolio
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
       that.myPortfolio = json;
-      // console.log(JSON.stringify(that.myPortfolio) + "  Is that.myPortfolio");
-      console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio.stocksInPortfolio[0]));
-      // stockNavService.testies();
-      // console.log(that.myPortfolio.stocksInPortfolio[0].stock.symbol);
-      // console.log('Price: ', that.myPortfolio.stocksInPortfolio[0].stock.lastTradePriceOnly);
+      // console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio.stocksInPortfolio[0]));
+      //set all the actual stocks(which is an array) in the portfolio equal to varialbe.
       var portfolios = that.myPortfolio.stocksInPortfolio;
       that.total = 0;
+      //adds up all stocks
       portfolios.map(function(portfolio) {
+        //the gets the price of each stock in the portfolio
         var price = portfolio.stock.lastTradePriceOnly * portfolio.qty;
+        // console.log(price + ' is price!');
         that.total += price;
       });
       console.log(that.total + ' is user portfolio total');
