@@ -37,7 +37,6 @@ angular.module('proj4App')
         that.myPortfolio = json; //TODO: fix what the server is returning
         that.getUserPortfolio(); //janky workaround!!
         toastr.success(stock.qty + 'share(s) purchased');
-
       });
     }
       else {
