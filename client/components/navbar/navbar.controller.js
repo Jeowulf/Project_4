@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, stockService) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, stockService, ngDialog) {
+    var that = this;
+    that.tab = 82;
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -15,7 +17,11 @@ angular.module('proj4App')
       console.log('hello!! :');
       $scope.checked = !$scope.checked;
       //janky, but attempting to get the current info in the slideout panel
-  }
+    }
+    $scope.clickToOpen = function () {
+      console.log("ngFunctionate!")
+        ngDialog.open({ template: 'templateId' });
+    };
 
 
     $scope.sideMenu = [{

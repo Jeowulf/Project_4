@@ -6,8 +6,8 @@
 
   </ul>
   <ul class="side-nav fixed" id="slide-out">
-    <li ng-repeat="item in sideMenu" ng-class="{active: isActive(item.link)}">
-      <a ng-href="{{item.link}}"><img src="{{item.img}}" class="navIcon"></a>
+    <li ng-repeat="item in sideMenu" ng-class="{active: isActive(item.link)}" class="navList hvr-bubble-floater">
+      <a ng-href="{{item.link}}"><h6 id="lefty">{{item.title}}</h6><img src="{{item.img}}" class="navIcon"></a>
     </li>
   </ul>
 
