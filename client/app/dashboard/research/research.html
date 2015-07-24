@@ -1,40 +1,39 @@
 <main>
 
-    <div class="row">
-      <div class="col s12 m4 l3 z-depth-2" ng-include="'app/dashboard/partials/twitsearch.html'"></div>
-      <div class="col s12 m4 l8">
+<div class="row">
+
+
+      <div class="col s12 m4 l6">
        <ul class="collection with-header z-depth-2">
-        <li class="collection-item"><h4>Twitter Sentiment Anaysis for: {{ctrl.userInput}}</h4></li>
+<!--        <li class="collection-item"><h5>Search for Twitter Sentiment Anaysis</h5></li>
+ -->       <li class="collection-header"> <div ng-include="'app/dashboard/partials/twitsearch.html'"></div></li>
         <li class="collection-item"><div>Sentiment Analysis Score<a class="secondary-content black-text">{{ctrl.twitAnalysis.score}}</a></div></li>
         <li class="collection-item"><div>Comparative Analysis Score<a class="secondary-content black-text">{{ctrl.twitAnalysis.comparative}}</a></div></li>
-        <li id="wrap" class="collection-item avatar left-align"><div><p>Top Positive Words:</p><br>{{ctrl.twitAnalysis.positive.toString()}}</div></li>
-        <li id="wrap" class="collection-item avatar left-align"><div><p>Top Negative Words:</p><br>{{ctrl.twitAnalysis.negative.toString()}}</div></li>
+        <li id="wrap" class="collection-item avatar"><div><p>Top Positive Words:</p><br>{{ctrl.twitAnalysis.positive.toString()}}</div></li>
+        <li id="wrap" class="collection-item avatar"><div><p>Top Negative Words:</p><br>{{ctrl.twitAnalysis.negative.toString()}}</div></li>
       </ul>
       </div>
-    </div>
 
 
 
-  <div class="row">
-    <form class="" ng-submit="ctrl.yahooSearch(form)">
 
-       <div class="input-field">
-          <input type="text" class="validate" ng-model="ctrl.stockInput">
-          <label for="first_name">Stock Symbol</label>
-           <button class="btn btn-inverse btn-lg btn-login" type="submit">
-           Search
-          </button>
+
+
+<div class="col s12 m4 l6">
+      <ul class="collection with-header z-depth-2">
+          <li class="collection-header">
+              <form class="" ng-submit="ctrl.yahooSearch(form)">
+
+            <div class="input-field">
+              <input type="text" class="validate" placeholder="Stock Symbol Search" ng-model="ctrl.stockInput">
+
+             <button class="btn btn-inverse btn-lg btn-login" type="submit">
+            Search
+            </button>
         </div>
       </form>
-
-
-
-
-
-
-
-      <ul class="collection with-header z-depth-4">
-          <li class="collection-header"><div><h5>Name <a class="secondary-content">{{ctrl.yahooResults.name}}</h5></a></div></li>
+          </li>
+          <li class="collection-item"><div><h5>Name <a class="secondary-content">{{ctrl.yahooResults.name}}</h5></a></div></li>
           <li class="collection-item"><div>PE Ratio<a class="secondary-content">{{ctrl.yahooResults.peRatio}}</a></div></li>
           <li class="collection-item"><div>Dividend Yield <a class="secondary-content">{{ctrl.yahooResults.dividendYield}}</a></div> </li>
           <li class="collection-item"><div>Price <a class="secondary-content">{{ctrl.yahooResults.lastTradePriceOnly | currency}}</a></div></li>
@@ -50,6 +49,6 @@
           <li class="collection-item"><div>epsEstimateNextQuarter <a class="secondary-content">{{ctrl.yahooResults.epsEstimateNextQuarter}}</a></div></li>
       </ul>
     </div>
-
+</div> <!-- row -->
 
 </main>
