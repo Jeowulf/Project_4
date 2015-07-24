@@ -7,7 +7,8 @@ yahooFinance.historical({
   symbol: input,
   // fields: ['s', 'n', 'd1', 'l1', 'y', 'r', 'c'],
   from: '2011-01-01',
-  to: '2015-07-01'
+  to: '2015-07-01',
+  period: 'm'
   },
   function (err, quotes) {
     callback(quotes);
