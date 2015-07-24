@@ -10,7 +10,7 @@
                             </tr>
                           </thead>
                            <tbody>
-                               <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio">
+                               <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio" ng-hide="stock.qty === 0">
                                       <td>{{stock.qty}}</td>
                                       <td>{{stock.stock.name}}</td>
                               </tr>

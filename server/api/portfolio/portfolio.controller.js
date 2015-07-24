@@ -175,7 +175,7 @@ exports.index = function(req, res) {
   User.find().deepPopulate('portfolio portfolio.stocksInPortfolio portfolio.stocksInPortfolio.stock').exec(function(err, users){
     if(err) { return handleError(res, err); }
     // console.log(portfolios[1].stocksInPortfolio[0]);
-    console.log(users[1].portfolio.stocksInPortfolio[0]);
+    console.log(users[2].portfolio.stocksInPortfolio[0] + ' from all ports cal!!!!!@#@#$#%$^%^');
     return res.json(200, users);
   });
 };

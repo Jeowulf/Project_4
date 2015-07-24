@@ -6,7 +6,7 @@ angular.module('proj4App')
     var that = this;
     that.vis = false;
     that.tab = 0;
-
+    that.userName = Auth.getCurrentUser().name;
     //get the date
     that.date = new Date();
     // stockService.getUser();//helper for server
