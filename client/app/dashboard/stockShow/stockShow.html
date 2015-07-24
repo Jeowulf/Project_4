@@ -104,8 +104,19 @@
       </div>
     </div>
   <div id="cloudster">
-    <tang-cloud words="ctrl.words"></tang-cloud>
+
   </div>
+<div class="container">
+  <div class="row">
+    <div class="chartHolder col s12 m12 l12">
+      <h2 ng-click="ctrl.getHistorical(ctrl.stock.symbol)" class="chartD3 hvr-grow">Process Historical Data</h2>
+      <nvd3 options="ctrl.options" data="ctrl.data"></nvd3>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
 

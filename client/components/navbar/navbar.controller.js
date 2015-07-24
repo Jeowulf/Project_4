@@ -29,11 +29,11 @@ angular.module('proj4App')
       'link': '/',
       'img': "../../../../assets/images/homeIcon.png"
       },
-      {
-      'title': 'allPortfolios',
-      'link': '/allPortfolios',
-      'img': ""
-      },
+      // {
+      // 'title': 'allPortfolios',
+      // 'link': '/allPortfolios',
+      // 'img': ""
+      // },
      {
       'title': 'Stocks',
       'link': '/stockinventory',
