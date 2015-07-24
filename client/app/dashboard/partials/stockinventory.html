@@ -1,12 +1,9 @@
 
   <main>
-    <div class="overlay">
-
-    </div>
 
       <div class="companies row">
-        <div class="col s12 m6 l3" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
-          <div class="card">
+        <div class="stockCard col s12 m6 l3" ng-repeat="stock in ctrl.stockInventory" ng-click="ctrl.goStock(stock)">
+            <div id="stockCard" class="card hvr-grow">
             <div class="card-image">
               <img src="assets/images/{{stock.name | limitTo:4}}.jpg">
             </div>
