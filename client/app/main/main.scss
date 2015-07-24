@@ -347,6 +347,7 @@ canvas#line {
     overflow: hidden;
     overflow-y: scroll;
 }
+//Card Stuff
 .card .card-title {
   color: white;
 }
@@ -359,10 +360,10 @@ canvas#line {
 #stockCard:hover {
   background-color: #ff3d00;
 }
-#stockCard {
-  min-height: 572px;
-  min-width: 345px;
-}
+// #stockCard {
+//   min-height: 50%;
+//   min-width: 30%;
+// }
 .companies {
   border-bottom: 3px solid transparent;
 }
