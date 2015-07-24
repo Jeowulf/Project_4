@@ -1,18 +1,8 @@
-
-
-<!-- PLACE TO DISPLAY TWITTER SENTIMENT ANALYSIS RESULTS -->
-
-<!-- <tang-cloud></tangcloud>
- -->  <!--     {{ctrl.twitAnalysis.tokens}}
-      {{ctrl.twitAnalysis.words}} -->
-
-
     <ul class="collection">
-      <li class="collection-item">twitAnalysis.score: {{ctrl.twitAnalysis.score}}</li>
+      <li class="collection-item"><div> <p class="secondary-content">{{ctrl.twitAnalysis.score}}</p></div></li>
       <li class="collection-item">twitAnalysis.comparative: {{ctrl.twitAnalysis.comparative}}</li>
       <li class="collection-item">Negative: {{ctrl.twitAnalysis.negative}} </li>
       <li class="collection-item">Positive: {{ctrl.twitAnalysis.positive}} </li>
     </ul>
     <tang-cloud words="ctrl.words"></tang-cloud>
 
-<!-- {{ctrl.words}} -->

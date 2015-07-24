@@ -44,7 +44,11 @@ angular.module('proj4App')
       'link': '/portfolio',
       'img': "../../../../assets/images/moneyIcon.png"
       },
-
+      {
+      'title': 'Research',
+      'link': '/research',
+      'img': ""
+      }
     ]
 
     $scope.isCollapsed = true;

@@ -1,0 +1,55 @@
+<main>
+
+    <div class="row">
+      <div class="col s12 m4 l2 z-depth-2" ng-include="'app/dashboard/partials/twitsearch.html'"></div>
+      <div class="col s12 m4 l8">
+       <ul class="collection with-header z-depth-2">
+        <li class="collection-item"><h4>Twitter Sentiment Anaysis for: {{ctrl.userInput}}</h4></li>
+        <li class="collection-item"><div>Sentiment Analysis Score<a class="secondary-content black-text">{{ctrl.twitAnalysis.score}}</a></div></li>
+        <li class="collection-item"><div>Comparative Analysis Score<a class="secondary-content black-text">{{ctrl.twitAnalysis.comparative}}</a></div></li>
+        <li id="wrap" class="collection-item avatar"><p>Top Positive Words:</p><br>{{ctrl.twitAnalysis.positive.toString()}}</li>
+        <li id="wrap" class="collection-item avatar"><p>Top Negative Words:</p><br>{{ctrl.twitAnalysis.negative.toString()}}</li>
+      </ul>
+      </div>
+    </div>
+
+
+
+  <div class="row">
+    <form class="" ng-submit="ctrl.yahooSearch(form)">
+
+       <div class="input-field">
+          <input type="text" class="validate" ng-model="ctrl.stockInput">
+          <label for="first_name">Stock Symbol</label>
+           <button class="btn btn-inverse btn-lg btn-login" type="submit">
+           Search
+          </button>
+        </div>
+      </form>
+
+
+
+
+
+
+
+      <ul class="collection with-header z-depth-4">
+          <li class="collection-header"><div><h5>Name <a class="secondary-content">{{ctrl.yahooResults.name}}</h5></a></div></li>
+          <li class="collection-item"><div>PE Ratio<a class="secondary-content">{{ctrl.yahooResults.peRatio}}</a></div></li>
+          <li class="collection-item"><div>Dividend Yield <a class="secondary-content">{{ctrl.yahooResults.dividendYield}}</a></div> </li>
+          <li class="collection-item"><div>Price <a class="secondary-content">{{ctrl.yahooResults.lastTradePriceOnly | currency}}</a></div></li>
+          <li class="collection-item"><div>Change <a class="secondary-content">{{ctrl.yahooResults.change}}</a></div></li>
+          <li class="collection-item"><div>changeFrom200DayMovingAverage <a class="secondary-content">{{ctrl.yahooResults.changeFrom200DayMovingAverage}}</a> </div></li>
+          <li class="collection-item"><div>changeAndPercentChange <a class="secondary-content">{{ctrl.yahooResults.changeAndPercentChange | currency}}</a></div></li>
+          <li class="collection-item"><div>Days Range <a class="secondary-content">{{ctrl.yahooResults.daysRange}}</a></div></li>
+          <li class="collection-item"><div>Open <a class="secondary-content">{{ctrl.yahooResults.open}} </a></div></li>
+          <li class="collection-item"><div>Volume <a class="secondary-content">{{ctrl.yahooResults.volume}}</a></div></li>
+          <li class="collection-item"><div>Change: <a class="secondary-content">{{ctrl.yahooResults.change}}</a></div></li>
+          <li class="collection-item"><div>marketCapitalization <a class="secondary-content">{{ctrl.yahooResults.marketCapitalization}}</a></div> </li>
+          <li class="collection-item"><div>epsEstimateCurrentYear <a class="secondary-content">{{ctrl.yahooResults.epsEstimateCurrentYear}}</a></div></li>
+          <li class="collection-item"><div>epsEstimateNextQuarter <a class="secondary-content">{{ctrl.yahooResults.epsEstimateNextQuarter}}</a></div></li>
+      </ul>
+    </div>
+
+
+</main>
