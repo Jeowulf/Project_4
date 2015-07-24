@@ -359,11 +359,13 @@ canvas#line {
 }
 #stockCard:hover {
   background-color: #ff3d00;
+  z-index: 1000;
 }
-// #stockCard {
-//   min-height: 50%;
-//   min-width: 30%;
-// }
+
+#stockCard {
+  height: 572px;
+  width: 345px;
+}
 .companies {
   border-bottom: 3px solid transparent;
 }
@@ -395,8 +397,8 @@ canvas#line {
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.6s;
+  transition-duration: 0.6s;
   -webkit-transition-property: transform;
   transition-property: transform;
 }
@@ -409,8 +411,8 @@ canvas#line {
   border-style: solid;
   border-width: 10px 10px 10px 0;
   border-color: transparent #e1e1e1 transparent transparent;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.6s;
+  transition-duration: 0.6s;
   -webkit-transition-property: transform;
   transition-property: transform;
 }
