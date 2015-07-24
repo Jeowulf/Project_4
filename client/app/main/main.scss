@@ -353,6 +353,14 @@ canvas#line {
 .card .card-content h5 {
   color: white;
 }
-.card:hover {
+#stockCard:hover {
   background-color: #ff3d00;
 }
+#stockCard {
+  min-height: 572px;
+  min-width: 345px;
+}
+.companies {
+  border-bottom: 3px solid transparent;
+}
+
