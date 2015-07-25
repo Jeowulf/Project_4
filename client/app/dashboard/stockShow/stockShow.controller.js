@@ -50,6 +50,11 @@ angular.module('proj4App')
       };        //end if statemen
   };
   that.sellStock = function(stock) {
+    var price = stock.lastTradePriceOnly * stock.qty;
+    if (that.myPortfolio.cash < 20) {
+      toastr.error("Can't afford commission");
+    }
+    else {
     console.log(that.myPortfolio.cash + "$$$$$");
     portfolioService.sellStock(stock).then(function(json) {
       console.log('promise here!');
@@ -62,6 +67,7 @@ angular.module('proj4App')
       toastr.error("Not enough to sell");
     });
   };
+}
   //portfolio
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
