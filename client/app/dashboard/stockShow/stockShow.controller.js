@@ -76,13 +76,14 @@ angular.module('proj4App')
   }
   that.getUserPortfolio();
 
-  //Get historical stock data
+  //Get historical stock data, calls two functions to set up chart
   that.getHistorical = function(input) {
     yahooFinanceService.historicalSingle(input).success(function(json) {
       that.historicalData = json;
       that.fillChartArray();
       console.log(json)
       that.createChart();
+      that.twitSentQuery();
       });
     };
 
@@ -217,9 +218,8 @@ console.log(that.words + ' is word array');
     console.log(points, evt);
   };
 
-  //wordcloud
-  //create  {id: 1, word: "oke", size: 1}, format
-  that.twitAnalysisWithReset = [];
+    //calls twitter, grabs score and puts words in an array and assigns a size value based on recurrence of word
+    that.twitAnalysisWithReset = [];
     that.twitAnalysis = [];
     that.wordsArray = [];
     that.words = [{word: 'love', size: 1}, {word: 'hate', size: 5}];
@@ -260,6 +260,7 @@ console.log(that.words + ' is word array');
       });
       }
     }
+  //fills the arrays with yahooHistorical data that the chart can interpret
   that.fillChartArray = function() {
     that.data = [{key: "High", values: [], mean: 0}, {key: "Low", values: [], mean: 0}, {key: "close", values: [], mean: 0}, {key: "adjClose", values: [], mean: 0} ];
     var meanTotal = 0;
@@ -286,9 +287,9 @@ console.log(that.words + ' is word array');
       console.log(that.data[0].values.length);
       console.log("finished");
   }
-
+  //creates the chart
     that.createChart = function () {
-      console.log("it begins")
+    console.log("it begins")
      that.options = {
             chart: {
                 type: 'cumulativeLineChart',

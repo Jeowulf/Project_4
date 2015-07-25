@@ -91,3 +91,51 @@ tang-cloud{
     height: 50px;
     width: 50px;
 }
+.stock-show {
+    height: 8em;
+}
+.cashHeader {
+    text-align: left;
+}
+.chartHolder {
+    height: 30em;
+    background: white;
+    border: 3px dotted #ff3d00;
+}
+.valueOverChart {
+    width: 5em;
+    float: right;
+    color: black;
+}
+.sentimentOverChart {
+    width: 5em;
+    color: black;
+    float: right;
+}
+.card {
+    text-align: center;
+}
+.cashCard {
+    height:10em;
+}
+.cashButton {
+    position: relative;
+    bottom: 8em;
+}
+.t-score {
+   color: #ff3d00;
+}
+.values {
+    padding-top: 3em;
+    float: right;
+}
+.twitterScoreOnIcon {
+    width: 2em;
+    height: 2em;
+    position:relative;
+    bottom: 5em;
+}
+.tweets {
+    position: relative;
+    z-index: 0;
+}
