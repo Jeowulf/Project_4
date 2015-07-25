@@ -1,9 +1,9 @@
 <main>
-<div class="portfolio-total indigo z-depth-5 white-text">
+<div class="portfolio-total white z-depth-5 black-text">
   <p> </p><br>
-  <h4 class="center-align">{{ctrl.userName}}'s Total Portofolio Value: {{(ctrl.myPortfolio.cash + ctrl.total) | currency}}</h4>
-  <h5 class="center-align">As of: {{ctrl.date | date:'yyyy-MM-dd'}}<br>{{ctrl.userName}}'s Stock(s) Value: {{ctrl.total | currency}}</h5>
-  <h5 class="center-align">{{ctrl.userName}}'s cash: {{ctrl.myPortfolio.cash | currency }}</h5>
+  <h4 class="center-align">{{ctrl.userName}}'s Total Portofolio Value: <span class="deep-orange-text accent-3">{{(ctrl.myPortfolio.cash + ctrl.total) | currency}}</span></h4>
+  <h5 class="center-align">As of: {{ctrl.date | date:'yyyy-MM-dd'}}<br>{{ctrl.userName}}'s Stock(s) Value: <span class="deep-orange-text accent-3">{{ctrl.total | currency}}</span></h5>
+  <h5 class="center-align">{{ctrl.userName}}'s cash: <span class="deep-orange-text accent-3">{{ctrl.myPortfolio.cash | currency }}</span></h5>
 
   <p class="center-align "><a ng-show="ctrl.total ===0" class="red waves-effect waves-green btn" ng-href="/stockinventory">BUY STOCKS</a></p>
 </div>
@@ -22,8 +22,8 @@
     <tbody>
       <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio" ng-click="ctrl.goStock(stock.stock)" ng-hide="stock.qty === 0">
         <td>{{ stock.stock.name }}</td>
-        <td>{{stock.qty}}</td>
-        <td>{{ stock.stock.lastTradePriceOnly | currency}}</td>
+        <td class="deep-orange-text accent-3">{{stock.qty}}</td>
+        <td class="deep-orange-text accent-3">{{ stock.stock.lastTradePriceOnly | currency}}</td>
       </tr>
     </tbody>
     </table>
