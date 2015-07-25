@@ -11,8 +11,8 @@
                           </thead>
                            <tbody>
                                <tr ng-repeat="stock in ctrl.myPortfolio.stocksInPortfolio" ng-hide="stock.qty === 0">
-                                      <td>{{stock.qty}}</td>
-                                      <td>{{stock.stock.name}}</td>
+                                      <td class="deep-orange-text accent-3">{{stock.qty}}</td>
+                                      <td class="deep-orange-text accent-3">{{stock.stock.name}}</td>
                               </tr>
                           </tbody>
                       </table>

@@ -1,5 +1,4 @@
 body {
-  color: #004d40;
   font-family: raleway;
 }
 .thing-form {
@@ -429,8 +428,27 @@ canvas#line {
   position: relative;
   right: 100px;
 }
-
-
+.hvr-grower {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 .03em rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-grower:hover, .hvr-grower:focus, .hvr-grower:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+nav li.active {
+  background-color: #FFF;
+}
 
 
 
