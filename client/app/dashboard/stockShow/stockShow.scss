@@ -100,7 +100,7 @@ tang-cloud{
 .chartHolder {
     height: 30em;
     background: white;
-    border: 3px dotted #ff3d00;
+    border: 3px solid #ff3d00;
 }
 .valueOverChart {
     width: 5em;
@@ -155,4 +155,9 @@ tang-cloud{
      overflow: hidden;
     overflow-y: scroll;
 }
-
+.chartD3 {
+    background-color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    float: left;
+}
