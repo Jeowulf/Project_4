@@ -8,14 +8,8 @@
 </div>
 <h4>Cash in Portfolio:</h4>
 <h1>{{ctrl.myPortfolio.cash | currency}}</h1>
-<h2 ng-click="ctrl.getHistorical(ctrl.stock.symbol); ctrl.twitSentQuery(ctrl.stock.twitterHandle)"class="chartD3 hvr-grow">Process Historical Data</h2>
+<h2 ng-click="ctrl.getHistorical(ctrl.stock.symbol); ctrl.twitSentQuery(ctrl.stock.twitterHandle)"class="chartD3 hvr-grow">Process Stock Data</h2>
 <div class="container">
-<h5 class="tweets">
-  {{ctrl.twitAnalysis.words}}
-</h5>
-  <!-- <h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5> -->
   <div class="row values">
     <h5 class="col s6 sentimentOverChart">sentiment score: <span class="t-score">{{ctrl.twitAnalysis.score || "?"}}</span></h5>
     <h5 class="col s6 valueOverChart">current value: {{ctrl.stock.lastTradePriceOnly | currency}}</h5>
@@ -23,6 +17,11 @@
 
   <div class="row">
     <div class="chartHolder col s12 m12 l12">
+    <h6 class="infolink hvr-push" ng-click="ctrl.clickToOpen()">How does this chart work?</h6>
+    <script type="text/ng-template" id="templateId">
+      <h3>chart-reading tip</h3>
+      <p>The chart represents the past 54 months of stock data, and the percentage (higher or lower) variance from that starting point.  If you bought this stock 4 months ago and are interested in seeing your stock grow higher or lower from that point, click on the graph above fifty to set a new origin tracking bar and evaluate you growth from that specific ppint!</p>
+    </script>
       <nvd3 options="ctrl.options" data="ctrl.data"></nvd3>
     </div>
   </div>
@@ -59,7 +58,30 @@
     </div>
   </div>
 </div>
-  that.myPortfolio.stocksInPortfolio[0].stock._id
+<!-- <div class="partyWrapper">
+
+<div class="wordsParty row">
+  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
+  </h5></div>
+  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
+  </h5></div>
+  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
+  </h5></div>
+  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
+  </h5></div>
+  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
+  </h5></div>
+  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
+          {{word}}
+  </h5></div>
+</div>
+</div>
+  that.myPortfolio.stocksInPortfolio[0].stock._id -->
 <!-- page slide stuff for portfolio -->
 
 <div ng-include="'app/dashboard/partials/slideoutportfolio.html'"></div>
@@ -98,7 +120,7 @@
     </div>
   </div> -->
 
-  <div class="row gridRow">
+ <!--  <div class="row gridRow">
    <div class="col s1"></div>
     <div id="financeGraph" class="col s6" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">
     <div class="container">
@@ -127,7 +149,7 @@
 
 
 
-
+ -->
 </main>
 
 

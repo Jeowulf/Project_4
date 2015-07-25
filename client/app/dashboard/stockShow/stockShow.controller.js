@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('proj4App')
-  .controller('StockShowCtrl', function ($scope, $stateParams, yahooFinanceService, twitSentService, stockService, portfolioService, toastr) {
+  .controller('StockShowCtrl', function ($scope, $stateParams, yahooFinanceService, twitSentService, stockService, portfolioService, toastr, ngDialog) {
     console.log('StockShowCtrl is alive!!' + $stateParams);
 
 
@@ -11,7 +11,10 @@ angular.module('proj4App')
   that.date = new Date();
   var id = $stateParams.stockId;
 
-
+  that.clickToOpen = function () {
+      console.log("ngFunctionate!")
+        ngDialog.open({ template: 'templateId' });
+    };
 
   that.checked = false; // This will be binded using the ps-open attribute
 

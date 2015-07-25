@@ -138,4 +138,21 @@ tang-cloud{
 .tweets {
     position: relative;
     z-index: 0;
+    bottom: 30em;
 }
+.wordsParty {
+    postion:relative;
+    z-index: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    bottom: 30em;
+}
+.partyWrapper {
+    postion:relative;
+    z-index: 0;
+     bottom: 30em;
+     height: 30em;
+     overflow: hidden;
+    overflow-y: scroll;
+}
+
