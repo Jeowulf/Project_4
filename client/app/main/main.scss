@@ -446,7 +446,10 @@ canvas#line {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-nav li.active {
+.side-nav li.active {
+  background-color: #FFF;
+}
+.side-nav li:hover, .side-nav li.active {
   background-color: #FFF;
 }
 
