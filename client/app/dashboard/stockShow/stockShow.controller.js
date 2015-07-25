@@ -35,12 +35,15 @@ angular.module('proj4App')
     console.log(that.total + ' is total from buystock' + price + ' is price');
     console.log(that.myPortfolio.cash + "$$$$$");
     //VALIDATION to check that user has enough cash in portfolio(amt is in DB)
-    if(price <= that.myPortfolio.cash){
+    if(price <= that.myPortfolio.cash - 20){
       portfolioService.buyStock(stock).then(function(json) {
         that.myPortfolio = json; //TODO: fix what the server is returning
         that.getUserPortfolio(); //janky workaround!!
         toastr.success(stock.qty + 'share(s) purchased');
       });
+    }
+    else if (price <= that.myPortfolio.cash) {
+      toastr.error("Can't afford commission");
     }
       else {
         toastr.error("You can't afford this");

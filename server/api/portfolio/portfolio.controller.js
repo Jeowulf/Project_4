@@ -61,7 +61,7 @@ exports.buyStock = function(req, res) {
             //let's get a price to deduct from total!
             console.log(price + ' is PRICE!!!!!!!!!!!');
 
-            portfolio.cash = portfolio.cash - price;
+            portfolio.cash = (portfolio.cash - price) - 20;
             console.log(portfolio.cash + ' is portfolio.cash');
             portfolio.save(function(){
               return res.json(201, portfolio);
@@ -77,7 +77,7 @@ exports.buyStock = function(req, res) {
             var price = stock.lastTradePriceOnly * stockQty;
             //let's get a price to deduct from total!
             console.log(price + ' is PRICE!!!!!!!!!!!');
-            portfolio.cash = portfolio.cash - price;
+            portfolio.cash = (portfolio.cash - price) - 20;
             console.log(portfolio.cash + ' is portfolio.cash')
             portfolio.save(function() {
               console.log('saving and returning response portfolio::::::::' + portfolio.stocksInPortfolio);

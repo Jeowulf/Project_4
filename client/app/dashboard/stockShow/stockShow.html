@@ -46,7 +46,7 @@
         <div class="card-content white-text">
             <!-- TODO: FIX THIS. get rid of JANKY ng-model -->
           <span class="card-title"><input placeholder="Stock Quantity"type="number" ng-model="ctrl.stock.qty"></span>
-          <p>{{ctrl.myPortfolio.cash | currency}}</p>
+          <p>{{ctrl.myPortfolio.cash | currency}}<span class="asterix">*</span></p>
         </div>
         <div class="card-action">
           <div class="valign-wrapper">
@@ -55,9 +55,11 @@
           </div>
         </div>
       </div>
+      <h6>* All transactions will be assessed a $20.00 transaction fee</h6>
     </div>
   </div>
 </div>
+
 <!-- <div class="partyWrapper">
 
 <div class="wordsParty row">
