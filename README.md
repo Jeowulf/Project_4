@@ -21,9 +21,22 @@ is an extremely useful API that has relevenat stock data available in multiple f
 The library we used to assist with this available [here] 
 (https://github.com/pilwon/node-yahoo-finance).  
 
-The main chart used to interpret the stock data is one of many available at [NVD3.org] (NVD3.org). 
+The main chart used to interpret the stock data is one of many available at [NVD3.org] (http://www.nvD3.org). 
 
 #The Game
 The user signs up for an account and is immeidately given $10,000 in a fantasy cash wallet to spend on stocks online.  From here the user can create a porfolio, browse, purchase and sell stocks, and attempt to grow overall portfolio value by making smart stock decisions that will reflect real-life stock fluctuations.  All transactions, buying and selling, are accessed a $20.00 standard fee in order to reflect real-life practices and encourage smart investing.  If you cannot afford the fee the game is over.
 
 Users are only allowed to invest in stock offered through the game's from stock inventory.  Though it is likely this inventory will grow over time, the project's focus on the potential correlation between twitter talk (public sentiment) and stock performance deemed most relevant large companies that have an active twitter presence.  
+
+#The Developers
+**Colin Taylor**
+is a full stack developer.
+View his work on [github]
+(https://github.com/ColinRTaylor/Project_4)
+ or visit his [portfolio site]
+ (http://colinrtaylor.com).
+ 
+ **Justin Jacot**
+ is a full stack developer.  View his work on [github] (https://github.com/Jeowulf)
+ or visit his [portfolio site] 
+ (https://jeowulf.github.io/).
