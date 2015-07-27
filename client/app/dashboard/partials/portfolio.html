@@ -1,11 +1,12 @@
 <main>
-<div class="portfolio-total white z-depth-5 black-text">
-  <p> </p><br>
-  <h4 class="center-align">{{ctrl.userName}}'s Total Portofolio Value: <span class="deep-orange-text accent-3">{{(ctrl.myPortfolio.cash + ctrl.total) | currency}}</span></h4>
-  <h5 class="center-align">As of: {{ctrl.date | date:'yyyy-MM-dd'}}<br>{{ctrl.userName}}'s Stock(s) Value: <span class="deep-orange-text accent-3">{{ctrl.total | currency}}</span></h5>
-  <h5 class="center-align">{{ctrl.userName}}'s cash: <span class="deep-orange-text accent-3">{{ctrl.myPortfolio.cash | currency }}</span></h5>
-
-  <p class="center-align "><a ng-show="ctrl.total ===0" class="red waves-effect waves-green btn" ng-href="/stockinventory">BUY STOCKS</a></p>
+<div class="row">
+  <div class="col s6 offset-s3 portfolio-total z-depth-5 black-text">
+    <p> </p><br>
+    <h4 class="center-align">{{ctrl.userName}}'s Total Portofolio Value: <span class="deep-orange-text accent-3">{{(ctrl.myPortfolio.cash + ctrl.total) | currency}}</span></h4>
+    <h5 class="center-align">As of: {{ctrl.date | date:'yyyy-MM-dd'}}<br>{{ctrl.userName}}'s Stock(s) Value: <span class="deep-orange-text accent-3">{{ctrl.total | currency}}</span></h5>
+    <h5 class="center-align">{{ctrl.userName}}'s cash: <span class="deep-orange-text accent-3">{{ctrl.myPortfolio.cash | currency }}</span></h5>
+    <p class="center-align "><a ng-show="ctrl.total ===0" class="red waves-effect waves-green btn" ng-href="/stockinventory">BUY STOCKS</a></p>
+  </div>
 </div>
 
 <hr>

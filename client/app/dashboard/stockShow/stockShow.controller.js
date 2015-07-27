@@ -10,6 +10,9 @@ angular.module('proj4App')
   var that = this;
   that.date = new Date();
   var id = $stateParams.stockId;
+  that.chartNum = 0;
+  that.twitScoreKnown = 0;
+  that.cloudClick =0;
 
   that.clickToOpen = function () {
       console.log("ngFunctionate!")
@@ -71,6 +74,8 @@ angular.module('proj4App')
   //portfolio
   that.getUserPortfolio = function() {
     portfolioService.getUserPortfolio().success(function(json) {
+      that.thisStock = [];
+      that.thisStockQty = 0;
       that.myPortfolio = json;
       // console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio.stocksInPortfolio[0]));
       //set all the actual stocks(which is an array) in the portfolio equal to varialbe.
@@ -84,6 +89,17 @@ angular.module('proj4App')
         that.total += price;
       });
       console.log(that.total + ' is user portfolio total');
+      console.log(that.myPortfolio.stocksInPortfolio);
+      //find individual stock in portfolio info for current page's stock
+      for (var i =0; i < that.myPortfolio.stocksInPortfolio.length; i++) {
+        console.log(that.myPortfolio.stocksInPortfolio[i].stock.symbol);
+        console.log(that.stock.symbol)
+        if (that.myPortfolio.stocksInPortfolio[i].stock.symbol === that.stock.symbol) {
+          that.thisStock.push({qty: that.myPortfolio.stocksInPortfolio[i].qty, stock: that.myPortfolio.stocksInPortfolio[i].stock});
+        }
+      }
+      console.log(that.thisStock[0])
+      that.thisStockQty = that.thisStock[0].qty
     });
   }
   that.getUserPortfolio();
@@ -110,34 +126,35 @@ angular.module('proj4App')
    })
   }
 //twitter/ wordcloud
-  that.words = [];
-  that.wordArray = function  (my_array) {
+//   that.words = [];
+//   that.wordArray = function  (my_array) {
 
-     _(my_array).forEach(function(n) {
-        var x = Math.floor(Math.random() * 10) + 1;
-        that.words.push({id: x, word: n, size: x});
+//      _(my_array).forEach(function(n) {
+//         var x = Math.floor(Math.random() * 10) + 1;
+//         that.words.push({id: x, word: n, size: x});
 
-      });
-console.log(that.words + ' is word array');
-  }
+//       });
+// console.log(that.words + ' is word array');
+//   }
 
 
-      that.twitSentQuery = function(input) {
-      // console.log(that.userInput + 'is userInput');
-      if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
-      twitSentService.search(input).success(function(json) {
-        // console.log('twitSentQuery from DashboardCtrl');
-        // console.log(json);
-        that.twitAnalysis = json;
-        console.log(that.twitAnalysis.negative.length);
-        that.wordArray(that.twitAnalysis.negative);
-        // console.log(that.twitAnalysis.positive  + '     is that.twitAnalysis');
-        // that.twitAnaylsisData = json;
-        //wordcloud
-        // wordCloud(that.twitAnalysis.positive);
-      });
-      }
-    }
+//       that.twitSentQuery = function(input) {
+//       // console.log(that.userInput + 'is userInput');
+//       if (that.userInput !== '' || that.userInput !== null) { //Defensive programming - guard against empty answers TODO: research undefined
+//       twitSentService.search(input).success(function(json) {
+//         // console.log('twitSentQuery from DashboardCtrl');
+//         // console.log(json);
+//         that.twitAnalysis = json;
+//         console.log(that.twitAnalysis.negative.length);
+//         that.wordArray(that.twitAnalysis.negative);
+//         // console.log(that.twitAnalysis.positive  + '     is that.twitAnalysis');
+//         // that.twitAnaylsisData = json;
+//         //wordcloud
+//         // wordCloud(that.twitAnalysis.positive);
+//       });
+//       }
+//     }
+//original word cloud work above TODO: assess if anything here is worth saving
     that.open;
     that.close;
     that.low;
@@ -232,10 +249,10 @@ console.log(that.words + ' is word array');
 
     //calls twitter, grabs score and puts words in an array and assigns a size value based on recurrence of word
     that.twitAnalysisWithReset = [];
-    that.twitAnalysis = [];
     that.wordsArray = [];
     that.words = [{word: 'love', size: 1}, {word: 'hate', size: 5}];
     that.twitSentQuery = function(userInput, id, name) {
+    that.twitAnalysis = [];
       that.tab = 0;
       that.twitAnalysisWithReset = [];
       // console.log(that.userInput + 'is userInput');
@@ -265,10 +282,10 @@ console.log(that.words + ' is word array');
           }
         }
 
-        var change = document.getElementById("cloudster");
-        //change.appendChild(tangy);
+        // var change = document.getElementById("cloudster");
+        // //change.appendChild(tangy);
         console.log("that.word = " + that.words)
-        change.innerHTML = "<tang-cloud words='ctrl.words'></tang-cloud>";
+        // change.innerHTML = "<tang-cloud words='ctrl.words'></tang-cloud>";
       });
       }
     }
@@ -347,5 +364,6 @@ console.log(that.words + ' is word array');
         console.log("step 2");
         console.log('step 3')
       };
+      console.log("stocksSTUFF : " + that.myPortfolio)
 });
 

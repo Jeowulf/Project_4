@@ -1,60 +1,61 @@
 .tangcloud {
-    height: 500px;
-    width: 500px;
+    height: 15em;
+    width: 15em;
+    position: relative;
+    left: 6.5em;
 }
-
 .tangcloud span {
     line-height: 100%;
 }
 
 .tangcloud-item-1 {
     font-size: 1.3em;
-    color: #080808;
+    color: #1C1A1A;
 }
 
 .tangcloud-item-2 {
     font-size: 1.6em;
-    color: #101010;
+    color: #595252;
 }
 
 .tangcloud-item-3 {
     font-size: 1.9em;
-    color: #181818;
+    color: #A89C9C;
 }
 
 .tangcloud-item-4 {
     font-size: 2.2em;
-    color: #303030;
+    color: #E7D9D9;
 }
 
 .tangcloud-item-5 {
     font-size: 2.5em;
-    color: #282828;
+    color: #FFF6F6;
 }
 
 .tangcloud-item-6 {
     font-size: 2.8em;
-    color: #202020;
+    color: #FFE1E1;
 }
 
 .tangcloud-item-7 {
     font-size: 3.1em;
-    color: #383838;
+    color: #FFC1C1;
 }
 
 .tangcloud-item-8 {
     font-size: 3.4em;
-    color: #404040;
+    color: #FF9E9E;
 }
 
 .tangcloud-item-9 {
     font-size: 3.7em;
-    color: #484848;
+    color: #FF6464;
 }
 
 .tangcloud-item-10 {
     font-size: 4em;
-    color: #000000;
+    color: #FF0000;
 }
 
 .tangcloud-item-hidden {
@@ -63,9 +64,7 @@
 #shownav {
     z-index: 99;
 }
-.stock-show {
-    padding: 100em;
-}
+
 
 #slidepage {
     direction: rtl;
@@ -127,7 +126,6 @@ tang-cloud{
 }
 .values {
     padding-top: 3em;
-    float: right;
 }
 .twitterScoreOnIcon {
     width: 2em;
@@ -140,21 +138,7 @@ tang-cloud{
     z-index: 0;
     bottom: 30em;
 }
-.wordsParty {
-    postion:relative;
-    z-index: 0;
-    overflow: hidden;
-    overflow-y: scroll;
-    bottom: 30em;
-}
-.partyWrapper {
-    postion:relative;
-    z-index: 0;
-     bottom: 30em;
-     height: 30em;
-     overflow: hidden;
-    overflow-y: scroll;
-}
+
 .chartD3 {
     background-color: white;
     border-radius: 10px;
@@ -164,3 +148,34 @@ tang-cloud{
 .asterix {
     font-size: 2em;
 }
+.topRow {
+    height: 42em;
+    margin-top: -6%;
+}
+.chartPlaceholder {
+    height: 30em;
+    padding: 10% 25% 10% 25%;
+}
+.twitterHolder {
+    height: 31.85em;
+    padding: 30%;
+}
+.cardShowPage {
+    height: 31.925em;
+}
+@media only screen and (min-width: 993px) {
+.row .col.l3 {
+    width: 23%;
+    margin-left: 1%;
+    }
+}
+.rowTwo {
+    margin-top: -5%;
+}
+.cloudSpot {
+    padding-top: 5em;
+}
+.cloudCaption {
+    position: relative;
+}
+
