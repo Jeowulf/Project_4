@@ -302,10 +302,10 @@ angular.module('proj4App')
       meanTotal3 = meanTotal3 + that.historicalData[i].close;
       meanTotal4 = meanTotal4 + that.historicalData[i].adjClose;
     };
-    that.data[0].mean = meanTotal / that.historicalData.length;
-    that.data[1].mean = meanTotal2 / that.historicalData.length;
-    that.data[2].mean = meanTotal3 / that.historicalData.length;
-    that.data[3].mean = meanTotal4 / that.historicalData.length;
+    // that.data[0].mean = (meanTotal / that.historicalData.length) / that.historicalData[0].high;
+    // that.data[1].mean = (meanTotal2 / that.historicalData.length) / that.historicalData[0].low;
+    // that.data[2].mean = (meanTotal3 / that.historicalData.length) / that.historicalData[0].close;
+    // that.data[3].mean = (meanTotal4 / that.historicalData.length) / that.historicalData[0].adjClose;
     for (var i = 0; i < that.historicalData.length; i ++) {
       that.data[0].values.push([i, that.historicalData[i].high]);
       that.data[1].values.push([i, that.historicalData[i].low]);
