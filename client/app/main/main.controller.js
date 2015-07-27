@@ -5,14 +5,9 @@ angular.module('proj4App')
     // var that = this;
     this.colinLinks = [{
       'link': 'mailto:colinrileytaylor@gmail.com',
-      'icon':
+      'icon': ''
       'class': "yellow darken"
       },
-      // {
-      // 'title': 'allPortfolios',
-      // 'link': '/allPortfolios',
-      // 'img': ""
-      // },
      {
       'link': '/stockinventory',
       'img': "../../../../assets/images/stockIcon.png",
@@ -29,11 +24,6 @@ angular.module('proj4App')
       'img': "../../../../assets/images/homeIcon.png",
       'class': "yellow darken"
       },
-      // {
-      // 'title': 'allPortfolios',
-      // 'link': '/allPortfolios',
-      // 'img': ""
-      // },
      {
       'link': '/stockinventory',
       'img': "../../../../assets/images/stockIcon.png",
