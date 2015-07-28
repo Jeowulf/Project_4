@@ -6,11 +6,11 @@ angular.module('proj4App')
     that.tab = 82;
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
+      'link': '/',
     }
-    // ,
-    // {'title': 'Dashboard',
-    // 'link': '/dashboard'}
+    ,
+    {'title': 'About',
+    'link': '/about'}
     ];
     $scope.checked = false;
     $scope.toggle = function(){
