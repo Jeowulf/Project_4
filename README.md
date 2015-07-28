@@ -40,3 +40,22 @@ View his work on [github]
  is a full stack developer.  View his work on [github] (https://github.com/Jeowulf)
  or visit his [portfolio site] 
  (https://jeowulf.github.io/).
+ 
+ 
+#Technologies Used
+* AngularJS - 1.2
+* MongoDB - 3.0.3
+* ExpressJS - 4.0
+* AsyncJS - 1.3
+* Lodash - 2.4.1
+* Mongoose 3.8.8
+* Mongoose-deep-populate NPM module - 1.1
+* PassportJS - 0.2.
+* Sentiment NPM module - 1.0.2
+* Socket.io - 1.0.6
+* Twit NPM module - 2.1.0
+* Yahoo-finance NPM module - 0.2.11
+* Materialize - 0.97.0
+* Angular-nvd3 - 0.1.1
+
+ 
