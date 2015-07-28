@@ -89,7 +89,6 @@ exports.buyStock = function(req, res) {
     });
   });
 }
-
 exports.sellStock = function(req, res) {
   // console.log('buyStock, url = ' + req.url);
   var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
@@ -151,6 +150,7 @@ exports.sellStock = function(req, res) {
     });
   });
 }
+
 
 //get user's portfolio from DB
 exports.get = function(req, res) {

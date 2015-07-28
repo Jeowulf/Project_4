@@ -16,7 +16,6 @@ angular.module('proj4App')
       var userId = Auth.getCurrentUser()._id;
       return $http.patch('/api/users/' + userId + '/portfolio/' + stock._id, {qty: qty});
     }
-
     this.getUserPortfolio = function(){
       var userId = Auth.getCurrentUser()._id;
       return $http.get('/api/users/' + userId + '/portfolio/');
