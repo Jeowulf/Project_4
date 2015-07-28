@@ -89,9 +89,69 @@ exports.buyStock = function(req, res) {
     });
   });
 }
-
 exports.sellStock = function(req, res) {
   // console.log('buyStock, url = ' + req.url);
+  var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
+  console.log ('stockQty is:  +++' + stockQty);
+  var userId = req.params.userid.trim();
+  var stockId = req.params.stockid.trim();
+  // console.log('userId: ' + userId + ', stockId: ' + stockId);
+  // console.log(', stockId: ' + stockId);
+
+  Stock.findById(stockId, function(err, stock) {
+    // console.log('stock is: ' + stock);
+    if (err) { return handleError(res, err); }
+    if (!stock) { return res.send(404); }
+
+    User.findById(userId, function(err, user) {
+      if (err) { return handleError(res, err); }
+
+      if (!user) { return res.send(404); }
+      // console.log('user is: ' + user);
+      var portfolioId = user.portfolio;
+      // console.log('portfolio id for user is:' + portfolioId);
+
+      Portfolio.findById(portfolioId).populate("stocksInPortfolio").exec(function(err, portfolio) {
+        if (err) { return handleError(res, err); }
+        if (!portfolio) { return res.send(404); }
+        console.log(stock._id + 'is stock._id');
+        //Validation to see if stock is already in portfolio
+        var found = findStockInPortfolio(portfolio, stock._id);
+        if (found) {
+          console.log('Found stock ' + stock.name + ' in portfolio, therefore decrementing qty');
+          if (found.qty > 0 && found.qty >= stockQty){
+            // found.qty > stockQty ? found.qty - stock Qty : return handleError(res, err);
+            var price = stock.lastTradePriceOnly * stockQty;
+            //let's get a price to deduct from total!
+            console.log(price + ' is PRICE!!!!!!!!!!!');
+
+            portfolio.cash = portfolio.cash + price;
+            console.log(portfolio.cash + ' is portfolio.cash');
+
+          found.qty = found.qty - stockQty;
+          found.save(function() {
+            console.log('Saved new qty.');
+            portfolio.save(function(){
+              return res.json(201, portfolio);
+            });
+          });
+        }
+          else  {
+            console.log('stockQty was 0!!!');
+            return res.send(404);
+          }
+        }
+        else {
+          console.log('>>>>>>Stock not found');
+//Send a 404 if there's no stock
+         return res.send(404);
+        }
+      });
+    });
+  });
+}
+exports.konamiKash = function(req, res) {
+  console.log('konamiKash==========================');
   var stockQty = req.body.qty; //Let's save the stock quantity to a variable!!!
   console.log ('stockQty is:  +++' + stockQty);
   var userId = req.params.userid.trim();
