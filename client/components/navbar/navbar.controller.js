@@ -50,7 +50,7 @@ angular.module('proj4App')
       {
       'title': 'Research',
       'link': '/research',
-      'img': "",
+      'img': "../../../../assets/images/research.png",
       'class': "black"
       }
     ]
