@@ -27,7 +27,8 @@ angular.module('proj4App')
     $scope.sideMenu = [{
       'title': 'Home',
       'link': '/',
-      'img': "../../../../assets/images/homeIcon.png"
+      'img': "../../../../assets/images/homeIcon.png",
+      'class': "yellow darken"
       },
       // {
       // 'title': 'allPortfolios',
@@ -37,17 +38,20 @@ angular.module('proj4App')
      {
       'title': 'Stocks',
       'link': '/stockinventory',
-      'img': "../../../../assets/images/stockIcon.png"
+      'img': "../../../../assets/images/stockIcon.png",
+      'class': "green"
       },
       {
       'title': 'My Portfolio',
       'link': '/portfolio',
-      'img': "../../../../assets/images/moneyIcon.png"
+      'img': "../../../../assets/images/moneyIcon.png",
+      'class': "blue"
       },
       {
       'title': 'Research',
       'link': '/research',
-      'img': ""
+      'img': "",
+      'class': "black"
       }
     ]
 
