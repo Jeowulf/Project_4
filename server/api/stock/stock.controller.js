@@ -175,6 +175,8 @@ var job = new CronJob({
   start: false,
   timeZone: 'America/New_York'
 });
+updateStocks();
+console.log('we made it!');
 // test if your cron pattern is valid!!!!!!!!!!!!!!
 // function job3 (callback) {
 //     try {
