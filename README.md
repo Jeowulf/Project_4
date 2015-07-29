@@ -16,7 +16,7 @@ That score may or may not be found to correlate with a stock's success, but neve
 (https://github.com/Dragnipur/tiny-angular-wordcloud).
 
 **YahooFinanceAPI**
-is an extremely useful API that has relevenat stock data available in multiple forms that allows developers to retrieve current stock data as well as retrieve and present historical stock data in order to perceive a stock's performance over time.  
+is an extremely useful API that has relevenat stock data available in multiple forms that allows developers to retrieve current stock data as well as retrieve and present historical stock data in order to perceive a stock's performance over time. Node-cron NPM module is used to schedule an update to the stocks Monday to Friday, every hour from 9AM to 4PM EST.
 
 The library we used to assist with this available [here] 
 (https://github.com/pilwon/node-yahoo-finance).  
@@ -49,6 +49,7 @@ View his work on [github]
 * AsyncJS - 1.3
 * Lodash - 2.4.1
 * Mongoose 3.8.8
+* Node-cron 1.0.0
 * Mongoose-deep-populate NPM module - 1.1
 * PassportJS - 0.2.
 * Sentiment NPM module - 1.0.2
