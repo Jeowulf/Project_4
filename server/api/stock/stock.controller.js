@@ -4,6 +4,7 @@ var async = require('async');
 var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultipleSymbolSearch');
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
 var CronJob = require('cron').CronJob;
+var time;
 //Gets all da stocks
 exports.index = function(req, res) {
   console.log('stocks get was hit');
@@ -122,7 +123,7 @@ function isValidData(dataFromYahoo) {
   // }
   return true;
 }
-var time = new Date();
+
 
 //Admin only, updates stock prices
 //TODO: some validation to make sure correct stocks are matched
@@ -151,6 +152,7 @@ var updateStocks = function (req, res) {
           // console.log(stocks[i].name + '::::is stocks');
         }
       }
+      time = new Date();
       console.log('Parallel save of ' + functions.length + ' stocks at: ' + time + ' time' );
       async.parallel(functions, function(err, results) {
         if (err) return handleError(res, err);
@@ -161,26 +163,24 @@ var updateStocks = function (req, res) {
   });
 }
 //get a date for the console logs
+// 00 00 09-18 * * 2-6
 
 //start that job!
 var job = new CronJob({
-  cronTime: '00 09-18 * * 2-6',
+  cronTime: '00 09-16 * * 1-5', // M-F 9-4 PM EST
   onTick: function() {
-    /*
-     * Runs every weekday (Monday through Friday) from 9 - 6PM(hopefully)
-     */
      updateStocks();
      console.log('stocks updated at ' + time);
   },
   start: false,
   timeZone: 'America/New_York'
 });
-//test if your cron pattern is valid!!!!!!!!!!!!!!
+// test if your cron pattern is valid!!!!!!!!!!!!!!
 // function job3 (callback) {
 //     try {
 //         console.log('hit job3()');
 //         new CronJob({
-//             cronTime: '00 09-18 * * 1-5',
+//             cronTime: '00 48 10 * * 1-5',
 //             onTick: function () {
 //                console.log('this should not be printed');
 //             },
@@ -191,10 +191,10 @@ var job = new CronJob({
 //         callback('Daily sales sync cron pattern not valid');
 //     }
 // };
-//
+
 exports.update = function (req, res) {
     job.start();
-    console.log('job schedule started!')
+    console.log('Thanks for scheduling your update stocks job for M-F 9-4 PM EST!!!!');
     res.send(200);
 }
 
