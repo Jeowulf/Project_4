@@ -176,6 +176,7 @@ var job = new CronJob({
   timeZone: 'America/New_York'
 });
 updateStocks();
+job.start();
 console.log('we made it!');
 // test if your cron pattern is valid!!!!!!!!!!!!!!
 // function job3 (callback) {
@@ -195,6 +196,7 @@ console.log('we made it!');
 // };
 
 exports.update = function (req, res) {
+    updateStocks();
     job.start();
     console.log('Thanks for scheduling your update stocks job for M-F 9-4 PM EST!!!!');
     res.send(200);
