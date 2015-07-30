@@ -11,7 +11,8 @@ angular.module('proj4App', [
   'toastr',
   'pageslide-directive',
   'ngDialog',
-  'nvd3'
+  'nvd3',
+  'cgBusy'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');

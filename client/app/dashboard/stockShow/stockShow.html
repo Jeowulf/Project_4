@@ -27,6 +27,7 @@
         <div class="card-image cardShowPage waves-effect waves-block waves-light twitterHolder teal accent-2">
           <h3>Twitter Analysis Score</h3>
           <h3 class="deep-orange-text accent-3">{{ctrl.twitAnalysis.score}}</h3>
+          <div cg-busy="myPromise"></div>
           <a class="btn-floating btn-large waves-effect waves-light deep-orange-text accent-3 white" ng-click="ctrl.twitScoreKnown = 1; ctrl.twitSentQuery(ctrl.stock.twitterHandle)" ng-hide="ctrl.twitScoreKnown !== 0">?</a>
           <!-- <img class="activator hvr-grower" src="assets/images/twitterIcon.png"> -->
         </div>
@@ -35,8 +36,14 @@
           <!-- <p><a href="#">This is a link</a></p> -->
         </div>
         <div class="card-reveal">
-          <div data-clicker><button class="deep-orange accent-3 white-text" ng-click="ctrl.cloudClick = 1" ng-hide="ctrl.cloudClick === 1">Click to create</button></div>
           <span class="card-title grey-text text-darken-4">Twitter word cloud<i class="material-icons right">close</i></span>
+          <div ng-hide="ctrl.cloudClick === 1">
+            <br><br><br><br><br><br>
+          </div>
+          <div data-clicker><a class="btn-floating btn-large waves-effect waves-light deep-orange-text accent-3 white" ng-click="ctrl.cloudClick = 1" ng-hide="ctrl.cloudClick === 1">Cloud</a></div>
+          <div ng-hide="ctrl.cloudClick === 1">
+            <br><br><br>
+          </div>
           <div class="cloudSpot">
           </div>
             <script type="text/ng-template" id="/partials/pop.html">

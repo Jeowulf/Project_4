@@ -2,7 +2,7 @@
     height: 15em;
     width: 15em;
     position: relative;
-    left: 6.5em;
+    left: 3em;
 }
 .tangcloud span {
     line-height: 100%;
@@ -10,52 +10,52 @@
 
 .tangcloud-item-1 {
     font-size: 1.3em;
-    color: #1C1A1A;
+    color: red;
 }
 
 .tangcloud-item-2 {
     font-size: 1.6em;
-    color: #595252;
+    color: black;
 }
 
 .tangcloud-item-3 {
     font-size: 1.9em;
-    color: #A89C9C;
+    color: grey;
 }
 
 .tangcloud-item-4 {
     font-size: 2.2em;
-    color: #E7D9D9;
+    color: red;
 }
 
 .tangcloud-item-5 {
     font-size: 2.5em;
-    color: #FFF6F6;
+    color: blue;
 }
 
 .tangcloud-item-6 {
     font-size: 2.8em;
-    color: #FFE1E1;
+    color: grey;
 }
 
 .tangcloud-item-7 {
     font-size: 3.1em;
-    color: #FFC1C1;
+    color: red;
 }
 
 .tangcloud-item-8 {
     font-size: 3.4em;
-    color: #FF9E9E;
+    color: black;
 }
 
 .tangcloud-item-9 {
     font-size: 3.7em;
-    color: #FF6464;
+    color: grey;
 }
 
 .tangcloud-item-10 {
     font-size: 4em;
-    color: #FF0000;
+    color: red;
 }
 
 .tangcloud-item-hidden {
@@ -177,5 +177,11 @@ tang-cloud{
 }
 .cloudCaption {
     position: relative;
+}
+.cardShowPage {
+    overflow-x: visible;
+}
+.nv-chart-61008 {
+    overflow: visible;
 }
 
