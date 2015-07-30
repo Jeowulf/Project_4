@@ -1,12 +1,30 @@
 <main>
+  <div class="row">
+    <!-- chart stuf -->
+     <div class="card-panel col m3 l2 hide-on-small-only"></div>
+      <div class="card col s11 m12 l9 grey lighten-5">
+        <div class="card-content white black-text">
+        <span class="card-title black-text">Historical Chart</span>
 
+        <input type="text" class="validate" placeholder="Enter a Ticker Symbol" ng-model="ctrl.historical">
+        <button class="btn btn-inverse btn-lg btn-login" ng-click="ctrl.getHistorical()"><i class="fa fa-search"></i>Search</button>
+
+          <nvd3 options="ctrl.options" data="ctrl.data"></nvd3>
+        </div>
+      </div>
+      <!-- chart stuf -->
+  </div>
 <div class="row">
 
 
-      <div class="col s12 m4 l6">
+      <div class="col s12 m12 l6">
        <ul class="collection with-header z-depth-2">
+
 <!--        <li class="collection-item"><h5>Search for Twitter Sentiment Anaysis</h5></li>
- -->       <li class="collection-header"> <div ng-include="'app/dashboard/partials/twitsearch.html'"></div></li>
+
+ -->    <li class="collection-header">
+        <span class="center black-text ">Get Sentiment Analysis for recent tweets about anything on Twitter</span>
+        <br> <div ng-include="'app/dashboard/partials/twitsearch.html'"></div></li>
         <li class="collection-item"><div>Sentiment Analysis Score<a class="secondary-content black-text">{{ctrl.twitAnalysis.score}}</a></div></li>
         <li class="collection-item"><div>Comparative Analysis Score<a class="secondary-content black-text">{{ctrl.twitAnalysis.comparative}}</a></div></li>
         <li id="wrap" class="collection-item avatar"><div><p>Top Positive Words:</p><br>{{ctrl.twitAnalysis.positive.toString()}}</div></li>
@@ -19,15 +37,15 @@
 
 
 
-<div class="col s12 m4 l6">
+<div class="col s12 m12 l6">
       <ul class="collection with-header z-depth-2">
           <li class="collection-header">
               <form class="" ng-submit="ctrl.yahooSearch(form)">
 
             <div class="input-field">
-              <input type="text" class="validate" placeholder="Stock Symbol Search" ng-model="ctrl.stockInput">
+              <input type="text" class="validate" placeholder="Ticker Symbol Search" ng-model="ctrl.stockInput">
 
-             <button class="btn btn-inverse btn-lg btn-login" type="submit">
+             <button class="btn btn-inverse btn-lg btn-login" type="submit"><i class="fa fa-search"></i>
             Search
             </button>
         </div>
@@ -50,5 +68,6 @@
       </ul>
     </div>
 </div> <!-- row -->
+
 
 </main>

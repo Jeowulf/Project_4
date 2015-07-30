@@ -15,7 +15,6 @@ angular.module('proj4App')
   that.cloudClick =0;
 
   that.clickToOpen = function () {
-      console.log("ngFunctionate!")
         ngDialog.open({ template: 'templateId' });
     };
 
@@ -35,8 +34,8 @@ angular.module('proj4App')
    that.buyStock = function(stock) {
     //Let's get the price of the current order!!!!
     var price = stock.lastTradePriceOnly * stock.qty;
-    console.log(that.total + ' is total from buystock' + price + ' is price');
-    console.log(that.myPortfolio.cash + "$$$$$");
+    // console.log(that.total + ' is total from buystock' + price + ' is price');
+    // console.log(that.myPortfolio.cash + "$$$$$");
     //VALIDATION to check that user has enough cash in portfolio(amt is in DB)
     if(price <= that.myPortfolio.cash - 20){
       portfolioService.buyStock(stock).then(function(json) {
@@ -62,11 +61,10 @@ angular.module('proj4App')
     portfolioService.sellStock(stock).then(function(json) {
       console.log('promise here!');
         that.myPortfolio = json; //  TODO: fix this
-        console.log(json);
         that.getUserPortfolio(); //janky workaround!!
         toastr.success('You sold ' + stock.qty + ' shares');
     }).catch(function(response) {
-      console.log('Error ' + JSON.stringify(response));
+
       toastr.error("Not enough to sell");
     });
   };
@@ -79,7 +77,7 @@ angular.module('proj4App')
       that.thisStockQty = 0;
       that.myPortfolio = json;
 
-      console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio));
+      // console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio));
 
       //console.log("portfolio to follow: " + JSON.stringify(that.myPortfolio.stocksInPortfolio[0]));
       //set all the actual stocks(which is an array) in the portfolio equal to varialbe.
@@ -92,18 +90,18 @@ angular.module('proj4App')
         // console.log(price + ' is price!');
         that.total += price;
       });
-      console.log(that.total + ' is user portfolio total');
-      console.log(that.myPortfolio.stocksInPortfolio);
+      // console.log(that.total + ' is user portfolio total');
+      // console.log(that.myPortfolio.stocksInPortfolio);
       //find individual stock in portfolio info for current page's stock
       for (var i =0; i < that.myPortfolio.stocksInPortfolio.length; i++) {
-        console.log(that.myPortfolio.stocksInPortfolio[i].stock.symbol);
-        console.log(that.stock.symbol)
+        // console.log(that.myPortfolio.stocksInPortfolio[i].stock.symbol);
+        // console.log(that.stock.symbol)
         if (that.myPortfolio.stocksInPortfolio[i].stock.symbol === that.stock.symbol) {
           that.thisStock.push({qty: that.myPortfolio.stocksInPortfolio[i].qty, stock: that.myPortfolio.stocksInPortfolio[i].stock});
         }
       }
-      console.log(that.thisStock[0])
-      that.thisStockQty = that.thisStock[0].qty
+      // console.log(that.thisStock[0]);
+      that.thisStockQty = that.thisStock[0].qty; //what does this do?
     });
   }
   that.getUserPortfolio();
@@ -243,9 +241,7 @@ angular.module('proj4App')
   // console.log(that.close + ' is that.close');
   that.barLabels = ["2011", "2012", "2013", "2014"];
   // console.log(that.volume);
-  that.barData = [
-    that.volume
-  ];
+
   }
   that.onClick = function (points, evt) {
     console.log(points, evt);
@@ -306,10 +302,8 @@ angular.module('proj4App')
       meanTotal3 = meanTotal3 + that.historicalData[i].close;
       meanTotal4 = meanTotal4 + that.historicalData[i].adjClose;
     };
-    // that.data[0].mean = (meanTotal / that.historicalData.length) / that.historicalData[0].high;
-    // that.data[1].mean = (meanTotal2 / that.historicalData.length) / that.historicalData[0].low;
-    // that.data[2].mean = (meanTotal3 / that.historicalData.length) / that.historicalData[0].close;
-    // that.data[3].mean = (meanTotal4 / that.historicalData.length) / that.historicalData[0].adjClose;
+
+    that.data[3].mean = (meanTotal4 / that.historicalData.length) / that.historicalData[0].adjClose;
     for (var i = 0; i < that.historicalData.length; i ++) {
       that.data[0].values.push([i, that.historicalData[i].high]);
       that.data[1].values.push([i, that.historicalData[i].low]);
@@ -317,8 +311,8 @@ angular.module('proj4App')
       that.data[3].values.push([i, that.historicalData[i].adjClose]);
       // that.historicalData[i].date
     };
-      console.log(that.data[0].values.length);
-      console.log("finished");
+      // console.log(that.data[0].values.length);
+      // console.log("finished");
   }
   //creates the chart
     that.createChart = function () {
@@ -371,8 +365,8 @@ angular.module('proj4App')
       console.log("stocksSTUFF : " + that.myPortfolio)
 
 
-      var Konami = function (callback) {
-  var konami = {
+  var Konami = function (callback) {
+    var konami = {
     addEvent: function (obj, type, fn, ref_obj) {
       if (obj.addEventListener)
         obj.addEventListener(type, fn, false);
@@ -476,4 +470,3 @@ var easter_egg = new Konami();
   }
   easter_egg.load();
 });
-

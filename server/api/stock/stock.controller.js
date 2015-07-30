@@ -3,7 +3,8 @@ var Stock = require('./stock.model');
 var async = require('async');
 var yahooFinanceMultipleSymbolSearch = require('../../logic/yahooFinanceMultipleSymbolSearch');
 var yahooFinanceSearch = require('../../logic/yahooFinanceSearch');
-
+var CronJob = require('cron').CronJob;
+var time;
 //Gets all da stocks
 exports.index = function(req, res) {
   console.log('stocks get was hit');
@@ -13,7 +14,7 @@ exports.index = function(req, res) {
   });
 };
 
-// Get a single player
+// Get a single stock
 exports.show = function(req, res) {
   Stock.findById(req.params.id, function (err, stock) {
     if(err) { return handleError(res, err); }
@@ -123,6 +124,7 @@ function isValidData(dataFromYahoo) {
   return true;
 }
 
+
 //Admin only, updates stock prices
 //TODO: some validation to make sure correct stocks are matched
 var updateStocks = function (req, res) {
@@ -150,22 +152,54 @@ var updateStocks = function (req, res) {
           // console.log(stocks[i].name + '::::is stocks');
         }
       }
-      console.log('Parallel save of ' + functions.length + ' stocks.');
+      time = new Date();
+      console.log('Parallel save of ' + functions.length + ' stocks at: ' + time + ' time' );
       async.parallel(functions, function(err, results) {
         if (err) return handleError(res, err);
-        console.log("All the updated stocks are now saved.");
+        console.log('All the updated stocks are now saved at: ' + time + ' time');
         // res.json(201, results);
       })
     });
   });
 }
-function foo() {
-  console.log('BAR!!!!!!!!!!!!!!!');
-}
+//get a date for the console logs
+// 00 00 09-18 * * 2-6
+
+//start that job!
+var job = new CronJob({
+  cronTime: '00 09-16 * * 1-5', // M-F 9-4 PM EST
+  onTick: function() {
+     updateStocks();
+     console.log('stocks updated at ' + time);
+  },
+  start: false,
+  timeZone: 'America/New_York'
+});
+updateStocks();
+job.start();
+console.log('we made it!');
+// test if your cron pattern is valid!!!!!!!!!!!!!!
+// function job3 (callback) {
+//     try {
+//         console.log('hit job3()');
+//         new CronJob({
+//             cronTime: '00 48 10 * * 1-5',
+//             onTick: function () {
+//                console.log('this should not be printed');
+//             },
+//             start: true,
+//             timeZone: 'America/Los_Angeles'
+//         });
+//     } catch (ex) {
+//         callback('Daily sales sync cron pattern not valid');
+//     }
+// };
+
 exports.update = function (req, res) {
-  //
-  setInterval(updateStocks, 3600000);
-  res.send(200);
+    updateStocks();
+    job.start();
+    console.log('Thanks for scheduling your update stocks job for M-F 9-4 PM EST!!!!');
+    res.send(200);
 }
 
 function handleError(res, err) {

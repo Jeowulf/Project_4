@@ -1,12 +1,44 @@
 <main>
+
   <div class="container">
+    <!-- <div class="row">
+      <div class="s12 m4 l6">
+        <h2 class="center-align">The Developers</h2>
+       </div>
+   </div> -->
       <div class="row">
+
           <div class="col s12 m4 l6">
-            <h2>Colin Taylor</h2>
-            <ul>
-              <li ng-repeat="item in ctrl.links"><a href=""></a></li>
-            </ul>
+            <div class="card white  hoverable">
+              <div class="card-content white">
+                <span class="card-title"><h2>Colin Taylor</h2></span>
+                <p>Descrip</p>
+              </div>
+              <div class="card-action">
+                <span ng-repeat="item in ctrl.colinLinks">
+                <a href="{{item.link}}" target="_blank">
+                <i class="{{item.icon}} fa-3x"></i></a>
+                </span>
+              </div>
+
+
           </div>
       </div>
+      <!-- start Justin -->
+           <div class="col s12 m4 l6 ">
+            <div class="card white hoverable">
+              <div class="card-content white">
+                <span class="card-title"><h2>Justin Jacot</h2></span>
+                <p>Descrip</p>
+              </div>
+              <div class="card-action">
+                <span ng-repeat="item in ctrl.justinLinks">
+                <a href="{{item.link}}">
+                <i class="{{item.icon}} fa-3x"></i>
+                </span>
+              </div>
+            </div>
+        </div>
+
   </div>
 </main>

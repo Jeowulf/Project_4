@@ -120,30 +120,7 @@
   </div>
 </div>
 
-<!-- <div class="partyWrapper">
 
-<div class="wordsParty row">
-  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5></div>
-  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5></div>
-  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5></div>
-  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5></div>
-  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5></div>
-  <div class="col s2"><h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-  </h5></div>
-</div>
-</div>
-  that.myPortfolio.stocksInPortfolio[0].stock._id -->
 <!-- page slide stuff for portfolio -->
 
 <div ng-include="'app/dashboard/partials/slideoutportfolio.html'"></div>
@@ -154,64 +131,7 @@
   </div>
    <!-- page slide stuff for portfolio -->
 
-<!--  -->
-<!-- <div class="row clock">
-  <div class="col s2"></div>
-  <div class="col s1"></div>
-  <div class="col s2 buyAndSell"></div>
-  <div class="col s2 buyAndSell"><h4 id="textLeft"></h4></div>
-  <div class="col s2"><h5 id="portValue"></h5></div>
-  <div class="col s3"><h3>Market Value: {{ctrl.stock.lastTradePriceOnly}}</h3></div>
-</div> -->
 
-
-<!-- <div class="row gridRow">
-    <div class="col s2 offset-s2 gridColShow">
-      <h5>{{ctrl.stock.name}}</h5>
-    </div>
-    <div class="col s2 gridColShow">
-      <h5>
-
-      </h5>
-    </div>
-    <div class="col s2 gridColShow">
-      <p>Dividend Yield: {{ctrl.stock.dividendYield}} <br> Last Trade Price: {{ctrl.stock.lastTradePriceOnly}}</p>
-    </div>
-    <div class="col s2 gridColShow" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">
-      <h5>{{ctrl.stock.twitterHandle}} <br> Sentiment Score: {{ctrl.twitAnalysis.score}}</h5>
-    </div>
-  </div> -->
-
- <!--  <div class="row gridRow">
-   <div class="col s1"></div>
-    <div id="financeGraph" class="col s6" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">
-    <div class="container">
-      <div class="graph-header">
-        <h4>Process Historical Data</h4>
-      </div>
-
-      </div>
-        <div class="graph-body">
-          <canvas id="line" class="chart chart-line" options="ctrl.options" data="ctrl.data"
-          labels="ctrl.labels" legend="true" series="ctrl.series"
-          click="ctrl.onClick">
-          </canvas>
-        </div>
-      </div>
-      <div id="sentimentData" class="col s3 gridColTwo" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">
-      {{ctrl.twitAnalysis.score}}
-        <h5 class="tweets" ng-repeat="word in ctrl.twitAnalysis.words track by $index">
-          {{word}}
-        </h5>
-      </div>
-    </div>
-  <div id="cloudster">
-
-  </div>
-
-
-
- -->
 </main>
 
 
@@ -222,73 +142,3 @@
 
 
 
-<!-- <div class="container">
-{{ctrl.stock}}
- <table class="hoverable">
-        <thead>
-          <tr>
-              <th data-field="id">{{ctrl.stock.name}}</th>
-
-              <th data-field="price">Item Price</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>PE Ratio</td>
-            <td>{{ctrl.stock.peRatio}}</td>
-          </tr>
-          <tr>
-            <td>Dividend Yield</td>
-            <td>{{ctrl.stock.dividendYield}}</td>
-          </tr>
-          <tr>
-            <td>Last Trade Price</td>
-            <td>{{ctrl.stock.lastTradePriceOnly}}</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-
-
-
-<input type="number" ng-model="ctrl.stock.qty">
-<button class="btn btn-inverse btn-lg" ng-click="ctrl.buyStock(ctrl.stock)">BUY</button>
-<button class="btn btn-inverse btn-lg" ng-click="ctrl.sellStock(ctrl.stock)">SELL</button>
-<button class="btn btn-inverse btn-lg" ng-click="ctrl.twitSentQuery(ctrl.stock.twitterHandle)">TWITSENT</button>
-<br>
-<div ng-include="'app/dashboard/partials/twitsent.html'"></div>
-<br>
-
-<button class="btn btn-inverse btn-lg" ng-click="ctrl.getCurrent(ctrl.stock.symbol)">Get Current</button>
-<br>
-
-<ul class="collection">
-      <li class="collection-item">dividendYield: {{ctrl.currentData.dividendYield}}</li>
-      <li class="collection-item">change: {{ctrl.currentData.change}}</li>
-      <li class="collection-item">changeFrom200DayMovingAverage: {{ctrl.currentData.changeFrom200DayMovingAverage}}</li>
-      <li class="collection-item">changeAndPercentChange: {{ctrl.currentData.changeAndPercentChange}}</li>
-     <! <li class="collection-item">52WeekHigh: {{ctrl.currentData.52WeekHigh}}</li>
-      <li class="collection-item">open: {{ctrl.currentData.open}}</li>
-      <li class="collection-item">volume: {{ctrl.currentData.volume}}</li>
-      <li class="collection-item">marketCapitalization: {{ctrl.currentData.marketCapitalization}}</li>
-      <li class="collection-item">epsEstimateCurrentYear: {{ctrl.currentData.epsEstimateCurrentYear}}</li>
-      <li class="collection-item">epsEstimateNextQuarter: {{ctrl.currentData.epsEstimateNextQuarter}}</li>
-    </ul>
-    {{ctrl.currentData}}
-</div>
-<hr>
-<!<button class="btn btn-inverse btn-lg" ng-click="ctrl.getHistorical(ctrl.stock.symbol)">Get Historical</button>
-
-<h4>a nice chart here:</h4>
-<div class="container">
-<canvas id="line" class="chart chart-line" options="ctrl.options" data="ctrl.data"
-  labels="ctrl.labels" legend="true" series="ctrl.series"
-  click="ctrl.onClick">
-</canvas>
-<br>
-<! <canvas id="bar" class="chart chart-bar" data="ctrl.barData"
-  labels="ctrl.barLabels"></canvas>
-<<<<<<< HEAD
-</div> -->
