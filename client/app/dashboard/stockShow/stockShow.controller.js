@@ -467,7 +467,7 @@ angular.module('proj4App')
 that.konamiKash = function () {
   if (that.myPortfolio.cash < 20 || that.myPortfolio.cash === undefined) {
     that.myPortfolio.cash = 20;
-    toastr.success("KONAMI KASH ENABLED")
+    toastr.success("KONAMI KASH ENABLED");
   }
 }
 var easter_egg = new Konami();

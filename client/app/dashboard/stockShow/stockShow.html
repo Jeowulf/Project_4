@@ -10,12 +10,12 @@
           <h6 class="infolink hvr-push" ng-click="ctrl.clickToOpen()" ng-hide="ctrl.chartNum === 0">How does this chart work?</h6>
           <script type="text/ng-template" id="templateId">
             <h3>chart-reading tip</h3>
-            <p>The chart represents the past 54 months of stock data, and the percentage (higher or lower) variance from that starting point.  If you bought this stock 4 months ago and are interested in seeing your stock grow higher or lower from that point, click on the graph above fifty to set a new origin tracking bar and evaluate your growth from that specific point!</p>
+            <p>The chart represents the past 54 months of stock data, and the percentage (higher or lower) variance from that starting point.  If you bought this stock 4 months ago and are interested in seeing your stock progress from that point, click on the graph above fifty to set a new origin tracking bar and evaluate your stock performance from that specific point!</p>
           </script>
           <nvd3 options="ctrl.options" data="ctrl.data"></nvd3>
         </div>
         <div class="card-content">
-          <p class="white-text"></p>
+          <p class="white-text">High: {{ctrl.historicalData[ctrl.historicalData.length - 1].high}} | Low: {{ctrl.historicalData[ctrl.historicalData.length - 1].low}} | Close: {{ctrl.historicalData[ctrl.historicalData.length - 1].close}} | adjClose: {{ctrl.historicalData[ctrl.historicalData.length - 1].adjClose}}</p>
         </div>
         <!-- <div class="card-action">
           <a href="#">This is a link</a>
